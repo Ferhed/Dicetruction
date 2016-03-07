@@ -7,4 +7,9 @@ public abstract class Support : Card
     {
 
     }
+
+    public Support(int energy, string name, Sprite image) : base(energy, name, image)
+    {
+
+    }
 }

@@ -26,9 +26,15 @@ public class CardManager : MonoBehaviour
 	public float ExterminateRadius;
 	public int ExterminateEnergyCoast;
 	public float ExterminateForceExplosion;
-	public Sprite image;
+    public Sprite imageBombeH;
+    public Sprite imageVortex;
+    public Sprite imageTilt;
+    public Sprite imageJamesBond;
+    public Sprite imageSeime;
+    public Sprite imageExcalibur;
+    public Sprite imageExterminate;
 
-	void Awake ()
+    void Awake ()
 	{   
 		instance = this;
 		allCards = new List<Card> ();
@@ -44,13 +50,13 @@ public class CardManager : MonoBehaviour
 
 	private void InitialyzeCards ()
 	{
-		allCards.Add (new BombeH (BombeHRadius, BombeHEnergyCoast, BombeHForceExplosion, image));
-		allCards.Add (new Tilt (TiltEnergyCoast, TiltForce));
-		allCards.Add (new JamesBond (JamesBondEnergyCoast));
-		allCards.Add (new Vortex (VortexRadius, VortexEnergyCoast, VortexForceExplosion));
-		allCards.Add (new Seisme (SeismeEnergyCoast, SeismeForceExplosion));
-		allCards.Add (new Excalibur (ExcaliburRadius, ExcaliburEnergyCoast, ExcaliburForceExplosion));
-		allCards.Add (new Exterminate (ExterminateRadius, ExterminateEnergyCoast, ExterminateForceExplosion));
+		allCards.Add (new BombeH (BombeHRadius, BombeHEnergyCoast, BombeHForceExplosion, imageBombeH));
+		allCards.Add (new Tilt (TiltEnergyCoast, TiltForce, imageTilt));
+		allCards.Add (new JamesBond (JamesBondEnergyCoast, imageJamesBond));
+		allCards.Add (new Vortex (VortexRadius, VortexEnergyCoast, VortexForceExplosion, imageVortex));
+		allCards.Add (new Seisme (SeismeEnergyCoast, SeismeForceExplosion, imageSeime));
+		allCards.Add (new Excalibur (ExcaliburRadius, ExcaliburEnergyCoast, ExcaliburForceExplosion, imageExcalibur));
+		allCards.Add (new Exterminate (ExterminateRadius, ExterminateEnergyCoast, ExterminateForceExplosion, imageExterminate));
 	}
 
 	public static CardManager GetInstance ()

@@ -5,7 +5,7 @@ using System;
 
 public class JamesBond : Support
 {
-    public JamesBond(int energy) : base(energy, "JamesBond")
+    public JamesBond(int energy, Sprite image) : base(energy, "JamesBond", image)
     {
 
     }
@@ -22,6 +22,6 @@ public class JamesBond : Support
 
     public override Card Copy()
     {
-        return new JamesBond(energy);
+        return new JamesBond(energy, m_image);
     }
 }
