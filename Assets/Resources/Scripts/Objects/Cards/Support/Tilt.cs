@@ -6,7 +6,7 @@ public class Tilt : Support
 {
     float force;
 
-    public Tilt(int energy, float force) : base(energy, "Tilt")
+    public Tilt(int energy, float force, Sprite image) : base(energy, "Tilt", image)
     {
         this.force = force;
     }
@@ -26,6 +26,6 @@ public class Tilt : Support
 
     public override Card Copy()
     {
-        return new Tilt(energy, force);
+        return new Tilt(energy, force, m_image);
     }
 }

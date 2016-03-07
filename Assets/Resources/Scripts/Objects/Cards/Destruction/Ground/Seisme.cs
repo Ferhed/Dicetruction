@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class Seisme : Destruction
 {
 
-	public Seisme (int energy, float force) : base (energy, "Seisme", force)
+	public Seisme (int energy, float force, Sprite image) : base (energy, "Seisme", force, image)
 	{
 
 	}
@@ -17,7 +17,7 @@ public class Seisme : Destruction
 
 	public override Card Copy ()
 	{
-		return new Seisme (energy, force);
+		return new Seisme (energy, force, m_image);
 	}
 
 	public IEnumerator yollohSeisme ()

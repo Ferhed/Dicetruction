@@ -7,7 +7,7 @@ public class Excalibur : Destruction
 
     public float radius;
 
-    public Excalibur(float radius, int energy, float force) : base (energy, "Excalibur", force)
+    public Excalibur(float radius, int energy, float force, Sprite image) : base (energy, "Excalibur", force, image)
     {
         this.radius = radius;
     }
@@ -19,6 +19,6 @@ public class Excalibur : Destruction
 
     public override Card Copy()
     {
-        return new Excalibur(radius, energy, force);
+        return new Excalibur(radius, energy, force, m_image);
     }
 }

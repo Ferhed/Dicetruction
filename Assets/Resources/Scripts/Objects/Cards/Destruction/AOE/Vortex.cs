@@ -6,7 +6,7 @@ public class Vortex : Destruction
 {
 	public float radius;
 
-	public Vortex (float radius, int energy, float force) : base (energy, "Seisme", force)
+	public Vortex (float radius, int energy, float force, Sprite image) : base (energy, "Seisme", force, image)
 	{
 		this.radius = radius;
 	}
@@ -30,6 +30,6 @@ public class Vortex : Destruction
 
 	public override Card Copy ()
 	{
-		return new Vortex (radius, energy, force);
+		return new Vortex (radius, energy, force, m_image);
 	}
 }

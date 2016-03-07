@@ -235,9 +235,9 @@ public class TurnManager : MonoBehaviour
 	IEnumerator GlobalTurn ()
 	{
         /** Pour debug */
-        player1.AddCardInHand(new BombeH(0, 0, 0, CardManager.GetInstance().image));
-        player1.AddCardInHand (new BombeH (0, 0, 0, CardManager.GetInstance ().image));
-		player1.AddCardInHand (new BombeH (0, 0, 0, CardManager.GetInstance ().image));
+        player1.AddCardInHand(new BombeH(0, 0, 0, CardManager.GetInstance().imageBombeH));
+        player1.AddCardInHand (new BombeH (0, 0, 0, CardManager.GetInstance ().imageBombeH));
+		player1.AddCardInHand (new BombeH (0, 0, 0, CardManager.GetInstance ().imageBombeH));
         /*******************/
 
 
@@ -253,7 +253,7 @@ public class TurnManager : MonoBehaviour
 		for (int i = 0; i < nbCard; i++)
         {
             //cardsInDraft.Add(CardManager.GetInstance().GetRandomCard());
-            cardsInDraft.Add(new BombeH(0, 0, 0, CardManager.GetInstance().image));
+            cardsInDraft.Add(new BombeH(0, 0, 0, CardManager.GetInstance().imageBombeH));
         }
 
         Ui_Manager.Instance.setDraftCard (cardsInDraft);
