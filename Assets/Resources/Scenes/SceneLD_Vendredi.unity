@@ -50771,6 +50771,74 @@ Prefab:
       propertyPath: globalCamera
       value: 
       objectReference: {fileID: 1593478277}
+    - target: {fileID: 11437516, guid: 60f54f101c7ab9446b617c818e63067a, type: 2}
+      propertyPath: BombeHRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11437516, guid: 60f54f101c7ab9446b617c818e63067a, type: 2}
+      propertyPath: BombeHEnergyCoast
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11437516, guid: 60f54f101c7ab9446b617c818e63067a, type: 2}
+      propertyPath: BombeHForceExplosion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11437516, guid: 60f54f101c7ab9446b617c818e63067a, type: 2}
+      propertyPath: TiltEnergyCoast
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11437516, guid: 60f54f101c7ab9446b617c818e63067a, type: 2}
+      propertyPath: TiltForce
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11437516, guid: 60f54f101c7ab9446b617c818e63067a, type: 2}
+      propertyPath: JamesBondEnergyCoast
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11437516, guid: 60f54f101c7ab9446b617c818e63067a, type: 2}
+      propertyPath: VortexRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11437516, guid: 60f54f101c7ab9446b617c818e63067a, type: 2}
+      propertyPath: VortexEnergyCoast
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11437516, guid: 60f54f101c7ab9446b617c818e63067a, type: 2}
+      propertyPath: VortexForceExplosion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11437516, guid: 60f54f101c7ab9446b617c818e63067a, type: 2}
+      propertyPath: SeismeEnergyCoast
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11437516, guid: 60f54f101c7ab9446b617c818e63067a, type: 2}
+      propertyPath: SeismeForceExplosion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11437516, guid: 60f54f101c7ab9446b617c818e63067a, type: 2}
+      propertyPath: ExcaliburRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11437516, guid: 60f54f101c7ab9446b617c818e63067a, type: 2}
+      propertyPath: ExcaliburEnergyCoast
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11437516, guid: 60f54f101c7ab9446b617c818e63067a, type: 2}
+      propertyPath: ExterminateRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11437516, guid: 60f54f101c7ab9446b617c818e63067a, type: 2}
+      propertyPath: ExcaliburForceExplosion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11437516, guid: 60f54f101c7ab9446b617c818e63067a, type: 2}
+      propertyPath: ExterminateEnergyCoast
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11437516, guid: 60f54f101c7ab9446b617c818e63067a, type: 2}
+      propertyPath: ExterminateForceExplosion
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 60f54f101c7ab9446b617c818e63067a, type: 2}
   m_IsPrefabParent: 0

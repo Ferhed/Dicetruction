@@ -19,18 +19,23 @@ public class BombeH : Destruction
 
 	public override void Cast (List<GameObject> targets)
 	{
-		GameObject dice = targets [0];
-
-		Collider[] co = Physics.OverlapSphere (dice.transform.position, 15f);
-		foreach (Collider currentCo in co) {
-			if (currentCo.tag == "needPhysics") {
-				currentCo.GetComponent<Building> ().bump ();
-				currentCo.GetComponent<Building> ().changeWeight ();
-				currentCo.GetComponent<Rigidbody> ().AddExplosionForce (350f * 100 * force, dice.transform.position, 15f);
-			}
+        for(int i = 0; i<targets.Count;i++)
+        {
+		    GameObject dice = targets [i];
+		    Collider[] co = Physics.OverlapSphere (dice.transform.position, 15f);
+            Debug.Log("Length = "+co.Length);
+            foreach (Collider currentCo in co)
+            {
+                if (currentCo.tag == "needPhysics")
+                {
+                    currentCo.GetComponent<Building>().bump();
+                    currentCo.GetComponent<Building>().changeWeight();
+                    currentCo.GetComponent<Rigidbody>().AddExplosionForce(350f * 100 * 1, dice.transform.position, 15f);
+                }
+                dice.GetComponent<Rigidbody>().AddExplosionForce(450f, dice.transform.position, 15f);
+            }
 		}
 		XInput.instance.useVibe (0, 0.5f, 1, 1);
-		dice.GetComponent<Rigidbody> ().AddExplosionForce (450f, dice.transform.position, 15f);
 
 	}
 

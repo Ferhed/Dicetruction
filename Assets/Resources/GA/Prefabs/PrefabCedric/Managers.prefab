@@ -79,23 +79,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7262270dda94bbc4db79748c24a4d36b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BombeHRadius: 0
-  BombeHEnergyCoast: 0
-  BombeHForceExplosion: 0
-  TiltEnergyCoast: 0
-  TiltForce: 0
-  JamesBondEnergyCoast: 0
-  VortexRadius: 0
-  VortexEnergyCoast: 0
-  VortexForceExplosion: 0
-  SeismeEnergyCoast: 0
-  SeismeForceExplosion: 0
-  ExcaliburRadius: 0
-  ExcaliburEnergyCoast: 0
-  ExcaliburForceExplosion: 0
-  ExterminateRadius: 0
-  ExterminateEnergyCoast: 0
-  ExterminateForceExplosion: 0
+  BombeHRadius: 1
+  BombeHEnergyCoast: 1
+  BombeHForceExplosion: 1
+  TiltEnergyCoast: 1
+  TiltForce: 1
+  JamesBondEnergyCoast: 1
+  VortexRadius: 1
+  VortexEnergyCoast: 1
+  VortexForceExplosion: 1
+  SeismeEnergyCoast: 1
+  SeismeForceExplosion: 1
+  ExcaliburRadius: 1
+  ExcaliburEnergyCoast: 1
+  ExcaliburForceExplosion: 1
+  ExterminateRadius: 1
+  ExterminateEnergyCoast: 1
+  ExterminateForceExplosion: 1
   imageBombeH: {fileID: 21300000, guid: 21eb2dc44f42bc748974cbb75d48d936, type: 3}
   imageVortex: {fileID: 21300000, guid: a12710f97af0ce443940ab0a7b85f578, type: 3}
   imageTilt: {fileID: 21300000, guid: cae30d574972b6047ba1ee90b3a5a7e5, type: 3}
