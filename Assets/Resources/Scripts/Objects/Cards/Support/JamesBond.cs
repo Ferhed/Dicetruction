@@ -7,7 +7,7 @@ public class JamesBond : Support
 {
     public JamesBond(int energy, Sprite image) : base(energy, "JamesBond", image)
     {
-
+        m_type = CardType.NoDie;
     }
 
     public override void Cast(List<GameObject> targets)

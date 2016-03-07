@@ -52,12 +52,12 @@ public class InputManager : MonoBehaviour
 			return;
 		}
 
-		if (inStartTurnPlayer) {
+		/*if (inStartTurnPlayer) {
 			inStartTurnPlayer = false;
 			inShootView = true;
 			Ui_Manager.Instance.GoToState (UiState.Throw);
 			return;
-		}
+		}*/
 		if (inSelectDice) {
 			inSelectDice = false;
 			inCastSpell = true;
@@ -67,20 +67,20 @@ public class InputManager : MonoBehaviour
 
 	public void OnPressButtonB ()
 	{
-		if (handActive) {
+	    if (handActive) {
 			handActive = false;
-			if (inStartTurnPlayer)
-				Ui_Manager.Instance.GoToState (UiState.Positioning);
-			else
-				Ui_Manager.Instance.GoToState (UiState.Throw);
+            if (inStartTurnPlayer) { }
+            //Ui_Manager.Instance.GoToState (UiState.Positioning);
+            else
+                Ui_Manager.Instance.GoToState(UiState.Throw);
 			return;
 		}
-		if (inShootView) {
+		/*if (inShootView) {
 			inShootView = false;
 			inStartTurnPlayer = true;
 			Ui_Manager.Instance.GoToState (UiState.Positioning);
 			return;
-		}
+		}*/
 		if (inSelectDice) {
 			inSelectDice = false;
 			inSelectSpell = true;

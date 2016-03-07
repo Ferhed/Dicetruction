@@ -9,6 +9,7 @@ public class Tilt : Support
     public Tilt(int energy, float force, Sprite image) : base(energy, "Tilt", image)
     {
         this.force = force;
+        m_type = CardType.SingleDie;
     }
 
     public override void Cast(List<GameObject> targets)

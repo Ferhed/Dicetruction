@@ -7,8 +7,7 @@ public class CameraScript : MonoBehaviour
 {
 
     float horizontalMovment;
-    float verticalLeft;
-    float horizontalLeft;
+    float verticalMovment;
     public GameObject mapCenter;
     public GameObject[] dices;
     public float speedRotationArround = 20f;
@@ -43,7 +42,7 @@ public class CameraScript : MonoBehaviour
         STATIC,
     }
 
-    POSITION currentPosition = POSITION.ROTATEARROUND;
+    POSITION currentPosition = POSITION.SCOPE;
     // Use this for initialization
     void Start()
     {
@@ -95,11 +94,7 @@ public class CameraScript : MonoBehaviour
         {
             goScope();
         }
-        horizontalMovment = Input.GetAxis("Horizontal");
-        if (horizontalMovment != 0)
-        {
-            mapCenter.transform.Rotate(mapCenter.transform.up, -horizontalMovment * Time.deltaTime * speedRotationArround);
-        }
+
     }
 
     void rapidDisplacment()
@@ -122,13 +117,18 @@ public class CameraScript : MonoBehaviour
 
     void scope()
     {
-        if (Input.GetButtonDown("ButtonB"))
+       /* if (Input.GetButtonDown("ButtonB"))
         {
             currentPosition = POSITION.ROTATEARROUND;
+        }*/
+        verticalMovment = Input.GetAxis("Vertical");
+        transform.Rotate(new Vector3(-verticalMovment*speedRotationVerticalScope, 0, 0) * Time.deltaTime);
+
+        horizontalMovment = Input.GetAxis("Horizontal");
+        if (horizontalMovment != 0)
+        {
+            mapCenter.transform.Rotate(mapCenter.transform.up, -horizontalMovment * Time.deltaTime * speedRotationArround);
         }
-        verticalLeft = Input.GetAxis("LeftVertical");
-        horizontalLeft = Input.GetAxis("LeftHorizontal");
-        transform.Rotate(new Vector3(horizontalLeft * speedRotationVerticalScope, -verticalLeft * speedRotationHorizontalScope, 0) * Time.deltaTime);
 
         if (Input.GetAxis("Trigger") > 0.5f || Input.GetAxis("Trigger") < -0.5f)
         {
@@ -169,8 +169,8 @@ public class CameraScript : MonoBehaviour
 
     void checkforce()
     {
-        float hori = Input.GetAxis("Horizontal");
-        float verti = Input.GetAxis("Vertical");
+        float hori = Input.GetAxis("LeftHorizontal");
+        float verti = Input.GetAxis("LeftVertical");
         float dist = Vector2.Distance(getForce, new Vector2(hori, verti));
         force = Mathf.Min(force + dist*2, 100f);
         getForce = new Vector2(hori, verti);

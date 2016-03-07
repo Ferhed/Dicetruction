@@ -9,7 +9,8 @@ public class Vortex : Destruction
 	public Vortex (float radius, int energy, float force, Sprite image) : base (energy, "Seisme", force, image)
 	{
 		this.radius = radius;
-	}
+        m_type = CardType.SingleDie;
+    }
 
 	public override void Cast (List<GameObject> targets)
 	{

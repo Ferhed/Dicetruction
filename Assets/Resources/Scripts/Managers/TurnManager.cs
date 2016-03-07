@@ -119,7 +119,7 @@ public class TurnManager : MonoBehaviour
 	IEnumerator Turn ()
 	{
 		addCameraForPlayer ();
-		Ui_Manager.Instance.GoToState (UiState.Positioning);
+		Ui_Manager.Instance.GoToState (UiState.Throw);
 		InputManager.GetInstance ().inStartTurnPlayer = true;
 
 		while (dicesValor.Count != 3) {

@@ -14,7 +14,8 @@ public class BombeH : Destruction
 	public BombeH (float radius, int energy, float force, Sprite image) : base (energy, "BombeH", force, image)
 	{
 		this.radius = radius;
-	}
+        m_type = CardType.SingleDie;
+    }
 
 	public override void Cast (List<GameObject> targets)
 	{

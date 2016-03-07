@@ -6,9 +6,9 @@ public class Seisme : Destruction
 {
 
 	public Seisme (int energy, float force, Sprite image) : base (energy, "Seisme", force, image)
-	{
-
-	}
+    {
+        m_type = CardType.NoDie;
+    }
 
 	public override void Cast (List<GameObject> targets)
 	{
