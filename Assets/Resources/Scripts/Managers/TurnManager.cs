@@ -75,24 +75,10 @@ public class TurnManager : MonoBehaviour
 	public IEnumerator Game ()
 	{
 		yield return new WaitForEndOfFrame ();
-<<<<<<< HEAD
-        //Tour de draft
-	    Debug.Log ("GLobalTurn");
-=======
-		//Tour de draft
-		Debug.Log ("GLobalTurn");
->>>>>>> 71e639c8277f4ed81deea38815300f9eb13495a3
 		StartCoroutine (GlobalTurn ());
 
 		while (!globalTurnEnded)
 			yield return new WaitForEndOfFrame ();
-<<<<<<< HEAD
-            
-        //Tour du joueur 1
-=======
-
-		//Tour du joueur 1
->>>>>>> 71e639c8277f4ed81deea38815300f9eb13495a3
 		Debug.Log ("TurnP1");
 		currentPlayer = player1;
 		StartCoroutine (Turn ());
@@ -229,19 +215,11 @@ public class TurnManager : MonoBehaviour
 
 	IEnumerator GlobalTurn ()
 	{
-<<<<<<< HEAD
         /** Pour debug */
         player1.AddCardInHand(new BombeH(0, 0, 0, CardManager.GetInstance().imageBombeH));
         player1.AddCardInHand (new BombeH (0, 0, 0, CardManager.GetInstance ().imageBombeH));
 		player1.AddCardInHand (new BombeH (0, 0, 0, CardManager.GetInstance ().imageBombeH));
         /*******************/
-=======
-		/** Pour debug */
-		player1.AddCardInHand (new BombeH (0, 0, 0, CardManager.GetInstance ().image));
-		player1.AddCardInHand (new BombeH (0, 0, 0, CardManager.GetInstance ().image));
-		player1.AddCardInHand (new BombeH (0, 0, 0, CardManager.GetInstance ().image));
-		/*******************/
->>>>>>> 71e639c8277f4ed81deea38815300f9eb13495a3
 
 
 
@@ -251,19 +229,12 @@ public class TurnManager : MonoBehaviour
 		if (player2.getScore () < player1.getScore ()) {
 			currentPlayer = player2;
 		}
-
-<<<<<<< HEAD
+        
 		for (int i = 0; i < nbCard; i++)
         {
             //cardsInDraft.Add(CardManager.GetInstance().GetRandomCard());
             cardsInDraft.Add(new BombeH(0, 0, 0, CardManager.GetInstance().imageBombeH));
         }
-=======
-		for (int i = 0; i < nbCard; i++) {
-			//cardsInDraft.Add(CardManager.GetInstance().GetRandomCard());
-			cardsInDraft.Add (new BombeH (0, 0, 0, CardManager.GetInstance ().image));
-		}
->>>>>>> 71e639c8277f4ed81deea38815300f9eb13495a3
 
 		Ui_Manager.Instance.setDraftCard (cardsInDraft);
 		Ui_Manager.Instance.GoToState (UiState.Draft);
