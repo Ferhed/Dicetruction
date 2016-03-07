@@ -65,10 +65,6 @@ public class Ui_Manager : Singleton<Ui_Manager>
 	[SerializeField]
 	private GameObject m_yShowDice;
 	[SerializeField]
-	private GameObject m_xShowTacticView;
-	[SerializeField]
-	private GameObject m_xShowBasicView;
-	[SerializeField]
 	private GameObject m_pressBtnPanel;
 	[SerializeField]
 	private GameObject m_phaseTitle;
@@ -151,8 +147,6 @@ public class Ui_Manager : Singleton<Ui_Manager>
 		m_pressBtnPanel.SetActive (false);
 		m_ressourcesPanel.SetActive (false);
 		m_selectCardPanel.SetActive (false);
-		m_xShowBasicView.SetActive (false);
-		m_xShowTacticView.SetActive (false);
 		m_yShowDice.SetActive (false);
 		m_yShowHand.SetActive (false);
 		m_bToBack.SetActive (false);
@@ -219,7 +213,6 @@ public class Ui_Manager : Singleton<Ui_Manager>
 		hideAll ();
 		m_phaseTitle.SetActive (true);
 		m_yShowHand.SetActive (true);
-		m_xShowTacticView.SetActive (true);
 		m_pressBtnPanel.SetActive (true);
 
 		Color alpha = m_phaseTitle.GetComponent<Image> ().color;
@@ -237,7 +230,6 @@ public class Ui_Manager : Singleton<Ui_Manager>
 		hideAll ();
 		m_phaseTitle.SetActive (true);
 		m_yShowHand.SetActive (true);
-		m_xShowBasicView.SetActive (true);
 		m_pressBtnPanel.SetActive (true);
 
 		Color alpha = m_phaseTitle.GetComponent<Image> ().color;
@@ -255,7 +247,6 @@ public class Ui_Manager : Singleton<Ui_Manager>
 		hideAll ();
 		m_phaseTitle.SetActive (true);
 		m_yShowHand.SetActive (true);
-		m_xShowTacticView.SetActive (true);
 		m_pressBtnPanel.SetActive (true);
 		m_bToBack.SetActive (true);
 
@@ -274,36 +265,23 @@ public class Ui_Manager : Singleton<Ui_Manager>
 		hideAll ();
 		m_phaseTitle.SetActive (true);
 		m_yShowHand.SetActive (true);
-		m_xShowTacticView.SetActive (true);
 		m_pressBtnPanel.SetActive (true);
 		m_selectCardPanel.SetActive (true);
 
-		Color alpha = m_phaseTitle.GetComponent<Image> ().color;
-		alpha.a = 0;
-		m_phaseTitle.GetComponent<Image> ().color = alpha;
-
-		m_phaseTitle.GetComponent<Image> ().DOKill ();
-		m_phaseTitle.GetComponent<Image> ().DOFade (1, 2).SetEase (Ease.OutSine).SetLoops (2, LoopType.Yoyo).OnComplete (() => {
-			m_phaseTitle.SetActive (false);
-		});
+		List<Card> hand = TurnManager.GetInstance ().currentPlayer.GetHand ();
+		for (int i = 0; i < 5; i++) {
+			m_selectCardPanel.transform.GetChild (i).gameObject.SetActive (true);
+			m_selectCardPanel.transform.GetChild (i).GetComponent<DraftCardUI> ().ActiveCard = hand [i];
+			continue;
+		}
+		m_system.SetSelectedGameObject (m_selectCardPanel.transform.GetChild (0).gameObject);
 	}
 
 	private void OnDiceSelect ()
 	{
 		hideAll ();
-		m_phaseTitle.SetActive (true);
-		m_yShowHand.SetActive (true);
-		m_xShowTacticView.SetActive (true);
 		m_pressBtnPanel.SetActive (true);
 
-		Color alpha = m_phaseTitle.GetComponent<Image> ().color;
-		alpha.a = 0;
-		m_phaseTitle.GetComponent<Image> ().color = alpha;
-
-		m_phaseTitle.GetComponent<Image> ().DOKill ();
-		m_phaseTitle.GetComponent<Image> ().DOFade (1, 2).SetEase (Ease.OutSine).SetLoops (2, LoopType.Yoyo).OnComplete (() => {
-			m_phaseTitle.SetActive (false);
-		});
 	}
 
 	#endregion
@@ -345,6 +323,16 @@ public class Ui_Manager : Singleton<Ui_Manager>
 			} else
 				hand.GetChild (i).gameObject.SetActive (false);
 		}
+	}
+
+	public List<Card> getSelectedSpell ()
+	{
+		List<Card> selectedSpells = new List<Card> ();
+		for (int i = 0; i < m_selectCardPanel.transform.childCount; i++) {
+			if (m_selectCardPanel.transform.GetChild (i).GetComponent<DraftCardUI> ().IsSelected)
+				selectedSpells.Add (m_selectCardPanel.transform.GetChild (i).GetComponent<DraftCardUI> ().ActiveCard);
+		}
+		return selectedSpells;
 	}
 }
 
