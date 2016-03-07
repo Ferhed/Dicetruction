@@ -14,17 +14,17 @@ public class TurnManager : MonoBehaviour
 
 	private List<Card> cardsInDraft;
 	private List<int> dicesValor;
-    //
-    private bool turnPlayer1Ended;
+	//
+	private bool turnPlayer1Ended;
 	private bool turnPlayer2Ended;
 	private bool globalTurnEnded;
 	[HideInInspector]
 	public bool cardSelected;
-    //
-    [HideInInspector]
+	//
+	[HideInInspector]
 	public Player currentPlayer;
-    //
-    public Camera globalCamera;
+	//
+	public Camera globalCamera;
 	[HideInInspector]
 	public GameObject playerGameObject;
 
@@ -32,38 +32,34 @@ public class TurnManager : MonoBehaviour
 	{
 		cardsInDraft = new List<Card> ();
 		dicesValor = new List<int> ();
-        //
-        instance = this;
+		//
+		instance = this;
 		turnPlayer1Ended = false;
 		turnPlayer2Ended = false;
 		globalTurnEnded = false;
 		cardSelected = false;
 
-		StartCoroutine (StartGame());
+		StartCoroutine (StartGame ());
 	}
-    //
-    public static TurnManager GetInstance ()
+	//
+	public static TurnManager GetInstance ()
 	{
-		if (instance == null)
-        {
+		if (instance == null) {
 			instance = new TurnManager ();
 		}
 		return instance;
 	}
-    //
-    public List<Card> getHandCurrentPlayer ()
+	//
+	public List<Card> getHandCurrentPlayer ()
 	{
 		return currentPlayer.GetHand ();
 	}
 
 	public void EndOfTurn ()
 	{
-		if (currentPlayer == player1)
-        {
+		if (currentPlayer == player1) {
 			currentPlayer = player2;
-		}
-        else
-        {
+		} else {
 			currentPlayer = player1;
 		}
 	}
@@ -79,21 +75,32 @@ public class TurnManager : MonoBehaviour
 	public IEnumerator Game ()
 	{
 		yield return new WaitForEndOfFrame ();
+<<<<<<< HEAD
         //Tour de draft
 	    Debug.Log ("GLobalTurn");
+=======
+		//Tour de draft
+		Debug.Log ("GLobalTurn");
+>>>>>>> 71e639c8277f4ed81deea38815300f9eb13495a3
 		StartCoroutine (GlobalTurn ());
 
 		while (!globalTurnEnded)
 			yield return new WaitForEndOfFrame ();
+<<<<<<< HEAD
             
         //Tour du joueur 1
+=======
+
+		//Tour du joueur 1
+>>>>>>> 71e639c8277f4ed81deea38815300f9eb13495a3
 		Debug.Log ("TurnP1");
+		currentPlayer = player1;
 		StartCoroutine (Turn ());
 
 		while (!turnPlayer1Ended)
 			yield return new WaitForEndOfFrame ();
 
-        //Tour du joueur 2
+		//Tour du joueur 2
 		Debug.Log ("TurnP2");
 		StartCoroutine (Turn ());
 
@@ -129,101 +136,89 @@ public class TurnManager : MonoBehaviour
 		Ui_Manager.Instance.GoToState (UiState.Positioning);
 		InputManager.GetInstance ().inStartTurnPlayer = true;
 
-		while (dicesValor.Count != 3)
-        {
+		while (dicesValor.Count != 3) {
 			yield return new WaitForEndOfFrame ();
 		}
 		valorOk ();
-        /*
-        while (!cardSelected)
-        {
-            yield return new WaitForEndOfFrame();
-        }*/
 
+		//**********SELECT SPELL
+		InputManager.GetInstance ().inShootView = false;
+		InputManager.GetInstance ().inSelectSpell = true;
+		Debug.Log ("[State] : SelectSpell");
+		Ui_Manager.Instance.GoToState (UiState.SpellSelect);
+
+		//Waiting until the player validate his choices
+		yield return new WaitUntil (() => {
+			return Input.GetButtonDown ("ButtonX");
+		});
+		List<Card> SelectedSpells = Ui_Manager.Instance.getSelectedSpell ();
+		Debug.Log (SelectedSpells.Count);
+
+		//Waiting until all the spells are assigned to a die
+
+		yield return new WaitForSpellAssignation (SelectedSpells);
 		//Selection du Spell a lancer
 		cardSelected = false;
 		if (currentPlayer == player1)
 			turnPlayer1Ended = true;
 		else
 			turnPlayer2Ended = true;
-        currentPlayer.EndOfTurn();
+		currentPlayer.EndOfTurn ();
 
-        killCamera();
+		killCamera ();
 
-        EndOfTurn();
-    }
+		EndOfTurn ();
+	}
 
 	void killCamera ()
-    {
-        foreach (GameObject dice in currentPlayer.GODices)
-        {
-            Destroy(dice);
-        }
-        globalCamera.enabled = true;
+	{
+		foreach (GameObject dice in currentPlayer.GODices) {
+			Destroy (dice);
+		}
+		globalCamera.enabled = true;
 		Destroy (playerGameObject);
 	}
 
 
-	public void SelectCard (Card card)
+	public void SelectCard (Card card, int dieIndex)
 	{
 		cardSelected = true;
+		Debug.Log (player1.GODices [dieIndex]);
 		//Cast un Spell
-		if (!turnPlayer2Ended)
-        {
+		if (!turnPlayer2Ended) {
 			List<GameObject> targets = new List<GameObject> ();
 
-			if ((card as Vortex) != null)
-            {
-				if (currentPlayer == player1)
-                {
-					targets.Add (player1.dices [0].gameObject);
+			if ((card as Vortex) != null) {
+				if (currentPlayer == player1) {
+					targets.Add (player1.dices [dieIndex].gameObject);
+				} else {
+					targets.Add (player2.dices [dieIndex].gameObject);
 				}
-                else
-                {
-					targets.Add (player2.dices [0].gameObject);
-				}
-			}
-            else if ((card as Seisme) != null)
-            {
+			} else if ((card as Seisme) != null) {
 				StartCoroutine ((card as Seisme).yollohSeisme ());
-			}
-            else if ((card as Tilt) != null)
-            {
-				if (currentPlayer == player1)
-                {
-					targets.Add (player1.dices [0].gameObject);
-					targets.Add (player1.dices [1].gameObject);
-					targets.Add (player1.dices [2].gameObject);
+			} else if ((card as Tilt) != null) {
+				if (currentPlayer == player1) {
+					targets.Add (player1.GODices [0]);
+					targets.Add (player1.GODices [1]);
+					targets.Add (player1.GODices [2]);
+				} else {
+					targets.Add (player2.GODices [0]);
+					targets.Add (player2.GODices [1]);
+					targets.Add (player2.GODices [2]);
 				}
-                else
-                {
-					targets.Add (player2.dices [0].gameObject);
-					targets.Add (player2.dices [1].gameObject);
-					targets.Add (player2.dices [2].gameObject);
-				}
-			}
-            else if ((card as JamesBond) != null)
-            {
-				if (currentPlayer == player1)
-                {
+			} else if ((card as JamesBond) != null) {
+				if (currentPlayer == player1) {
 					targets.Add (player1.gameObject);
 					targets.Add (player2.gameObject);
-				}
-                else
-                {
+				} else {
 					targets.Add (player2.gameObject);
 					targets.Add (player1.gameObject);
 				}
-			}
-            else if ((card as BombeH) != null)
-            {
-				if (currentPlayer == player1)
-                {
-					targets.Add (player1.dices [0].gameObject);
-				}
-                else
-                {
-					targets.Add (player2.dices [0].gameObject);
+			} else if ((card as BombeH) != null) {
+				if (currentPlayer == player1) {
+					targets.Add (player1.GODices [dieIndex]);
+				} else {
+					targets.Add (player2.GODices [dieIndex]);
 				}
 			}
 
@@ -234,52 +229,62 @@ public class TurnManager : MonoBehaviour
 
 	IEnumerator GlobalTurn ()
 	{
+<<<<<<< HEAD
         /** Pour debug */
         player1.AddCardInHand(new BombeH(0, 0, 0, CardManager.GetInstance().imageBombeH));
         player1.AddCardInHand (new BombeH (0, 0, 0, CardManager.GetInstance ().imageBombeH));
 		player1.AddCardInHand (new BombeH (0, 0, 0, CardManager.GetInstance ().imageBombeH));
         /*******************/
+=======
+		/** Pour debug */
+		player1.AddCardInHand (new BombeH (0, 0, 0, CardManager.GetInstance ().image));
+		player1.AddCardInHand (new BombeH (0, 0, 0, CardManager.GetInstance ().image));
+		player1.AddCardInHand (new BombeH (0, 0, 0, CardManager.GetInstance ().image));
+		/*******************/
+>>>>>>> 71e639c8277f4ed81deea38815300f9eb13495a3
 
 
 
 		int nbCard = (5 - player1.getHandSize ()) + (5 - player2.getHandSize ());
 
 		//SpawnCard a choisir
-		if (player2.getScore () < player1.getScore ())
-        {
+		if (player2.getScore () < player1.getScore ()) {
 			currentPlayer = player2;
 		}
 
+<<<<<<< HEAD
 		for (int i = 0; i < nbCard; i++)
         {
             //cardsInDraft.Add(CardManager.GetInstance().GetRandomCard());
             cardsInDraft.Add(new BombeH(0, 0, 0, CardManager.GetInstance().imageBombeH));
         }
+=======
+		for (int i = 0; i < nbCard; i++) {
+			//cardsInDraft.Add(CardManager.GetInstance().GetRandomCard());
+			cardsInDraft.Add (new BombeH (0, 0, 0, CardManager.GetInstance ().image));
+		}
+>>>>>>> 71e639c8277f4ed81deea38815300f9eb13495a3
 
-        Ui_Manager.Instance.setDraftCard (cardsInDraft);
+		Ui_Manager.Instance.setDraftCard (cardsInDraft);
 		Ui_Manager.Instance.GoToState (UiState.Draft);
 		InputManager.GetInstance ().inDraft = true;
 
-		while (player1.getHandSize () < 5 || player2.getHandSize () < 5)
-        {
+		while (player1.getHandSize () < 5 || player2.getHandSize () < 5) {
 			//we wait for the card to be selected
 			yield return new WaitForCardSelected ();
 
 			currentPlayer.AddCardInHand (InputManager.GetInstance ().cardPreSelected);
 
-			if (currentPlayer == player1 && player2.getHandSize () < 5)
-            {
+			if (currentPlayer == player1 && player2.getHandSize () < 5) {
 				currentPlayer = player2;
 				Ui_Manager.Instance.DraftTogglePlayer (2);
-			}
-            else if (player1.getHandSize () < 5)
-            {
+			} else if (player1.getHandSize () < 5) {
 				currentPlayer = player1;
 				Ui_Manager.Instance.DraftTogglePlayer (1);
 			}
 
-			Debug.Log ("SizeHandP1 : " + player1.getHandSize ());
-			Debug.Log ("SizeHandP2 : " + player2.getHandSize ());
+			//Debug.Log ("SizeHandP1 : " + player1.getHandSize ());
+			//Debug.Log ("SizeHandP2 : " + player2.getHandSize ());
 			yield return new WaitForEndOfFrame ();
 		}
 
@@ -291,12 +296,11 @@ public class TurnManager : MonoBehaviour
 
 	void Update ()
 	{
-		if (turnPlayer2Ended)
-        {
-            globalTurnEnded = false;
-            turnPlayer1Ended = false;
-            turnPlayer2Ended = false;
-            StartCoroutine (Game ());
+		if (turnPlayer2Ended) {
+			globalTurnEnded = false;
+			turnPlayer1Ended = false;
+			turnPlayer2Ended = false;
+			StartCoroutine (Game ());
 		}
 	}
 }
@@ -305,12 +309,9 @@ class WaitForCardSelected : CustomYieldInstruction
 {
 	static public bool cardSelected = false;
 
-	public override bool keepWaiting
-    {
-		get
-        {
-			if (cardSelected)
-            {
+	public override bool keepWaiting {
+		get {
+			if (cardSelected) {
 				cardSelected = false;
 				return false;
 			}
@@ -323,3 +324,45 @@ class WaitForCardSelected : CustomYieldInstruction
 		
 	}
 }
+
+public class WaitForSpellAssignation : CustomYieldInstruction
+{
+	private bool allSpeelAssigned = false;
+	private List<Card> m_speels;
+	private List<int> m_diceSelect;
+	private int m_index;
+
+	public override bool keepWaiting {
+		get {
+			return !allSpeelAssigned;
+		}
+	}
+
+	public WaitForSpellAssignation (List<Card> SpellToAssign)
+	{
+		Debug.Log (TurnManager.GetInstance ().currentPlayer == TurnManager.GetInstance ().player1);
+		Ui_Manager.Instance.GoToState (UiState.DiceSelect);
+		m_speels = SpellToAssign;
+		m_diceSelect = new List<int> ();
+		m_index = 0;
+		DiceSelector.Instance.Reset ();
+		DiceSelector.Instance.Init (m_speels [0], TurnManager.GetInstance ().currentPlayer.GODices, this);
+	}
+
+	public void NextSpell (int diceAssigned)
+	{
+		m_diceSelect.Add (diceAssigned);
+		m_index++;
+		if (m_index != m_speels.Count)
+			DiceSelector.Instance.Init (m_speels [m_index], TurnManager.GetInstance ().currentPlayer.GODices, this);
+		else {
+			Debug.Log (m_speels.Count);
+			for (int i = 0; i < m_speels.Count; i++) {
+				Debug.Log (m_speels [i].ToString () + m_diceSelect [i].ToString ());
+				TurnManager.GetInstance ().SelectCard (m_speels [i], m_diceSelect [i]);
+			}
+			allSpeelAssigned = true;
+		}
+	}
+}
+	

@@ -2,6 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 
+public enum CardType
+{
+	SingleDie,
+	AllDie,
+	NoDie,
+}
+
 public abstract class Card
 {
 	public string name {
@@ -10,8 +17,15 @@ public abstract class Card
 		}
 	}
 
+	public CardType type {
+		get {
+			return m_type;
+		}
+	}
+
 	protected string cardName;
 	protected int energy;
+	protected CardType m_type;
 
 	public Sprite Image {
 		get {
@@ -47,4 +61,5 @@ public abstract class Card
 	public abstract void Cast (List<GameObject> targets);
 
 	public abstract Card Copy ();
+
 }

@@ -11,7 +11,6 @@ public class InputManager : MonoBehaviour
 
 	public bool handActive;
 	public bool inStartTurnPlayer;
-	public bool inTacticalView;
 	public bool inShootView;
 	public bool diceSended;
 	public bool inSelectSpell;
@@ -27,7 +26,6 @@ public class InputManager : MonoBehaviour
 		//To UI
 		handActive = false;
 		inStartTurnPlayer = false;
-		inTacticalView = false;
 		inShootView = false;
 		diceSended = false;
 		inSelectSpell = false;
@@ -50,8 +48,7 @@ public class InputManager : MonoBehaviour
 
 	public void OnPressButtonA ()
 	{
-		if (handActive || inTacticalView)
-        {
+		if (handActive) {
 			return;
 		}
 
@@ -65,12 +62,6 @@ public class InputManager : MonoBehaviour
 			inSelectDice = false;
 			inCastSpell = true;
 			return;
-		}
-		if (inSelectSpell) {
-			inSelectSpell = false;
-			inSelectDice = true;
-			TurnManager.GetInstance ().SelectCard (cardPreSelected);
-			Ui_Manager.Instance.GoToState (UiState.DiceSelect);
 		}
 	}
 
@@ -100,24 +91,6 @@ public class InputManager : MonoBehaviour
 	public void OnPressButtonX ()
 	{
 		if (handActive) {
-			return;
-		}
-		if (inTacticalView) {
-			inTacticalView = false;
-			if (inStartTurnPlayer) {
-				Ui_Manager.Instance.GoToState (UiState.Positioning);
-			} else if (inShootView) {
-				Ui_Manager.Instance.GoToState (UiState.Throw);
-			} else if (inSelectSpell) {
-				Ui_Manager.Instance.GoToState (UiState.SpellSelect);
-			} else if (inSelectDice) {
-				Ui_Manager.Instance.GoToState (UiState.DiceSelect);
-			}
-			return;                
-		}
-		if (inStartTurnPlayer || inShootView || inSelectSpell || inSelectDice) {
-			inTacticalView = true;
-			Ui_Manager.Instance.GoToState (UiState.Tactical);
 			return;
 		}
 	}
@@ -151,8 +124,7 @@ public class InputManager : MonoBehaviour
 		if (handActive) {
 			return;
 		}
-		if (inShootView)
-        {
+		if (inShootView) {
 			//ChangeAngle
 		}
 	}
@@ -162,8 +134,7 @@ public class InputManager : MonoBehaviour
 		if (handActive) {
 			return;
 		}
-		if (inShootView)
-        {
+		if (inShootView) {
 			//ChangeAngle
 		}
 	}
