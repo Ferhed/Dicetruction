@@ -179,6 +179,7 @@ MonoBehaviour:
   accuracyMin: 40
   accuracyMax: 15
   multiplierForce: 5
+  speed: 0.01
 --- !u!114 &11452400
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -26375,43 +26375,43 @@ Prefab:
     - target: {fileID: 11465164, guid: 60d278590be192f4e8a79bd751b28486, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1737446070}
     - target: {fileID: 11400146, guid: 60d278590be192f4e8a79bd751b28486, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1737446070}
     - target: {fileID: 11441992, guid: 60d278590be192f4e8a79bd751b28486, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1737446070}
     - target: {fileID: 11450000, guid: 60d278590be192f4e8a79bd751b28486, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1737446070}
     - target: {fileID: 11465778, guid: 60d278590be192f4e8a79bd751b28486, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1737446070}
     - target: {fileID: 11483222, guid: 60d278590be192f4e8a79bd751b28486, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1737446070}
     - target: {fileID: 11432096, guid: 60d278590be192f4e8a79bd751b28486, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1737446070}
     - target: {fileID: 11416946, guid: 60d278590be192f4e8a79bd751b28486, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1737446070}
     - target: {fileID: 11437590, guid: 60d278590be192f4e8a79bd751b28486, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1737446070}
     - target: {fileID: 11426822, guid: 60d278590be192f4e8a79bd751b28486, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1737446070}
     - target: {fileID: 11465164, guid: 60d278590be192f4e8a79bd751b28486, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: DraftCardSelect
@@ -95561,7 +95561,7 @@ MonoBehaviour:
   player2: {fileID: 0}
   cardSelected: 0
   currentPlayer: {fileID: 0}
-  globalCamera: {fileID: 0}
+  globalCamera: {fileID: 1593478277}
   playerGameObject: {fileID: 0}
 --- !u!114 &1737446074
 MonoBehaviour:

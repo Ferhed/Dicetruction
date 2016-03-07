@@ -80,12 +80,12 @@ public class TurnManager : MonoBehaviour
 	{
 		yield return new WaitForEndOfFrame ();
         //Tour de draft
-		Debug.Log ("GLobalTurn");
+	    Debug.Log ("GLobalTurn");
 		StartCoroutine (GlobalTurn ());
 
 		while (!globalTurnEnded)
 			yield return new WaitForEndOfFrame ();
-
+            
         //Tour du joueur 1
 		Debug.Log ("TurnP1");
 		StartCoroutine (Turn ());
