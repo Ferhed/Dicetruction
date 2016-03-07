@@ -10,11 +10,11 @@ GameObject:
   - 4: {fileID: 429722}
   - 114: {fileID: 11499476}
   - 114: {fileID: 11498012}
-  - 114: {fileID: 11470590}
   - 114: {fileID: 11475468}
   - 114: {fileID: 11421772}
   - 114: {fileID: 11449444}
   - 114: {fileID: 11421618}
+  - 114: {fileID: 11472394}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 124488}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -36.338005, y: -0.4463992, z: 201.71164}
+  m_LocalPosition: {x: -36.338005, y: -0.4463992, z: 125.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -45,19 +45,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab3fbeac443bc343858f0f296573617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_mainSlider: {fileID: 157010, guid: 52f15ca7a27b66f4db3609e6dfb7e9b2, type: 2}
-  m_ressourcesPanel: {fileID: 115170, guid: 78af5d352fda81348b5eb68ccca292d2, type: 2}
-  m_yShowHand: {fileID: 131372, guid: 7218f97c616692544b2ded59ea11214a, type: 2}
-  m_yShowDice: {fileID: 132056, guid: e34d398f0a7c6a34f8647cb9133a984f, type: 2}
-  m_xShowTacticView: {fileID: 159332, guid: 54bdde5bafbd4174b9a499239b921771, type: 2}
-  m_xShowBasicView: {fileID: 178468, guid: f406d63bbbcfd06408db0ad9f6511dfe, type: 2}
-  m_pressBtnPanel: {fileID: 172822, guid: 71308a37f0c72e84ab92e3bccd3b1a92, type: 2}
-  m_phaseTitle: {fileID: 179882, guid: 86ac3bc5919c47f4188af880e21caa0d, type: 2}
-  m_draftCardPanel: {fileID: 101670, guid: 60d278590be192f4e8a79bd751b28486, type: 2}
-  m_selectCardPanel: {fileID: 165750, guid: ef13087a23b299746b3c552a24909a18, type: 2}
-  m_handPlayer1: {fileID: 145864, guid: 0007d25c9c7170644adb6e7c611353bc, type: 2}
-  m_handPlayer2: {fileID: 155668, guid: a60cfe4d343016347a508a91dc7f8a2c, type: 2}
-  m_bToBack: {fileID: 192148, guid: 5cfd44744c24d7b47b756210f6fffd74, type: 2}
+  m_mainSlider: {fileID: 0}
+  m_ressourcesPanel: {fileID: 0}
+  m_yShowHand: {fileID: 0}
+  m_yShowDice: {fileID: 0}
+  m_xShowTacticView: {fileID: 0}
+  m_xShowBasicView: {fileID: 0}
+  m_pressBtnPanel: {fileID: 0}
+  m_phaseTitle: {fileID: 0}
+  m_draftCardPanel: {fileID: 0}
+  m_selectCardPanel: {fileID: 0}
+  m_handPlayer1: {fileID: 0}
+  m_handPlayer2: {fileID: 0}
+  m_bToBack: {fileID: 0}
 --- !u!114 &11421772
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -77,23 +77,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 124488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df890a339b9a09b43a05f59f391a9ba0, type: 3}
+  m_Script: {fileID: 11500000, guid: fc0773d2b525ead418c2d7b96421cf39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boing:
-  - {fileID: 8300000, guid: ee8ace421d2885c4f9d2e340a4214b44, type: 3}
-  - {fileID: 8300000, guid: 92e0b0a29db339943b0d1a41488b1c9b, type: 3}
+  boing: []
   destruction:
-  - {fileID: 8300000, guid: 0f13126ef11c89a429965b479002f197, type: 3}
-  - {fileID: 8300000, guid: 685a474188a5c664c8809be7cdfa6485, type: 3}
-  - {fileID: 8300000, guid: 99789fcd71dd0de4c9ad101f3674c667, type: 3}
-  - {fileID: 8300000, guid: 172222a54b59e8240bae44112477fc45, type: 3}
-  diceShuffle: {fileID: 8300000, guid: 7e63d4e5f68074b4f98428b0807d9729, type: 3}
-  explosion: {fileID: 8300000, guid: 04d381e8db4de744a9af076125e41bb9, type: 3}
+  - {fileID: 8300000, guid: cfd578c411dd3f94b9013269afefed92, type: 3}
+  - {fileID: 8300000, guid: f9376d73ddf53ee4c85de77f2f345ceb, type: 3}
+  - {fileID: 8300000, guid: ad9420c3176442142810ea60ba16c254, type: 3}
+  - {fileID: 8300000, guid: 861ca0eb02cecdf489a3feed80aa64dc, type: 3}
+  diceShuffle: {fileID: 8300000, guid: 070ea3ce2fbfc0d4aa4905e76a7b5620, type: 3}
+  explosion: {fileID: 8300000, guid: 7292cefefb1895341a6a75c6bed4da41, type: 3}
   impact:
-  - {fileID: 8300000, guid: 472f9e62677f7e140b4519779526b274, type: 3}
-  - {fileID: 8300000, guid: 9acf988a030a0004286252cec11ec291, type: 3}
---- !u!114 &11470590
+  - {fileID: 8300000, guid: 1790add70d209774b874628d28ec457a, type: 3}
+  - {fileID: 8300000, guid: 41d90a755fd2826498012d016ade1503, type: 3}
+--- !u!114 &11472394
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -101,9 +99,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 124488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78d51b2aebfd042459c08f5d65f7ab27, type: 3}
+  m_Script: {fileID: 11500000, guid: 7262270dda94bbc4db79748c24a4d36b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BombeHRadius: 0
+  BombeHEnergyCoast: 0
+  BombeHForceExplosion: 0
+  TiltEnergyCoast: 0
+  TiltForce: 0
+  JamesBondEnergyCoast: 0
+  VortexRadius: 0
+  VortexEnergyCoast: 0
+  VortexForceExplosion: 0
+  SeismeEnergyCoast: 0
+  SeismeForceExplosion: 0
+  ExcaliburRadius: 0
+  ExcaliburEnergyCoast: 0
+  ExcaliburForceExplosion: 0
+  ExterminateRadius: 0
+  ExterminateEnergyCoast: 0
+  ExterminateForceExplosion: 0
+  imageBombeH: {fileID: 21300000, guid: 21eb2dc44f42bc748974cbb75d48d936, type: 3}
+  imageVortex: {fileID: 21300000, guid: a12710f97af0ce443940ab0a7b85f578, type: 3}
+  imageTilt: {fileID: 21300000, guid: cae30d574972b6047ba1ee90b3a5a7e5, type: 3}
+  imageJamesBond: {fileID: 21300000, guid: 91d093e296c6ef047b94d818896978f1, type: 3}
+  imageSeime: {fileID: 21300000, guid: 164aad8ca6c08134ba8193003d8b3f48, type: 3}
+  imageExcalibur: {fileID: 21300000, guid: 91d093e296c6ef047b94d818896978f1, type: 3}
+  imageExterminate: {fileID: 21300000, guid: ac6c24fb4c4fc244899dad05359aa474, type: 3}
 --- !u!114 &11475468
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -132,7 +154,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aee96891693b1b449b764f9a0294015, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardPreSelected: {fileID: 0}
   dicePreSelected: {fileID: 0}
   handActive: 0
   inStartTurnPlayer: 0
@@ -142,6 +163,7 @@ MonoBehaviour:
   inSelectSpell: 0
   inSelectDice: 0
   inCastSpell: 0
+  inDraft: 0
 --- !u!114 &11499476
 MonoBehaviour:
   m_ObjectHideFlags: 1
