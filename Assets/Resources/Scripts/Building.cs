@@ -7,12 +7,17 @@ public class Building : MonoBehaviour
 	Vector3 position;
 	Rigidbody rb;
 	Vector3 initialPosition;
+    int score;
 	// Use this for initialization
 	void Awake ()
 	{
         initialPosition = transform.position;
 		rb = GetComponent<Rigidbody> ();
-		rb.mass *= 100;
+        if (rb.mass == 1) score = 75;
+        else if (rb.mass == 2) score = 100;
+        else if (rb.mass == 3) score = 125;
+        else score = 150;
+        rb.mass *= 100;
 		//rb.Sleep();
 	}
 
@@ -24,7 +29,7 @@ public class Building : MonoBehaviour
                 {
                     if (Vector3.Distance(transform.position, initialPosition) > 1)
                     {
-                        destruct();
+                       // destruct();
                     }
                 }
 			}
@@ -39,6 +44,7 @@ public class Building : MonoBehaviour
 	public void bump ()
 	{
 		rb.isKinematic = false;
+        BuildManager.Instance.addElement(gameObject);
 		StartCoroutine ("checkStill");
 	}
 
@@ -68,19 +74,21 @@ public class Building : MonoBehaviour
                 destruct();
 			}
 		}
-		//rb.isKinematic = true;
-		// yield return null;
-	}
+        //rb.isKinematic = true;
+        // yield return null;
+        BuildManager.Instance.delElement(gameObject);
+    }
 
 
-	void destruct ()
+    void destruct ()
 	{
         TurnManager.instance.currentPlayer.objectsDestroy++;
         if(tag == "Props")
-            TurnManager.instance.currentPlayer.addScore(true);
+            TurnManager.instance.currentPlayer.addScore(true, score);
         else
-            TurnManager.instance.currentPlayer.addScore(false);
+            TurnManager.instance.currentPlayer.addScore(false,score);
         Ui_Manager.Instance.MajScore();
+        BuildManager.Instance.delElement(gameObject);
         Destroy(gameObject, Random.Range(2f, 4f));
     }
 }
