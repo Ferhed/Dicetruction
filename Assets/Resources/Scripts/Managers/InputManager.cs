@@ -72,8 +72,6 @@ public class InputManager : MonoBehaviour
 			if (inStartTurnPlayer) {
 			}
             //Ui_Manager.Instance.GoToState (UiState.Positioning);
-			else if (inShootView)
-				Ui_Manager.Instance.GoToState (UiState.Throw);
 			else if (inDraft)
 				Ui_Manager.Instance.GoToState (UiState.Draft);
 			return;
@@ -104,8 +102,6 @@ public class InputManager : MonoBehaviour
 			handActive = false;
 			if (inStartTurnPlayer)
 				Ui_Manager.Instance.GoToState (UiState.Positioning);
-			else if (inShootView)
-				Ui_Manager.Instance.GoToState (UiState.Throw);
 			else if (inDraft)
 				Ui_Manager.Instance.GoToState (UiState.Draft);
 			return;

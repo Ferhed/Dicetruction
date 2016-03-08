@@ -5,21 +5,6 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public enum UiElement
-{
-	RessourcesPanel = 0x01,
-	YShowHand = 0x02,
-	YShowDice = 0x03,
-	XShowTacticView = 0x04,
-	XShowBasicView = 0x05,
-	PressBtnPanel = 0x06,
-	PhaseTitle = 0x07,
-	DraftCardPanel = 0x08,
-	HandPlayer1 = 0x09,
-	HandPlayer2 = 0x10,
-	BToBack = 0x11,
-}
-
 public enum UiOptions
 {
 	Additive,
@@ -29,12 +14,10 @@ public enum UiOptions
 
 public enum UiState
 {
-	Draft = UiElement.YShowHand | UiElement.PressBtnPanel | UiElement.DraftCardPanel,
-	HandJ1 = UiElement.HandPlayer1 | UiElement.YShowHand | UiElement.PressBtnPanel,
-	HandJ2 = UiElement.HandPlayer2 | UiElement.YShowHand | UiElement.PressBtnPanel,
-	Positioning = UiElement.YShowHand | UiElement.XShowTacticView | UiElement.PressBtnPanel | UiElement.PhaseTitle,
-	Tactical,
-	Throw,
+	Draft,
+	HandJ1,
+	HandJ2,
+	Positioning,
 	SpellSelect,
 	DiceSelect,
 }
@@ -63,7 +46,9 @@ public class Ui_Manager : Singleton<Ui_Manager>
 	[SerializeField]
 	private GameObject m_ressourcesPanel;
 	[SerializeField]
-	private GameObject m_yShowHand;
+	private GameObject m_yShowHandJ1;
+	[SerializeField]
+	private GameObject m_yShowHandJ2;
 	[SerializeField]
 	private GameObject m_yShowDice;
 	[SerializeField]
@@ -80,13 +65,16 @@ public class Ui_Manager : Singleton<Ui_Manager>
 	private GameObject m_handPlayer2;
 	[SerializeField]
 	private GameObject m_bToBack;
-    [SerializeField]
-    private Text m_ScoreP1;
-    [SerializeField]
-    private Text m_ScoreP2;
-    #endregion
+	[SerializeField]
+	private Text m_ScoreP1;
+	[SerializeField]
+	private Text m_ScoreP2;
+	[SerializeField]
+	private Image m_cardSelected;
 
-    protected Ui_Manager ()
+	#endregion
+
+	protected Ui_Manager ()
 	{
 		
 	}
@@ -98,7 +86,7 @@ public class Ui_Manager : Singleton<Ui_Manager>
 		m_system = GameObject.FindObjectOfType<EventSystem> ();
 		m_turnManager = TurnManager.GetInstance ();
 		m_inputManager = InputManager.GetInstance ();
-    }
+	}
 	
 	// Update is called once per frame
 	void Update ()
@@ -122,12 +110,6 @@ public class Ui_Manager : Singleton<Ui_Manager>
 			break;
 		case UiState.Positioning:
 			OnPositioning ();
-			break;
-		case UiState.Tactical:
-			OnTactical ();
-			break;
-		case UiState.Throw:
-			OnThrow ();
 			break;
 		case UiState.SpellSelect:
 			OnSpellSelect ();
@@ -153,7 +135,7 @@ public class Ui_Manager : Singleton<Ui_Manager>
 		m_ressourcesPanel.SetActive (false);
 		m_selectCardPanel.SetActive (false);
 		m_yShowDice.SetActive (false);
-		m_yShowHand.SetActive (false);
+		m_yShowHandJ1.SetActive (false);
 		m_bToBack.SetActive (false);
 	}
 
@@ -161,7 +143,7 @@ public class Ui_Manager : Singleton<Ui_Manager>
 	{
 		hideAll ();
 		if (TurnManager.GetInstance ().currentPlayer.getHandSize () > 0)
-			m_yShowHand.SetActive (true);
+			m_yShowHandJ1.SetActive (true);
 		m_pressBtnPanel.SetActive (true);
 		m_draftCardPanel.SetActive (true);
 
@@ -196,7 +178,7 @@ public class Ui_Manager : Singleton<Ui_Manager>
 	private void OnHandJ1 ()
 	{
 		UpdateHand (m_handPlayer1, TurnManager.GetInstance ().player1, 0);
-		m_yShowHand.SetActive (false);
+		m_yShowHandJ1.SetActive (false);
 		m_pressBtnPanel.SetActive (false);
 		m_handPlayer1.SetActive (true);
 		m_cardSelectedId = m_system.currentSelectedGameObject.transform.GetSiblingIndex ();
@@ -206,7 +188,7 @@ public class Ui_Manager : Singleton<Ui_Manager>
 	private void OnHandJ2 ()
 	{
 		UpdateHand (m_handPlayer2, TurnManager.GetInstance ().player2, 1);
-		m_yShowHand.SetActive (false);
+		m_yShowHandJ1.SetActive (false);
 		m_pressBtnPanel.SetActive (false);
 		m_handPlayer2.SetActive (true);
 		m_cardSelectedId = m_system.currentSelectedGameObject.transform.GetSiblingIndex ();
@@ -215,9 +197,18 @@ public class Ui_Manager : Singleton<Ui_Manager>
 
 	private void OnPositioning ()
 	{
+		int player = TurnManager.GetInstance ().getIndexPlayer ();
 		hideAll ();
+		m_yShowHandJ1.SetActive (player == 1);
+		m_yShowHandJ2.SetActive (player == 2);
+
+		m_mainSlider.transform.FindChild ("J1 Panel").FindChild ("Panel").GetComponent<LayoutElement> ().preferredWidth = (player == 2) ? 70 : 100;
+		m_mainSlider.transform.FindChild ("J1 Panel").FindChild ("Panel").GetComponent<LayoutElement> ().preferredHeight = (player == 2) ? 70 : 100;
+		m_mainSlider.transform.FindChild ("J2 Panel").FindChild ("Panel").GetComponent<LayoutElement> ().preferredWidth = (player == 1) ? 70 : 100;
+		m_mainSlider.transform.FindChild ("J2 Panel").FindChild ("Panel").GetComponent<LayoutElement> ().preferredHeight = (player == 1) ? 70 : 100;
+
 		m_phaseTitle.SetActive (true);
-		m_yShowHand.SetActive (true);
+		m_yShowHandJ1.SetActive (true);
 		m_pressBtnPanel.SetActive (true);
 
 		Color alpha = m_phaseTitle.GetComponent<Image> ().color;
@@ -234,26 +225,8 @@ public class Ui_Manager : Singleton<Ui_Manager>
 	{
 		hideAll ();
 		m_phaseTitle.SetActive (true);
-		m_yShowHand.SetActive (true);
+		m_yShowHandJ1.SetActive (true);
 		m_pressBtnPanel.SetActive (true);
-
-		Color alpha = m_phaseTitle.GetComponent<Image> ().color;
-		alpha.a = 0;
-		m_phaseTitle.GetComponent<Image> ().color = alpha;
-
-		m_phaseTitle.GetComponent<Image> ().DOKill ();
-		m_phaseTitle.GetComponent<Image> ().DOFade (1, 2).SetEase (Ease.OutSine).SetLoops (2, LoopType.Yoyo).OnComplete (() => {
-			m_phaseTitle.SetActive (false);
-		});
-	}
-
-	private void OnThrow ()
-	{
-		hideAll ();
-		m_phaseTitle.SetActive (true);
-		m_yShowHand.SetActive (true);
-		m_pressBtnPanel.SetActive (true);
-		m_bToBack.SetActive (true);
 
 		Color alpha = m_phaseTitle.GetComponent<Image> ().color;
 		alpha.a = 0;
@@ -269,9 +242,11 @@ public class Ui_Manager : Singleton<Ui_Manager>
 	{
 		hideAll ();
 		m_phaseTitle.SetActive (true);
-		m_yShowHand.SetActive (true);
+		m_yShowHandJ1.SetActive (true);
 		m_pressBtnPanel.SetActive (true);
 		m_selectCardPanel.SetActive (true);
+		m_yShowHandJ1.SetActive (false);
+		m_yShowHandJ2.SetActive (false);
 
 		List<Card> hand = TurnManager.GetInstance ().currentPlayer.GetHand ();
 		for (int i = 0; i < 5; i++) {
@@ -286,7 +261,6 @@ public class Ui_Manager : Singleton<Ui_Manager>
 	{
 		hideAll ();
 		m_pressBtnPanel.SetActive (true);
-
 	}
 
 	#endregion
@@ -304,10 +278,14 @@ public class Ui_Manager : Singleton<Ui_Manager>
 
 	public void DraftTogglePlayer (int player)
 	{
+		m_yShowHandJ1.SetActive (false);
+		m_yShowHandJ2.SetActive (false);
+		GameObject showHand = (TurnManager.GetInstance ().currentPlayer == TurnManager.GetInstance ().player1) ? m_yShowHandJ1 : m_yShowHandJ2;
+
 		if (TurnManager.GetInstance ().currentPlayer.getHandSize () > 0) {
-			m_yShowHand.SetActive (true);
+			showHand.SetActive (true);
 		} else {
-			m_yShowHand.SetActive (false);
+			showHand.SetActive (false);
 		}
 		m_mainSlider.transform.FindChild ("J1 Panel").FindChild ("Panel").GetComponent<LayoutElement> ().preferredWidth = (player == 2) ? 70 : 100;
 		m_mainSlider.transform.FindChild ("J1 Panel").FindChild ("Panel").GetComponent<LayoutElement> ().preferredHeight = (player == 2) ? 70 : 100;
@@ -355,14 +333,25 @@ public class Ui_Manager : Singleton<Ui_Manager>
 	{
 		m_selectedSpell--;
 	}
-    
-    public void MajScore()
-    {
-        int score = TurnManager.instance.player1.getScore();
+
+	public void MajScore ()
+	{
+		/* int score = TurnManager.instance.player1.getScore();
         m_ScoreP1.text = score.ToString();
         score = TurnManager.instance.player2.getScore();
-        m_ScoreP2.text = score.ToString();
-    }
+        m_ScoreP2.text = score.ToString();*/
+	}
+
+	public void ShowCardSelected (Card spell)
+	{
+		m_cardSelected.gameObject.SetActive (true);
+		m_cardSelected.sprite = spell.Image;
+	}
+
+	public void HidecardSelected ()
+	{
+		m_cardSelected.gameObject.SetActive (false);
+	}
 }
 
 

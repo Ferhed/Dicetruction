@@ -141,7 +141,6 @@ public class CameraScript : MonoBehaviour
 				direction.Normalize ();
 			}
             
-<<<<<<< HEAD
 		}
 		if (Input.GetButtonDown ("ButtonY")) {
 			force = 0;

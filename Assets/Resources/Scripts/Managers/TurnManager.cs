@@ -119,7 +119,7 @@ public class TurnManager : MonoBehaviour
 	IEnumerator Turn ()
 	{
 		addCameraForPlayer ();
-		Ui_Manager.Instance.GoToState (UiState.Throw);
+		Ui_Manager.Instance.GoToState (UiState.Positioning);
 		InputManager.GetInstance ().inStartTurnPlayer = true;
 
 		while (dicesValor.Count != 3) {
@@ -130,6 +130,7 @@ public class TurnManager : MonoBehaviour
 		//**********SELECT SPELL
 		InputManager.GetInstance ().inShootView = false;
 		InputManager.GetInstance ().inSelectSpell = true;
+		InputManager.GetInstance ().inStartTurnPlayer = false;
 		Debug.Log ("[State] : SelectSpell");
 		Ui_Manager.Instance.GoToState (UiState.SpellSelect);
 
@@ -206,20 +207,15 @@ public class TurnManager : MonoBehaviour
 				} else {
 					targets.Add (player2.GODices [dieIndex]);
 				}
+			} else if ((card as Excalibur) != null) {
+				if (currentPlayer == player1) {
+					targets.Add (player1.GODices [dieIndex]);
+				} else {
+					targets.Add (player2.GODices [dieIndex]);
+				}
 			}
-            else if ((card as Excalibur) != null)
-            {
-                if (currentPlayer == player1)
-                {
-                    targets.Add(player1.GODices[dieIndex]);
-                }
-                else
-                {
-                    targets.Add(player2.GODices[dieIndex]);
-                }
-            }
 
-            currentPlayer.Cast (card, targets);
+			currentPlayer.Cast (card, targets);
 			currentPlayer.RemoveCardInHand (card);
 		}
 	}
@@ -285,6 +281,12 @@ public class TurnManager : MonoBehaviour
 			StartCoroutine (Game ());
 		}
 	}
+
+
+	public int getIndexPlayer ()
+	{
+		return (currentPlayer == player1) ? 1 : 2;
+	}
 }
 
 class WaitForCardSelected : CustomYieldInstruction
@@ -325,20 +327,23 @@ public class WaitForSpellAssignation : CustomYieldInstruction
 		Debug.Log (TurnManager.GetInstance ().currentPlayer == TurnManager.GetInstance ().player1);
 		Ui_Manager.Instance.GoToState (UiState.DiceSelect);
 		m_speels = SpellToAssign;
-        Debug.Log(SpellToAssign.Count);
+		Debug.Log (SpellToAssign.Count);
 		m_diceSelect = new List<int> ();
 		m_index = 0;
 		DiceSelector.Instance.Reset ();
+		Ui_Manager.Instance.ShowCardSelected (m_speels [0]);
 		DiceSelector.Instance.Init (m_speels [0], TurnManager.GetInstance ().currentPlayer.GODices, this);
 	}
 
 	public void NextSpell (int diceAssigned)
 	{
+		Ui_Manager.Instance.HidecardSelected ();
 		m_diceSelect.Add (diceAssigned);
 		m_index++;
-		if (m_index != m_speels.Count)
+		if (m_index != m_speels.Count) {
+			Ui_Manager.Instance.ShowCardSelected (m_speels [m_index]);
 			DiceSelector.Instance.Init (m_speels [m_index], TurnManager.GetInstance ().currentPlayer.GODices, this);
-		else {
+		} else {
 			Debug.Log (m_speels.Count);
 			for (int i = 0; i < m_speels.Count; i++) {
 				Debug.Log (m_speels [i].ToString () + m_diceSelect [i].ToString ());
