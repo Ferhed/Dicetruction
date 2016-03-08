@@ -53,6 +53,7 @@ public class Ui_Manager : Singleton<Ui_Manager>
 	private TurnManager m_turnManager;
 	private InputManager m_inputManager;
 	private int m_cardSelectedId;
+    
 
 	#region Panels
 
@@ -78,10 +79,13 @@ public class Ui_Manager : Singleton<Ui_Manager>
 	private GameObject m_handPlayer2;
 	[SerializeField]
 	private GameObject m_bToBack;
+    [SerializeField]
+    private Text m_ScoreP1;
+    [SerializeField]
+    private Text m_ScoreP2;
+    #endregion
 
-	#endregion
-
-	protected Ui_Manager ()
+    protected Ui_Manager ()
 	{
 		
 	}
@@ -93,7 +97,7 @@ public class Ui_Manager : Singleton<Ui_Manager>
 		m_system = GameObject.FindObjectOfType<EventSystem> ();
 		m_turnManager = TurnManager.GetInstance ();
 		m_inputManager = InputManager.GetInstance ();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -334,6 +338,14 @@ public class Ui_Manager : Singleton<Ui_Manager>
 		}
 		return selectedSpells;
 	}
+
+    public void MajScore()
+    {
+        int score = TurnManager.instance.player1.getScore();
+        m_ScoreP1.text = score.ToString();
+        score = TurnManager.instance.player2.getScore();
+        m_ScoreP2.text = score.ToString();
+    }
 }
 
 

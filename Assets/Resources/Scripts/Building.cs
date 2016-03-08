@@ -10,9 +10,7 @@ public class Building : MonoBehaviour
 	// Use this for initialization
 	void Awake ()
 	{
-        if (tag == "Props")
-            initialPosition = transform.eulerAngles;
-        else initialPosition = transform.position;
+        initialPosition = transform.position;
 		rb = GetComponent<Rigidbody> ();
 		rb.mass *= 100;
 		//rb.Sleep();
@@ -22,9 +20,13 @@ public class Building : MonoBehaviour
 	{
 		if (name != "RDC") {
 			if (this.gameObject.tag != "Props") {
-				if (collision.gameObject.tag == "Ground") {
-					Destroy (gameObject, 2f);
-				}
+				if (collision.gameObject.tag == "Ground")
+                {
+                    if (Vector3.Distance(transform.position, initialPosition) > 1)
+                    {
+                        destruct();
+                    }
+                }
 			}
 		}
 
@@ -53,7 +55,6 @@ public class Building : MonoBehaviour
 	public IEnumerator checkStill ()
 	{
 		yield return new WaitForSeconds (0.5f);
-		position = Vector3.zero;
 		/* while (position != transform.position)
         {
             position = transform.position;
@@ -64,7 +65,7 @@ public class Building : MonoBehaviour
 		}
 		if (name == "RDC" || this.gameObject.tag == "Props") {
 			if (Vector3.Distance (transform.position, initialPosition) > 1) {
-				Destroy (gameObject, 2f);
+                destruct();
 			}
 		}
 		//rb.isKinematic = true;
@@ -74,14 +75,12 @@ public class Building : MonoBehaviour
 
 	void destruct ()
 	{
-		/*Collider[] co = Physics.OverlapSphere(transform.position, 4f);
-        foreach (Collider currentCo in co)
-        {
-            if (currentCo.tag == "needPhysics")
-            {
-                currentCo.GetComponent<Building>().bump();
-            }
-        }*/
-		Destroy (gameObject);
-	}
+        TurnManager.instance.currentPlayer.objectsDestroy++;
+        if(tag == "Props")
+            TurnManager.instance.currentPlayer.addScore(true);
+        else
+            TurnManager.instance.currentPlayer.addScore(false);
+        Ui_Manager.Instance.MajScore();
+        Destroy(gameObject, Random.Range(2f, 4f));
+    }
 }
