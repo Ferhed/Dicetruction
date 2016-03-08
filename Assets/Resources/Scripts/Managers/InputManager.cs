@@ -67,12 +67,13 @@ public class InputManager : MonoBehaviour
 
 	public void OnPressButtonB ()
 	{
-	    if (handActive) {
+		if (handActive) {
 			handActive = false;
-            if (inStartTurnPlayer) { }
+			if (inStartTurnPlayer) {
+			}
             //Ui_Manager.Instance.GoToState (UiState.Positioning);
-            else
-                Ui_Manager.Instance.GoToState(UiState.Throw);
+			else if (inDraft)
+				Ui_Manager.Instance.GoToState (UiState.Draft);
 			return;
 		}
 		/*if (inShootView) {
@@ -101,8 +102,6 @@ public class InputManager : MonoBehaviour
 			handActive = false;
 			if (inStartTurnPlayer)
 				Ui_Manager.Instance.GoToState (UiState.Positioning);
-			else if (inShootView)
-				Ui_Manager.Instance.GoToState (UiState.Throw);
 			else if (inDraft)
 				Ui_Manager.Instance.GoToState (UiState.Draft);
 			return;
