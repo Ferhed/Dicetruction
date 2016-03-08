@@ -26,6 +26,9 @@ public class CardManager : MonoBehaviour
 	public float ExterminateRadius;
 	public int ExterminateEnergyCoast;
 	public float ExterminateForceExplosion;
+    [Header("Touchez plus a rien ! En dessous c'est pas pour vous")]
+
+
     public Sprite imageBombeH;
     public Sprite imageVortex;
     public Sprite imageTilt;

@@ -13,7 +13,19 @@ public class Exterminate : Destruction
 
     public override void Cast(List<GameObject> targets)
     {
-
+        GameObject dice1 = targets[0];
+        GameObject dice2 = targets[1];
+        RaycastHit[] co = Physics.BoxCastAll(dice1.transform.position, dice1.transform.localScale, dice2.transform.position-dice1.transform.position);
+        Debug.Log("Length = " + co.Length);
+        foreach (RaycastHit currentCo in co)
+        {
+            if (currentCo.collider.tag == "needPhysics")
+            {
+                currentCo.collider.GetComponent<Building>().bump();
+                currentCo.collider.GetComponent<Building>().changeWeight();
+                currentCo.collider.GetComponent<Rigidbody>().AddExplosionForce(350f * 1000 * 1, currentCo.transform.position, 10 );
+            }
+        }
     }
 
     public override Card Copy()
