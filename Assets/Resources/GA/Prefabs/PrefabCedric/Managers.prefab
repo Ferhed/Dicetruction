@@ -57,6 +57,8 @@ MonoBehaviour:
   m_handPlayer1: {fileID: 0}
   m_handPlayer2: {fileID: 0}
   m_bToBack: {fileID: 0}
+  m_ScoreP1: {fileID: 0}
+  m_ScoreP2: {fileID: 0}
 --- !u!114 &11421772
 MonoBehaviour:
   m_ObjectHideFlags: 1
