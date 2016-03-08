@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 482088}
   - 33: {fileID: 3306440}
   - 23: {fileID: 2315018}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: faceDice (9)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ GameObject:
   - 4: {fileID: 450244}
   - 33: {fileID: 3301350}
   - 23: {fileID: 2310580}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: faceDice (18)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - 4: {fileID: 409912}
   - 33: {fileID: 3305324}
   - 23: {fileID: 2351666}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: faceDice (2)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ GameObject:
   - 4: {fileID: 496160}
   - 33: {fileID: 3309000}
   - 23: {fileID: 2329424}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: faceDice (15)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ GameObject:
   - 4: {fileID: 493314}
   - 33: {fileID: 3328108}
   - 23: {fileID: 2325802}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: faceDice
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - 4: {fileID: 401598}
   - 33: {fileID: 3358700}
   - 23: {fileID: 2370576}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: faceDice (6)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ GameObject:
   - 4: {fileID: 438398}
   - 33: {fileID: 3394684}
   - 23: {fileID: 2365946}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: faceDice (1)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   - 4: {fileID: 425848}
   - 33: {fileID: 3379612}
   - 23: {fileID: 2354578}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: faceDice (21)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   - 4: {fileID: 442648}
   - 33: {fileID: 3306772}
   - 23: {fileID: 2354282}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: faceDice (4)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   - 4: {fileID: 479290}
   - 33: {fileID: 3326500}
   - 23: {fileID: 2312810}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: faceDice (19)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   - 23: {fileID: 2350686}
   - 54: {fileID: 5414402}
   - 114: {fileID: 11456602}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: diceTest
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -200,7 +200,7 @@ GameObject:
   - 4: {fileID: 433262}
   - 33: {fileID: 3381762}
   - 23: {fileID: 2315748}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: faceDice (17)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -217,7 +217,7 @@ GameObject:
   - 4: {fileID: 415258}
   - 33: {fileID: 3340276}
   - 23: {fileID: 2338292}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: faceDice (8)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -234,7 +234,7 @@ GameObject:
   - 4: {fileID: 405814}
   - 33: {fileID: 3322438}
   - 23: {fileID: 2312024}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: faceDice (7)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ GameObject:
   - 4: {fileID: 494554}
   - 33: {fileID: 3339218}
   - 23: {fileID: 2317124}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: faceDice (11)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -268,7 +268,7 @@ GameObject:
   - 4: {fileID: 484204}
   - 33: {fileID: 3307704}
   - 23: {fileID: 2357192}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: faceDice (3)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -285,7 +285,7 @@ GameObject:
   - 4: {fileID: 491552}
   - 33: {fileID: 3361574}
   - 23: {fileID: 2308246}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: faceDice (14)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -302,7 +302,7 @@ GameObject:
   - 4: {fileID: 479384}
   - 33: {fileID: 3394696}
   - 23: {fileID: 2325330}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: faceDice (10)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -319,7 +319,7 @@ GameObject:
   - 4: {fileID: 407750}
   - 33: {fileID: 3390094}
   - 23: {fileID: 2309046}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: faceDice (5)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -336,7 +336,7 @@ GameObject:
   - 4: {fileID: 411518}
   - 33: {fileID: 3346040}
   - 23: {fileID: 2380532}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: faceDice (20)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -353,7 +353,7 @@ GameObject:
   - 4: {fileID: 452034}
   - 33: {fileID: 3394980}
   - 23: {fileID: 2332352}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: faceDice (13)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -370,7 +370,7 @@ GameObject:
   - 4: {fileID: 476498}
   - 33: {fileID: 3340164}
   - 23: {fileID: 2345416}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: faceDice (12)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -387,7 +387,7 @@ GameObject:
   - 4: {fileID: 448834}
   - 33: {fileID: 3362300}
   - 23: {fileID: 2389882}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: faceDice (16)
   m_TagString: Player
   m_Icon: {fileID: 0}

@@ -53,6 +53,7 @@ public class Ui_Manager : Singleton<Ui_Manager>
 	private TurnManager m_turnManager;
 	private InputManager m_inputManager;
 	private int m_cardSelectedId;
+	private int m_selectedSpell;
 
 	#region Panels
 
@@ -289,7 +290,7 @@ public class Ui_Manager : Singleton<Ui_Manager>
 	public void DraftCardSelect (DraftCardUI cardToAdd)
 	{
 		m_inputManager.cardPreSelected = cardToAdd.ActiveCard;
-
+		cardToAdd.OnDeselect ();
 		WaitForCardSelected.cardSelected = true;
 
 		cardToAdd.gameObject.SetActive (false);
@@ -329,10 +330,26 @@ public class Ui_Manager : Singleton<Ui_Manager>
 	{
 		List<Card> selectedSpells = new List<Card> ();
 		for (int i = 0; i < m_selectCardPanel.transform.childCount; i++) {
-			if (m_selectCardPanel.transform.GetChild (i).GetComponent<DraftCardUI> ().IsSelected)
+			if (m_selectCardPanel.transform.GetChild (i).GetComponent<DraftCardUI> ().IsSelected) {
 				selectedSpells.Add (m_selectCardPanel.transform.GetChild (i).GetComponent<DraftCardUI> ().ActiveCard);
+				m_selectCardPanel.transform.GetChild (i).GetComponent<DraftCardUI> ().OnPressed ();
+				m_selectCardPanel.transform.GetChild (i).GetComponent<DraftCardUI> ().OnDeselect ();
+			}
 		}
 		return selectedSpells;
+	}
+
+	public bool SelectSpell ()
+	{
+		if (m_selectedSpell >= 3)
+			return false;
+		m_selectedSpell++;
+		return true;
+	}
+
+	public void DeselectSpell ()
+	{
+		m_selectedSpell--;
 	}
 }
 

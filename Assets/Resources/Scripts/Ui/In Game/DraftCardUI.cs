@@ -61,7 +61,12 @@ public class DraftCardUI : MonoBehaviour
 
 	public void OnPressed ()
 	{
-		transform.DOMoveY ((m_selected) ? -25 : 25, 0.2f).SetRelative ().SetEase (Ease.InOutSine);
+		if (m_selected) {
+			Ui_Manager.Instance.DeselectSpell ();
+		} else if (!Ui_Manager.Instance.SelectSpell ()) {
+			return;
+		}
+		transform.DOMoveY ((m_selected) ? -50 : 50, 0.2f).SetRelative ().SetEase (Ease.InOutSine);
 		m_selected = !m_selected;
 	}
 }
