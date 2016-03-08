@@ -76,8 +76,9 @@ public class Player : MonoBehaviour
 		hand.Remove (card);
 	}
 
-    public void addScore(bool isProps)
+    public void addScore(bool isProps, int add)
     {
+        score += add;
         if(objectsDestroy == 0)
         {
 
