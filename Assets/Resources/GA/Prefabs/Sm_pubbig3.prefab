@@ -118,7 +118,7 @@ GameObject:
   - 114: {fileID: 11432024}
   - 54: {fileID: 5421384}
   m_Layer: 0
-  m_Name: Object024
+  m_Name: FirstFloor
   m_TagString: needPhysics
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

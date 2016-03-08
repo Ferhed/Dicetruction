@@ -33,6 +33,16 @@ public class Player : MonoBehaviour
 		return score;
 	}
 
+    public int getMana()
+    {
+        return mana;
+    }
+
+    public void spendMana(int cost)
+    {
+        mana -= cost;
+    }
+
 	public void AddCardInHand (Card card)
 	{
 		hand.Add (card);
@@ -64,4 +74,16 @@ public class Player : MonoBehaviour
 		card.Cast (targets);
 		hand.Remove (card);
 	}
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.J))
+        {
+            Card exc = new Exterminate(10, 0, 10, null);
+            List<GameObject> targets = new List<GameObject>();
+            targets.Add(GODices[0]);
+            targets.Add(GODices[1]);
+            exc.Cast(targets);
+        }
+    }
 }

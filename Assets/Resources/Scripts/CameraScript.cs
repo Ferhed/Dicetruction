@@ -199,7 +199,6 @@ public class CameraScript : MonoBehaviour
         float Phi = Mathf.Acos(dir.y / dir.magnitude) * 180 / Mathf.PI;
         float Teta = Mathf.Atan2(transform.position.z, transform.position.x) * 180 / Mathf.PI;
         transform.eulerAngles = new Vector3(Phi-90,  -90 - Teta, 0);
-        Debug.Log("bonjour");
     }
 
     void staticCamera()

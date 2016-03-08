@@ -207,8 +207,19 @@ public class TurnManager : MonoBehaviour
 					targets.Add (player2.GODices [dieIndex]);
 				}
 			}
+            else if ((card as Excalibur) != null)
+            {
+                if (currentPlayer == player1)
+                {
+                    targets.Add(player1.GODices[dieIndex]);
+                }
+                else
+                {
+                    targets.Add(player2.GODices[dieIndex]);
+                }
+            }
 
-			currentPlayer.Cast (card, targets);
+            currentPlayer.Cast (card, targets);
 			currentPlayer.RemoveCardInHand (card);
 		}
 	}
