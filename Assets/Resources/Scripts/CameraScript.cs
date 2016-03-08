@@ -5,7 +5,6 @@ using DG.Tweening;
 
 public class CameraScript : MonoBehaviour
 {
-
     float horizontalMovment;
     float verticalMovment;
     public GameObject mapCenter;
@@ -48,13 +47,16 @@ public class CameraScript : MonoBehaviour
     {
         dices = new GameObject[3];
 
+        transform.localPosition = new Vector3(0, 58.939f, -140.5f);
+        transform.eulerAngles = new Vector3(28.233f, 0, 0);
+
         dices[0] = Instantiate(Resources.Load("GA/Prefabs/diceTest", typeof(GameObject))) as GameObject;
         dices[1] = Instantiate(Resources.Load("GA/Prefabs/diceTest", typeof(GameObject))) as GameObject;
         dices[2] = Instantiate(Resources.Load("GA/Prefabs/diceTest", typeof(GameObject))) as GameObject;
         for(int i = 0; i<3;i++)
         {
             dices[i].transform.parent = transform;
-            dices[i].transform.localPosition = new Vector3(-2f+(2f* i),-3,5.5f);
+            dices[i].transform.localPosition = new Vector3(-2f + (2f * i), -3 + (((i + 1) % 2) * ((i + 1) % 2)), 12);
             dices[i].transform.rotation = UnityEngine.Random.rotation;
             TurnManager.instance.currentPlayer.GODices[i] = dices[i];
         }
@@ -123,7 +125,7 @@ public class CameraScript : MonoBehaviour
         }*/
         verticalMovment = Input.GetAxis("Vertical");
         transform.Rotate(new Vector3(-verticalMovment*speedRotationVerticalScope, 0, 0) * Time.deltaTime);
-
+        
         horizontalMovment = Input.GetAxis("Horizontal");
         if (horizontalMovment != 0)
         {
