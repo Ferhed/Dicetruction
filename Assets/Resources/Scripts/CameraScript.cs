@@ -141,6 +141,7 @@ public class CameraScript : MonoBehaviour
 				direction.Normalize ();
 			}
             
+<<<<<<< HEAD
 		}
 		if (Input.GetButtonDown ("ButtonY")) {
 			force = 0;
@@ -227,6 +228,103 @@ public class CameraScript : MonoBehaviour
 	}
 
 	/*void GetPosition(GameObject[] farDices)
+=======
+        }
+        if (Input.GetButtonDown("ButtonY"))
+        {
+            force = 0;
+        }
+        checkforce();
+
+        //charger le tir
+    }
+
+    public void changeAngle(int multiplier)
+    {
+        accuracy += multiplier*5;
+        accuracy = Mathf.Min(accuracyMin, accuracy);
+        accuracy = Mathf.Max(accuracyMax, accuracy);
+        Debug.Log(accuracy);
+    }
+
+    void checkforce()
+    {
+        float hori = Input.GetAxis("LeftHorizontal");
+        float verti = Input.GetAxis("LeftVertical");
+        float dist = Vector2.Distance(getForce, new Vector2(hori, verti));
+        force = Mathf.Min(force + dist*2, 100f);
+        getForce = new Vector2(hori, verti);
+        if (dist < 0.1f)
+        {
+            force = Mathf.Max(0f, force - Time.deltaTime * 10);
+        }
+    }
+
+    void follow()
+    {
+        if (Input.GetButtonDown("ButtonX"))
+        {
+            currentPosition = POSITION.STATIC;
+        }
+        SelectDices();
+        getMiddleOfThree();
+        journeyLength = Vector3.Distance(transform.position, endMarker);
+        float distCovered = (Time.time - startTime) *speed;
+        float fracJourney = distCovered / journeyLength;
+        transform.position = Vector3.Lerp(transform.position, endMarker, fracJourney);
+
+        //transform.DOMove(endMarker, 12f);
+
+        Vector3 dir = middle - transform.position;
+        float Phi = Mathf.Acos(dir.y / dir.magnitude) * 180 / Mathf.PI;
+        float Teta = Mathf.Atan2(transform.position.z, transform.position.x) * 180 / Mathf.PI;
+        transform.eulerAngles = new Vector3(Phi-90,  -90 - Teta, 0);
+    }
+
+    void staticCamera()
+    {
+        if (Input.GetButtonDown("ButtonX"))
+        {
+            currentPosition = POSITION.FOLLOW;
+        }
+
+        //reculer suivant distance entre les 2 dès les plus éloignés
+
+    }
+
+
+
+    void getMiddleOfThree()
+    {
+        middle = (dices[0].transform.position + dices[1].transform.position + dices[2].transform.position) / 3;
+        endMarker = middle + Vector3.up * 1.3f * height;
+    }
+
+    void SelectDices()
+    {
+        float[] dists = new float[3];
+        dists[0] = Vector3.Distance(dices[0].transform.position, dices[1].transform.position);
+        dists[1] = Vector3.Distance(dices[2].transform.position, dices[1].transform.position);
+        dists[2] = Vector3.Distance(dices[2].transform.position, dices[0].transform.position);
+        if (dists[0] > dists[1] && dists[0] > dists[2])
+        {
+            height = Mathf.Max(dists[0], 20f);
+            //direction = new Vector3(middle.x - dices[2].transform.position.x, 0, middle.z - dices[2].transform.position.z);
+        }
+        else if (dists[1] > dists[2])
+        {
+            height = Mathf.Max(dists[1], 20f);
+            // direction = new Vector3(middle.x - dices[0].transform.position.x, 0, middle.z - dices[0].transform.position.z);
+        }
+        else
+        {
+            height = Mathf.Max(dists[2], 20f);
+            //direction = new Vector3(middle.x - dices[1].transform.position.x, 0, middle.z - dices[1].transform.position.z);
+        }
+    }
+
+    /*void GetPosition(GameObject[] farDices)
+>>>>>>> refs/remotes/origin/master
     {
         Vector3 center = (farDices[0].transform.position + farDices[1].transform.position) / 2;
         transform.position = new Vector3(center.x, transform.position.y, center.z);

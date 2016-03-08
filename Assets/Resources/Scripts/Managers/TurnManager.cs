@@ -207,8 +207,19 @@ public class TurnManager : MonoBehaviour
 					targets.Add (player2.GODices [dieIndex]);
 				}
 			}
+            else if ((card as Excalibur) != null)
+            {
+                if (currentPlayer == player1)
+                {
+                    targets.Add(player1.GODices[dieIndex]);
+                }
+                else
+                {
+                    targets.Add(player2.GODices[dieIndex]);
+                }
+            }
 
-			currentPlayer.Cast (card, targets);
+            currentPlayer.Cast (card, targets);
 			currentPlayer.RemoveCardInHand (card);
 		}
 	}
@@ -314,6 +325,7 @@ public class WaitForSpellAssignation : CustomYieldInstruction
 		Debug.Log (TurnManager.GetInstance ().currentPlayer == TurnManager.GetInstance ().player1);
 		Ui_Manager.Instance.GoToState (UiState.DiceSelect);
 		m_speels = SpellToAssign;
+        Debug.Log(SpellToAssign.Count);
 		m_diceSelect = new List<int> ();
 		m_index = 0;
 		DiceSelector.Instance.Reset ();

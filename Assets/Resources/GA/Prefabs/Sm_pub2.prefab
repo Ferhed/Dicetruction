@@ -36,7 +36,7 @@ GameObject:
   - 54: {fileID: 5401258}
   - 65: {fileID: 6533168}
   m_Layer: 0
-  m_Name: Object020
+  m_Name: FirstFloor
   m_TagString: needPhysics
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,9 +108,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 140758}
-  m_LocalRotation: {x: -0.5000001, y: -0.49999997, z: -0.49999988, w: 0.50000006}
-  m_LocalPosition: {x: -21.21, y: -0.42, z: -22.87}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.18298069, y: 0.68313086, z: 0.68289477, w: 0.18304385}
+  m_LocalPosition: {x: 38.7, y: -0.8999996, z: -30.906076}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 482818}
   - {fileID: 430436}
@@ -165,7 +165,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 91f7bd35cad5e0442ab0f6d7e262ac49, type: 2}
+  - {fileID: 2100000, guid: 2241cdf6852cfee4cbb2bb570f5a56dd, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
