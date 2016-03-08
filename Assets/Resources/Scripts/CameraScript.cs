@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public class CameraScript : MonoBehaviour
 {
+<<<<<<< HEAD
 
 	float horizontalMovment;
 	float verticalMovment;
@@ -20,9 +21,25 @@ public class CameraScript : MonoBehaviour
 	float force;
 	Vector2 getForce;
 	public float multiplierForce = 1f;
-
+=======
+    float horizontalMovment;
+    float verticalMovment;
+    public GameObject mapCenter;
+    public GameObject[] dices;
+    public float speedRotationArround = 20f;
+    public float speedRotationVerticalScope = 20f;
+    public float speedRotationHorizontalScope = 20f;
+    public float forceThrow = 200f;
+    public float accuracyMin = Mathf.PI / 4;
+    public float accuracyMax = Mathf.PI / 12;
+    float accuracy = Mathf.PI / 12;
+    float force;
+    Vector2 getForce;
+    public float multiplierForce = 1f;
+>>>>>>> 5bdc0f383118a3c9e0c1a2612fc996e8452e5550
 
     
+<<<<<<< HEAD
 	private Vector3 endMarker;
 	public float speed = 0.2F;
 	private float startTime;
@@ -140,6 +157,138 @@ public class CameraScript : MonoBehaviour
 				direction = transform.position - transform.parent.position;
 				direction.Normalize ();
 			}
+=======
+    private Vector3 endMarker;
+    public float verticalTimeMove = 2;
+    public float horizontalTimeMove = 1;
+    private float startTime;
+    private float journeyLength;
+    private float height = 10;
+    private Vector3 middle;
+    Vector3 direction;
+
+
+
+    enum POSITION
+    {
+        ROTATEARROUND,
+        RAPIDDISPLACMENT,
+        SCOPE,
+        FOLLOW,
+        STATIC,
+    }
+
+    POSITION currentPosition = POSITION.SCOPE;
+    // Use this for initialization
+    void Start()
+    {
+        dices = new GameObject[3];
+
+        transform.localPosition = new Vector3(0, 58.939f, -140.5f);
+        transform.eulerAngles = new Vector3(28.233f, 0, 0);
+
+        dices[0] = Instantiate(Resources.Load("GA/Prefabs/diceTest", typeof(GameObject))) as GameObject;
+        dices[1] = Instantiate(Resources.Load("GA/Prefabs/diceTest", typeof(GameObject))) as GameObject;
+        dices[2] = Instantiate(Resources.Load("GA/Prefabs/diceTest", typeof(GameObject))) as GameObject;
+        for(int i = 0; i<3;i++)
+        {
+            dices[i].transform.parent = transform;
+            dices[i].transform.localPosition = new Vector3(-2f + (2f * i), -3 + (((i + 1) % 2) * ((i + 1) % 2)), 12);
+            dices[i].transform.rotation = UnityEngine.Random.rotation;
+            TurnManager.instance.currentPlayer.GODices[i] = dices[i];
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        switch (currentPosition)
+        {
+            case POSITION.ROTATEARROUND:
+                rotateArround();
+                break;
+            case POSITION.RAPIDDISPLACMENT:
+                rapidDisplacment();
+                break;
+            case POSITION.SCOPE:
+                scope();
+                break;
+            case POSITION.FOLLOW:
+                follow();
+                break;
+            case POSITION.STATIC:
+                staticCamera();
+                break;
+        }
+
+    }
+
+    void rotateArround()
+    {
+        if (Input.GetButtonDown("ButtonX"))
+        {
+            currentPosition = POSITION.RAPIDDISPLACMENT;
+        }
+        if (Input.GetButtonDown("ButtonA"))
+        {
+            goScope();
+        }
+
+    }
+
+    void rapidDisplacment()
+    {
+        if (Input.GetButtonDown("ButtonX"))
+        {
+            currentPosition = POSITION.ROTATEARROUND;
+        }
+        if (Input.GetButtonDown("ButtonA"))
+        {
+            goScope();
+        }
+    }
+
+    void goScope()
+    {
+        currentPosition = POSITION.SCOPE;
+        //afficher cone par rapport a l'accuracy
+    }
+
+    void scope()
+    {
+       /* if (Input.GetButtonDown("ButtonB"))
+        {
+            currentPosition = POSITION.ROTATEARROUND;
+        }*/
+        verticalMovment = Input.GetAxis("Vertical");
+        transform.Rotate(new Vector3(-verticalMovment*speedRotationVerticalScope, 0, 0) * Time.deltaTime);
+        
+        horizontalMovment = Input.GetAxis("Horizontal");
+        if (horizontalMovment != 0)
+        {
+            mapCenter.transform.Rotate(mapCenter.transform.up, -horizontalMovment * Time.deltaTime * speedRotationArround);
+        }
+
+        if (Input.GetAxis("Trigger") > 0.5f || Input.GetAxis("Trigger") < -0.5f)
+        {
+            startTime = Time.time;
+            foreach (GameObject currentDice in dices)
+            {
+                currentDice.transform.parent = null;
+                force = Mathf.Max(force, 10f);
+                Vector3 AF = transform.forward * force * 30 * multiplierForce;
+                float magn = AF.magnitude;
+                //magn *= Mathf.Tan(Random.Range(accuracy / 2, -accuracy / 2));
+                magn *= Mathf.Tan(UnityEngine.Random.Range(accuracy / 2, -accuracy / 2));
+                currentDice.GetComponent<Rigidbody>().AddForce(AF + Vector3.right * magn / 8);
+                currentDice.GetComponent<Rigidbody>().useGravity = true;
+                currentPosition = POSITION.FOLLOW;
+                Dice DR = currentDice.GetComponent<Dice>();
+                StartCoroutine(DR.checkStill());
+                direction = transform.position - transform.parent.position;
+                direction.Normalize();
+            }
+>>>>>>> 5bdc0f383118a3c9e0c1a2612fc996e8452e5550
             
 		}
 		if (Input.GetButtonDown ("ButtonY")) {
@@ -268,16 +417,17 @@ public class CameraScript : MonoBehaviour
         SelectDices();
         getMiddleOfThree();
         journeyLength = Vector3.Distance(transform.position, endMarker);
-        float distCovered = (Time.time - startTime) *speed;
-        float fracJourney = distCovered / journeyLength;
-        transform.position = Vector3.Lerp(transform.position, endMarker, fracJourney);
-
+        transform.DOMoveY(endMarker.y, verticalTimeMove);
+        transform.DOMoveX(endMarker.x, horizontalTimeMove);
+        transform.DOMoveZ(endMarker.z, horizontalTimeMove);
         //transform.DOMove(endMarker, 12f);
 
+        /** Look At */
         Vector3 dir = middle - transform.position;
         float Phi = Mathf.Acos(dir.y / dir.magnitude) * 180 / Mathf.PI;
         float Teta = Mathf.Atan2(transform.position.z, transform.position.x) * 180 / Mathf.PI;
-        transform.eulerAngles = new Vector3(Phi-90,  -90 - Teta, 0);
+        transform.DORotate(new Vector3(Phi-90,  -90 - Teta, 0), 2);
+        /************/
     }
 
     void staticCamera()

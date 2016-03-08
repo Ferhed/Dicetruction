@@ -212,10 +212,9 @@ public class Player : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.J))
         {
-            Card exc = new Exterminate(10, 0, 10, null);
+            Card exc = new Excalibur(10, 0, 10, null);
             List<GameObject> targets = new List<GameObject>();
             targets.Add(GODices[0]);
-            targets.Add(GODices[1]);
             exc.Cast(targets);
         }
     }
