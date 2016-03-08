@@ -21,10 +21,10 @@ public class CameraScript : MonoBehaviour
     Vector2 getForce;
     public float multiplierForce = 1f;
 
-
     
     private Vector3 endMarker;
-    public float speed = 0.2F;
+    public float verticalTimeMove = 2;
+    public float horizontalTimeMove = 1;
     private float startTime;
     private float journeyLength;
     private float height = 10;
@@ -190,16 +190,17 @@ public class CameraScript : MonoBehaviour
         SelectDices();
         getMiddleOfThree();
         journeyLength = Vector3.Distance(transform.position, endMarker);
-        float distCovered = (Time.time - startTime) *speed;
-        float fracJourney = distCovered / journeyLength;
-        transform.position = Vector3.Lerp(transform.position, endMarker, fracJourney);
-
+        transform.DOMoveY(endMarker.y, verticalTimeMove);
+        transform.DOMoveX(endMarker.x, horizontalTimeMove);
+        transform.DOMoveZ(endMarker.z, horizontalTimeMove);
         //transform.DOMove(endMarker, 12f);
 
+        /** Look At */
         Vector3 dir = middle - transform.position;
         float Phi = Mathf.Acos(dir.y / dir.magnitude) * 180 / Mathf.PI;
         float Teta = Mathf.Atan2(transform.position.z, transform.position.x) * 180 / Mathf.PI;
-        transform.eulerAngles = new Vector3(Phi-90,  -90 - Teta, 0);
+        transform.DORotate(new Vector3(Phi-90,  -90 - Teta, 0), 2);
+        /************/
     }
 
     void staticCamera()
