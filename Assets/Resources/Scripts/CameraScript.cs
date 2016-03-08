@@ -132,6 +132,7 @@ public class CameraScript : MonoBehaviour
 
         if (Input.GetAxis("Trigger") > 0.5f || Input.GetAxis("Trigger") < -0.5f)
         {
+            startTime = Time.time;
             foreach (GameObject currentDice in dices)
             {
                 currentDice.transform.parent = null;

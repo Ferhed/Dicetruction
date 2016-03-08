@@ -130,7 +130,7 @@ public class TurnManager : MonoBehaviour
 		//**********SELECT SPELL
 		InputManager.GetInstance ().inShootView = false;
 		InputManager.GetInstance ().inSelectSpell = true;
-		Debug.Log ("[State] : SelectSpell");
+		Debug.Log ("[State] : SelectSpell"); 
 		Ui_Manager.Instance.GoToState (UiState.SpellSelect);
 
 		//Waiting until the player validate his choices
