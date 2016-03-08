@@ -314,6 +314,7 @@ public class WaitForSpellAssignation : CustomYieldInstruction
 		Debug.Log (TurnManager.GetInstance ().currentPlayer == TurnManager.GetInstance ().player1);
 		Ui_Manager.Instance.GoToState (UiState.DiceSelect);
 		m_speels = SpellToAssign;
+        Debug.Log(SpellToAssign.Count);
 		m_diceSelect = new List<int> ();
 		m_index = 0;
 		DiceSelector.Instance.Reset ();

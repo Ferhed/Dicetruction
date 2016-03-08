@@ -10,7 +10,9 @@ public class Building : MonoBehaviour
 	// Use this for initialization
 	void Awake ()
 	{
-		initialPosition = transform.position;
+        if (tag == "Props")
+            initialPosition = transform.eulerAngles;
+        else initialPosition = transform.position;
 		rb = GetComponent<Rigidbody> ();
 		rb.mass *= 100;
 		//rb.Sleep();

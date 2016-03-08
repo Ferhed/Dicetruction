@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: M_classichouselight
-  m_Shader: {fileID: 4800000, guid: 46f8f43cf0453884092fa261aca6fefe, type: 3}
+  m_Name: M_ParticleGroundSlam
+  m_Shader: {fileID: 4800000, guid: aaa9b8eb06e616342bad0fef5abb396e, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
@@ -25,13 +25,6 @@ Material:
       data:
         first:
           name: _BumpMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _NormalMap
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -87,16 +80,9 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _Emissive
+          name: _DiffuseMap
         second:
-          m_Texture: {fileID: 2800000, guid: 4c16f3660511b7e4381ac1f73c2e794e, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _BaseTexture
-        second:
-          m_Texture: {fileID: 2800000, guid: 705f42861b569d84b98e318936a9ea9e, type: 3}
+          m_Texture: {fileID: 2800000, guid: f1a1c62948873ad4991f182a16292a87, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -150,8 +136,12 @@ Material:
         second: 0
       data:
         first:
-          name: _Emission
-        second: 1.6
+          name: _DepthBlend
+        second: 0
+      data:
+        first:
+          name: _EmissiveAmount
+        second: 1
     m_Colors:
       data:
         first:
@@ -163,5 +153,5 @@ Material:
         second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
-          name: _node_1917
-        second: {r: 1, g: 1, b: 1, a: 1}
+          name: _ParticleColor
+        second: {r: 1, g: 0, b: 0, a: 1}

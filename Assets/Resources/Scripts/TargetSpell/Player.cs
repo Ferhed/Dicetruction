@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 	private int score;
 	private int mana;
 	private int multiplier;
+    public int propsDestroy = 0;
 	[HideInInspector]
 	public GameObject[] GODices;
 	public Dice[] dices;

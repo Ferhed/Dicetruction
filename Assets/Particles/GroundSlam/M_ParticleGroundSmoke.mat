@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: M_classichouselight
-  m_Shader: {fileID: 4800000, guid: 46f8f43cf0453884092fa261aca6fefe, type: 3}
+  m_Name: M_ParticleGroundSmoke
+  m_Shader: {fileID: 4800000, guid: 4c9d3389e43a4ba469550c64cc419e36, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
@@ -25,13 +25,6 @@ Material:
       data:
         first:
           name: _BumpMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _NormalMap
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -87,16 +80,23 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _Emissive
+          name: _node_4708
         second:
-          m_Texture: {fileID: 2800000, guid: 4c16f3660511b7e4381ac1f73c2e794e, type: 3}
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _BaseTexture
+          name: _node_6461
         second:
-          m_Texture: {fileID: 2800000, guid: 705f42861b569d84b98e318936a9ea9e, type: 3}
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _node_1195
+        second:
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -150,8 +150,28 @@ Material:
         second: 0
       data:
         first:
-          name: _Emission
-        second: 1.6
+          name: _node_8898
+        second: 0.73
+      data:
+        first:
+          name: _Gloss
+        second: 4.4
+      data:
+        first:
+          name: _node_8996
+        second: 0.2
+      data:
+        first:
+          name: _node_6425
+        second: 2.3
+      data:
+        first:
+          name: _node_2027
+        second: 0
+      data:
+        first:
+          name: _Tesselation
+        second: 10.7
     m_Colors:
       data:
         first:
@@ -163,5 +183,9 @@ Material:
         second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
-          name: _node_1917
+          name: _SmokeColor
+        second: {r: 0.2352941, g: 0.2352941, b: 0.2352941, a: 1}
+      data:
+        first:
+          name: _SpecularColor
         second: {r: 1, g: 1, b: 1, a: 1}
