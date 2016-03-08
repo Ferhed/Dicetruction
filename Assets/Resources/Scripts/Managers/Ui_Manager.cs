@@ -142,8 +142,11 @@ public class Ui_Manager : Singleton<Ui_Manager>
 	private void OnDraftJ1 ()
 	{
 		hideAll ();
-		if (TurnManager.GetInstance ().currentPlayer.getHandSize () > 0)
-			m_yShowHandJ1.SetActive (true);
+		if (TurnManager.GetInstance ().currentPlayer.getHandSize () > 0) {
+			int player = TurnManager.GetInstance ().getIndexPlayer ();
+			m_yShowHandJ1.SetActive (player == 1);
+			m_yShowHandJ2.SetActive (player == 2);
+		}
 		m_pressBtnPanel.SetActive (true);
 		m_draftCardPanel.SetActive (true);
 
