@@ -31,6 +31,7 @@ public class TurnManager : MonoBehaviour
 	public Camera globalCamera;
 	[HideInInspector]
 	public GameObject playerGameObject;
+    public CircularSlider CS;
 
 	void Awake ()
 	{
@@ -72,7 +73,6 @@ public class TurnManager : MonoBehaviour
 	IEnumerator StartGame ()
 	{
 		yield return new WaitForSeconds (0.2f);
-
 		currentPlayer = player1;
 		StartCoroutine (Game ());
 	}
@@ -314,7 +314,14 @@ public class TurnManager : MonoBehaviour
 	{
 		return (currentPlayer == player1) ? 1 : 2;
 	}
+
+    public void rotateArrow(float valor)
+    {
+        CS.FillLevel = valor;
+    }
 }
+
+
 
 class WaitForCardSelected : CustomYieldInstruction
 {

@@ -30,6 +30,7 @@ public class CameraScript : MonoBehaviour
     private float height = 10;
     private Vector3 middle;
     Vector3 direction;
+    public AnimationCurve sinus;
 
     TestLineRenderer line;
 
@@ -125,17 +126,12 @@ public class CameraScript : MonoBehaviour
         {
             currentPosition = POSITION.ROTATEARROUND;
         }*/
-        verticalMovment = Input.GetAxis("Vertical");
-        transform.Rotate(new Vector3(-verticalMovment*speedRotationVerticalScope, 0, 0) * Time.deltaTime);
-        
-        horizontalMovment = Input.GetAxis("Horizontal");
-        if (horizontalMovment != 0)
+        if(Input.GetButton("ButtonA"))
         {
-            mapCenter.transform.Rotate(mapCenter.transform.up, -horizontalMovment * Time.deltaTime * speedRotationArround);
+            checkforce();
         }
-
-        if (Input.GetAxis("Trigger") > 0.5f || Input.GetAxis("Trigger") < -0.5f)
-        {   
+        else if (Input.GetButtonUp("ButtonA"))
+        {
             Destroy(line);
             Destroy(transform.GetComponentInParent<LineRenderer>());
             startTime = Time.time;
@@ -155,12 +151,26 @@ public class CameraScript : MonoBehaviour
                 direction = transform.position - transform.parent.position;
                 direction.Normalize();
             }
-            
-		}
-		if (Input.GetButtonDown ("ButtonY")) {
+
+        }
+        else
+        {
+            verticalMovment = Input.GetAxis("Vertical");
+            transform.Rotate(new Vector3(-verticalMovment * speedRotationVerticalScope, 0, 0) * Time.deltaTime);
+
+            horizontalMovment = Input.GetAxis("Horizontal");
+            if (horizontalMovment != 0)
+            {
+                mapCenter.transform.Rotate(mapCenter.transform.up, -horizontalMovment * Time.deltaTime * speedRotationArround);
+            }
+        }
+
+
+
+        if (Input.GetButtonDown ("ButtonY")) {
 			force = 0;
 		}
-		checkforce ();
+		//checkforce ();
 
 		//charger le tir
 	}
@@ -183,9 +193,21 @@ public class CameraScript : MonoBehaviour
         accuracy = Mathf.Max(accuracyMax, accuracy);
     }
 
+    private float timer = 0;
     void checkforce()
     {
-        float hori = Input.GetAxis("LeftHorizontal");
+
+        force = sinus.Evaluate(timer);
+        timer += Time.deltaTime/5;
+        if(timer > 1)
+        {
+            timer = 0;
+        }
+        force *= 80;
+        force += 10;
+        line.a = 0.1f - 0.002f * (force - 10);
+        Debug.Log(force); 
+        /*float hori = Input.GetAxis("LeftHorizontal");
         float verti = Input.GetAxis("LeftVertical");
         float dist = Vector2.Distance(getForce, new Vector2(hori, verti));
         force = Mathf.Min(force + dist*2, 90);
@@ -194,7 +216,8 @@ public class CameraScript : MonoBehaviour
         if (dist < 0.1f)
         {
             force = Mathf.Max(0f, force - Time.deltaTime * 10);
-        }
+        }*/
+        TurnManager.instance.rotateArrow(force/100);
     }
 
     void follow()

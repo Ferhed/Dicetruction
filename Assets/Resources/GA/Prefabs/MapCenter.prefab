@@ -262,6 +262,27 @@ MonoBehaviour:
   multiplierForce: 5
   verticalTimeMove: 2
   horizontalTimeMove: 1
+  sinus:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0.0006882302
+      value: 0.00000029802322
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 0.5003434
+      value: 0.9988166
+      inSlope: -0.0035535777
+      outSlope: -0.0035535777
+      tangentMode: 0
+    - time: 1
+      value: -0.0023665428
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &11452400
 MonoBehaviour:
   m_ObjectHideFlags: 1
