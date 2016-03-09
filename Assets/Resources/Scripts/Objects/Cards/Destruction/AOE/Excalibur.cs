@@ -21,7 +21,6 @@ public class Excalibur : Destruction
         {
             if (currentCo.tag == "needPhysics" && currentCo.name == "FirstFloor")
             {
-                Debug.Log("Hey");
                 currentCo.GetComponent<Building>().bump();
                 currentCo.GetComponent<Building>().changeWeight();
                 currentCo.GetComponent<Rigidbody>().AddExplosionForce(350f * 500 * 1, dice.transform.position, 150f);
