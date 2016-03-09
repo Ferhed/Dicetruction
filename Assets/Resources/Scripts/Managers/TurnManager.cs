@@ -19,8 +19,8 @@ public class TurnManager : MonoBehaviour
 	internal Ui_Manager UIInstance;
 	internal InputManager IPInstance;
 
-	private bool turnPlayer1Ended;
-	private bool turnPlayer2Ended;
+	public  bool turnPlayer1Ended;
+	public bool turnPlayer2Ended;
 	private bool globalTurnEnded;
 	[HideInInspector]
 	public bool cardSelected;
@@ -90,13 +90,17 @@ public class TurnManager : MonoBehaviour
 		while (!turnPlayer1Ended)
 			yield return new WaitForEndOfFrame ();
 
-		//Tour du joueur 2
-		Debug.Log ("TurnP2");
+
+        EndOfTurn();
+        //Tour du joueur 2
+        Debug.Log ("TurnP2");
 		StartCoroutine (Turn ());
 
 		while (!turnPlayer2Ended)
 			yield return new WaitForEndOfFrame ();
-	}
+
+        EndOfTurn();
+    }
 
 	void addCameraForPlayer ()
 	{
@@ -166,7 +170,6 @@ public class TurnManager : MonoBehaviour
 			turnPlayer1Ended = true;
 		else
 			turnPlayer2Ended = true;
-		EndOfTurn ();
 	}
 
 	void killCamera ()
