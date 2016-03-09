@@ -15,6 +15,11 @@ public class DraftCardUI : MonoBehaviour
 				m_uiImage = GetComponent<Image> ();
 			if (value.Image != null)
 				m_uiImage.sprite = value.Image;
+			if (m_activeCard.GetEnergy () != 0) {
+				m_costText.text = m_activeCard.GetEnergy ().ToString ();
+				m_costText.gameObject.SetActive (true);
+			} else
+				m_costText.gameObject.SetActive (false);
 		}
 	}
 
@@ -29,6 +34,8 @@ public class DraftCardUI : MonoBehaviour
 
 	private Image m_uiImage;
 	private bool m_selected = false;
+	[SerializeField]
+	private Text m_costText;
 
 	void Awake ()
 	{
@@ -50,13 +57,13 @@ public class DraftCardUI : MonoBehaviour
 	public void OnSelect ()
 	{
 		transform.DOScale (1.2f, 0.2f).SetEase (Ease.InOutSine);
-		GetComponent<Image> ().DOColor (new Color (0.75f, 0.75f, 0.75f, 1), 0.2f).SetEase (Ease.InOutSine);
+		GetComponent<Image> ().DOColor (Color.white, 0.2f).SetEase (Ease.InOutSine);
 	}
 
 	public void OnDeselect ()
 	{
 		transform.DOScale (1, 0.2f).SetEase (Ease.InOutSine);
-		GetComponent<Image> ().DOColor (Color.white, 0.2f).SetEase (Ease.InOutSine);
+		GetComponent<Image> ().DOColor (new Color (137f / 255f, 137f / 255f, 137f / 255f, 1), 0.2f).SetEase (Ease.InOutSine);
 	}
 
 	public void OnPressed ()
