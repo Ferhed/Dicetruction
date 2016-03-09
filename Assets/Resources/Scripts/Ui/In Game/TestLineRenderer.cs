@@ -16,7 +16,7 @@ public class TestLineRenderer : MonoBehaviour
 	IEnumerator Line ()
     {
         
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForEndOfFrame();
 
         LineRenderer line = gameObject.GetComponent<LineRenderer>();
         line.SetVertexCount(105);

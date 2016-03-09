@@ -15,7 +15,7 @@ public class JamesBond : Support
         Player caster = targets[0].GetComponent<Player>();
         Player target = targets[1].GetComponent<Player>();
         
-        Card cardPlayer2 = target.GetHand()[UnityEngine.Random.Range(0, target.getHandSize())];
+        Card cardPlayer2 = target.GetHand()[UnityEngine.Random.Range(0, target.getHandSize() -1 )];
         caster.GetHand().Add(cardPlayer2);
         target.GetHand().Remove(cardPlayer2);
     }
