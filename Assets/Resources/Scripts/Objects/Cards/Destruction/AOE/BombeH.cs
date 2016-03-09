@@ -32,11 +32,11 @@ public class BombeH : Destruction
                     currentCo.GetComponent<Building>().changeWeight();
                     currentCo.GetComponent<Rigidbody>().AddExplosionForce(350f * 100 * 1, dice.transform.position, 15f);
                 }
-                dice.GetComponent<Rigidbody>().AddExplosionForce(450f, dice.transform.position, 15f);
             }
 		}
 		XInput.instance.useVibe (0, 0.5f, 1, 1);
         SoundManager.Instance.PlayMonoSound(SoundManager.Instance.s_keepCalmBomb, 1f);
+        FxManager.Instance.LaunchFX(FxManager.Instance.bombeH, targets[0].transform.position);
     }
 
 	public override Card Copy ()
