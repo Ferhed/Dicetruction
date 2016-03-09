@@ -226,9 +226,19 @@ public class TurnManager : MonoBehaviour
 				} else {
 					targets.Add (player2.GODices [dieIndex]);
 				}
-			}
+			} else if ((card as Exterminate) != null)
+            {
+                if (currentPlayer == player1)
+                {
+                    targets.Add(player1.GODices[dieIndex]);
+                }
+                else
+                {
+                    targets.Add(player2.GODices[dieIndex]);
+                }
+            }
 
-			currentPlayer.Cast (card, targets);
+            currentPlayer.Cast (card, targets);
 			currentPlayer.RemoveCardInHand (card);
 		}
 	}

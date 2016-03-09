@@ -13,10 +13,10 @@ public class Exterminate : Destruction
 
     public override void Cast(List<GameObject> targets)
     {
-        GameObject dice1 = targets[0];
-        GameObject dice2 = targets[1];
-        RaycastHit[] co = Physics.BoxCastAll(dice1.transform.position, dice1.transform.localScale, dice2.transform.position-dice1.transform.position);
-        Debug.Log("Length = " + co.Length);
+        GameObject selectedDice = targets[0];
+        GameObject farDice = SelectDices(TurnManager.instance.currentPlayer.GODices, selectedDice);
+
+        RaycastHit[] co = Physics.BoxCastAll(selectedDice.transform.position, selectedDice.transform.localScale,farDice.transform.position-selectedDice.transform.position,selectedDice.transform.rotation,Vector3.Distance(selectedDice.transform.position,farDice.transform.position));
         foreach (RaycastHit currentCo in co)
         {
             if (currentCo.collider.tag == "needPhysics")
@@ -25,6 +25,28 @@ public class Exterminate : Destruction
                 currentCo.collider.GetComponent<Building>().changeWeight();
                 currentCo.collider.GetComponent<Rigidbody>().AddExplosionForce(350f * 1000 * 1, currentCo.transform.position, 10 );
             }
+        }
+    }
+
+    GameObject SelectDices(GameObject[] dices, GameObject selectedDice)
+    {
+        float[] dists = new float[3];
+        dists[0] = Vector3.Distance(selectedDice.transform.position, dices[0].transform.position);
+        dists[1] = Vector3.Distance(selectedDice.transform.position, dices[1].transform.position);
+        dists[2] = Vector3.Distance(selectedDice.transform.position, dices[2].transform.position);
+        if (dists[0] > dists[1] && dists[0] > dists[2])
+        {
+            return dices[0];
+        }
+        else if (dists[1] > dists[2])
+        {
+
+            return dices[1];
+        }
+        else
+        {
+
+            return dices[2];
         }
     }
 
