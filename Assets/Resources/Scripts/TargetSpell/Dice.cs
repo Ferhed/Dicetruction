@@ -12,12 +12,14 @@ public class Dice : MonoBehaviour {
     int result;
     bool canDraw = true;
     public float multiplierSpell = 1f;
+    XInput XIInstance;
 
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody>();
+        XIInstance = XInput.instance;
         //StartCoroutine("checkStill");
-	}
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -103,7 +105,7 @@ public class Dice : MonoBehaviour {
         }
 
 
-        XInput.instance.useVibe(0, 0.5f, 1, 1);
+        XIInstance.useVibe(0, 0.5f, 1, 1);
         yield return null;
     }
 
@@ -119,7 +121,7 @@ public class Dice : MonoBehaviour {
                 currentCo.GetComponent<Rigidbody>().AddExplosionForce(-350f * 400 * multiplierSpell, transform.position, 15f);
             }
         }
-        XInput.instance.useVibe(0, 0.5f, 1, 1);
+        XIInstance.useVibe(0, 0.5f, 1, 1);
         dice.GetComponent<Rigidbody>().AddExplosionForce(450f, dice.transform.position, 15f);
         //SoundManager.Instance.PlaySound(gameObject, SoundManager.Instance.explosion,0.5f,true);
     }
@@ -136,7 +138,7 @@ public class Dice : MonoBehaviour {
                 currentCo.GetComponent<Rigidbody>().AddExplosionForce(350f*100*multiplierSpell, transform.position, 15f);
             }
         }
-        XInput.instance.useVibe(0, 0.5f, 1, 1);
+        XIInstance.useVibe(0, 0.5f, 1, 1);
         dice.GetComponent<Rigidbody>().AddExplosionForce(450f, dice.transform.position, 15f);
         //SoundManager.Instance.PlaySound(gameObject, SoundManager.Instance.explosion, 0.5f, true);
     }
@@ -149,7 +151,7 @@ public class Dice : MonoBehaviour {
         displacment.Normalize();
         dice.GetComponent<Rigidbody>().AddForce((displacment+Vector3.up)*200*multiplierSpell);
         Debug.Log(displacment);
-        XInput.instance.useVibe(0, 0.5f, 1, 1);
+        XIInstance.useVibe(0, 0.5f, 1, 1);
     }
 
     void OnCollisionEnter(Collision col)

@@ -158,15 +158,15 @@ public class TurnManager : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
         Debug.Log("allStatic "+currentPlayer.name);
-		if (currentPlayer == player1)
-			turnPlayer1Ended = true;
-		else
-			turnPlayer2Ended = true;
+
 
 		currentPlayer.EndOfTurn ();
 		killCamera ();
-
-		EndOfTurn ();
+        if (currentPlayer == player1)
+            turnPlayer1Ended = true;
+        else
+            turnPlayer2Ended = true;
+        EndOfTurn ();
 	}
 
 	void killCamera ()
@@ -245,9 +245,13 @@ public class TurnManager : MonoBehaviour
 		int nbCard = (5 - player1.getHandSize ()) + (5 - player2.getHandSize ());
 
 		//SpawnCard a choisir
-		if (player2.getScore () < player1.getScore ()) {
-			currentPlayer = player2;
+		if (player1.getScore () >= player2.getScore ()) {
+			currentPlayer = player1;
 		}
+        else
+        {
+            currentPlayer = player2;
+        }
 
 		cardsInDraft.Clear ();
 		for (int i = 0; i < nbCard; i++) {
