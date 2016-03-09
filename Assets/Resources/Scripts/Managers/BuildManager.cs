@@ -14,6 +14,7 @@ public class BuildManager : MonoBehaviour {
     }
     public List<GameObject> buildingInMovement;
     public bool buildingStatic = true;
+    public float timeEndTurn = 30f;
 
     void Awake()
     {
@@ -25,6 +26,7 @@ public class BuildManager : MonoBehaviour {
         if (buildingInMovement.Count == 0)
         {
             buildingStatic = false;
+            StartCoroutine(goToEnd());
         }
         buildingInMovement = new List<GameObject>();
     }
@@ -42,6 +44,17 @@ public class BuildManager : MonoBehaviour {
         {
             buildingStatic = true;
         }
+    }
+
+
+    IEnumerator goToEnd()
+    {
+        yield return new WaitForSeconds(timeEndTurn);
+
+        buildingInMovement.Clear();
+        buildingStatic = true;
+
+        yield return null;
     }
 
 
