@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FxMAnager : MonoBehaviour {
+public class FxManager : MonoBehaviour {
 
-    static FxMAnager instance;
-    public static FxMAnager Instance
+    static FxManager instance;
+    public static FxManager Instance
     {
         get
         {
@@ -17,7 +17,7 @@ public class FxMAnager : MonoBehaviour {
     }
 
     public GameObject explosion;
-    public GameObject vortex;
+    public GameObject bombeH;
 
 
     public void LaunchFX(GameObject FX ,Vector3 position)

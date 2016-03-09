@@ -189,7 +189,7 @@ public class CameraScript : MonoBehaviour
         float verti = Input.GetAxis("LeftVertical");
         float dist = Vector2.Distance(getForce, new Vector2(hori, verti));
         force = Mathf.Min(force + dist*2, 90);
-        line.a = 0.1f - 0.001f * (force - 10);
+        line.a = 0.1f - 0.002f * (force - 10);
         getForce = new Vector2(hori, verti);
         if (dist < 0.1f)
         {
