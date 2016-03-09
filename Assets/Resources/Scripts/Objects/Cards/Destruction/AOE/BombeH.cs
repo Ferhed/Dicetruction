@@ -26,7 +26,7 @@ public class BombeH : Destruction
             Debug.Log("Length = "+co.Length);
             foreach (Collider currentCo in co)
             {
-                if (currentCo.tag == "needPhysics")
+                if (currentCo.tag == "needPhysics" || currentCo.tag == "Props")
                 {
                     currentCo.GetComponent<Building>().bump();
                     currentCo.GetComponent<Building>().changeWeight();

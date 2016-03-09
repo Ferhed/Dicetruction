@@ -7,7 +7,6 @@ public class Couvercle : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Debug.Log("Yolo");
             other.GetComponent<Collider>().isTrigger = false;
         }
     }

@@ -11,9 +11,9 @@ public class Seisme : Destruction
     }
 
 	public override void Cast (List<GameObject> targets)
-	{
-		
-	}
+    {
+        //FxManager.Instance.LaunchFX(FxManager.Instance.earthquake, new Vector3(0, 0, 0));
+    }
 
 	public override Card Copy ()
 	{

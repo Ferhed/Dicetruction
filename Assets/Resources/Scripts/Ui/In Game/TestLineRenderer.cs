@@ -16,7 +16,7 @@ public class TestLineRenderer : MonoBehaviour
 	IEnumerator Line ()
     {
         
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForEndOfFrame();
 
         LineRenderer line = gameObject.GetComponent<LineRenderer>();
         line.SetVertexCount(105);
@@ -24,7 +24,7 @@ public class TestLineRenderer : MonoBehaviour
         int index = 0;
         for (float i = 0; i < 210; i += 2)
         {
-            line.SetPosition(index, new Vector3(3 , -(a * (i + b) * a * (i + b)) + c, i+5));
+            line.SetPosition(index, new Vector3(3 , -(a * (i + b) * (i + b)) + c, i+5));
             index++;
         }
         finish = true;

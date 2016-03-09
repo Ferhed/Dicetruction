@@ -14443,19 +14443,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 470822, guid: 15eddaa9aa3ddc941b6f931506fbc239, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.61771935
+      value: -0.6177194
       objectReference: {fileID: 0}
     - target: {fileID: 470822, guid: 15eddaa9aa3ddc941b6f931506fbc239, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0.34412622
+      value: -0.34412625
       objectReference: {fileID: 0}
     - target: {fileID: 470822, guid: 15eddaa9aa3ddc941b6f931506fbc239, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0.34412652
+      value: -0.34412655
       objectReference: {fileID: 0}
     - target: {fileID: 470822, guid: 15eddaa9aa3ddc941b6f931506fbc239, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.61771905
+      value: 0.6177191
       objectReference: {fileID: 0}
     - target: {fileID: 470822, guid: 15eddaa9aa3ddc941b6f931506fbc239, type: 2}
       propertyPath: m_RootOrder
@@ -16951,19 +16951,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 470822, guid: 15eddaa9aa3ddc941b6f931506fbc239, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.3589848
+      value: -0.35898477
       objectReference: {fileID: 0}
     - target: {fileID: 470822, guid: 15eddaa9aa3ddc941b6f931506fbc239, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.6093639
+      value: 0.60936385
       objectReference: {fileID: 0}
     - target: {fileID: 470822, guid: 15eddaa9aa3ddc941b6f931506fbc239, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.6092331
+      value: 0.609233
       objectReference: {fileID: 0}
     - target: {fileID: 470822, guid: 15eddaa9aa3ddc941b6f931506fbc239, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.35866523
+      value: 0.3586652
       objectReference: {fileID: 0}
     - target: {fileID: 470822, guid: 15eddaa9aa3ddc941b6f931506fbc239, type: 2}
       propertyPath: m_RootOrder
@@ -42632,6 +42632,10 @@ Prefab:
       propertyPath: CS
       value: 
       objectReference: {fileID: 1629116807}
+    - target: {fileID: 11406582, guid: 60f54f101c7ab9446b617c818e63067a, type: 2}
+      propertyPath: timeEndTurn
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 60f54f101c7ab9446b617c818e63067a, type: 2}
   m_IsPrefabParent: 0
@@ -42730,8 +42734,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef39ee926ddf00241b9daa87ccdcd103, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 194250, guid: 3e8fd0ee89b7cd941aa2428ba3a27efe, type: 2}
-  bombeH: {fileID: 194250, guid: 3e8fd0ee89b7cd941aa2428ba3a27efe, type: 2}
+  explosion: {fileID: 124986, guid: a5be50296020ea647b4dd54b958c76e1, type: 2}
+  bombeH: {fileID: 130750, guid: 16c5b9a2885da594aa574673a1bb5439, type: 2}
+  earthquake: {fileID: 146142, guid: ab897405986653340b721493567a839e, type: 2}
 --- !u!1 &2019048953
 GameObject:
   m_ObjectHideFlags: 0

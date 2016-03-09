@@ -7,6 +7,7 @@ public class Building : MonoBehaviour
 	Vector3 position;
 	Rigidbody rb;
 	Vector3 initialPosition;
+    Player hittingPlayer;
     int score;
 	// Use this for initialization
 	void Awake ()
@@ -45,6 +46,7 @@ public class Building : MonoBehaviour
 	{
 		rb.isKinematic = false;
         BuildManager.Instance.addElement(gameObject);
+        hittingPlayer = TurnManager.instance.currentPlayer;
 		StartCoroutine ("checkStill");
 	}
 
@@ -84,12 +86,27 @@ public class Building : MonoBehaviour
 	{
         TurnManager.instance.currentPlayer.objectsDestroy++;
         if(tag == "Props")
-            TurnManager.instance.currentPlayer.addScore(true, score);
+        {
+            if(hittingPlayer == TurnManager.instance.player1)
+                TurnManager.instance.player1.addScore(true, score);
+            else
+                TurnManager.instance.player2.addScore(true, score);
+        }
         else
-            TurnManager.instance.currentPlayer.addScore(false,score);
+        {
+            if (hittingPlayer == TurnManager.instance.player1)
+                TurnManager.instance.player1.addScore(false, score);
+            else
+                TurnManager.instance.player2.addScore(false, score);
+
+        }
         Ui_Manager.Instance.MajScore();
-        SoundManager.Instance.PlayTabSound(gameObject, SoundManager.Instance.destruction, 0.4f);
-        if(Random.Range(0,100)<5) SoundManager.Instance.PlayTabSound(gameObject, SoundManager.Instance.chaosAmbiance, 0.7f);
+        if (tag == "Props") { }
+        else
+        {
+            SoundManager.Instance.PlayTabSound(gameObject, SoundManager.Instance.destruction, 0.4f);
+            if (Random.Range(0, 100) < 5) SoundManager.Instance.PlayTabSound(gameObject, SoundManager.Instance.chaosAmbiance, 0.7f);
+        }
         Invoke("reallyDestructNow", Random.Range(2f, 4f));
     }
     void reallyDestructNow()

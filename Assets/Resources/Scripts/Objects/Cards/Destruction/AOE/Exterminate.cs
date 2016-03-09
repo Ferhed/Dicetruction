@@ -19,11 +19,11 @@ public class Exterminate : Destruction
         RaycastHit[] co = Physics.BoxCastAll(selectedDice.transform.position, selectedDice.transform.localScale,farDice.transform.position-selectedDice.transform.position,selectedDice.transform.rotation,Vector3.Distance(selectedDice.transform.position,farDice.transform.position));
         foreach (RaycastHit currentCo in co)
         {
-            if (currentCo.collider.tag == "needPhysics")
+            if (currentCo.collider.tag == "needPhysics" ||currentCo.collider.tag == "Props")
             {
                 currentCo.collider.GetComponent<Building>().bump();
                 currentCo.collider.GetComponent<Building>().changeWeight();
-                currentCo.collider.GetComponent<Rigidbody>().AddExplosionForce(350f * 1000 * 1, currentCo.transform.position, 10 );
+                currentCo.collider.GetComponent<Rigidbody>().AddExplosionForce(350f * 1000 * 1, currentCo.transform.position + Vector3.right, 10 );
             }
         }
     }

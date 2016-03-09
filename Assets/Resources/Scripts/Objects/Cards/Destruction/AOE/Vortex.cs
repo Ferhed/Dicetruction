@@ -18,7 +18,7 @@ public class Vortex : Destruction
 
 		Collider[] co = Physics.OverlapSphere (dice.transform.position, 15f);
 		foreach (Collider currentCo in co) {
-			if (currentCo.tag == "needPhysics") {
+			if (currentCo.tag == "needPhysics" ||currentCo.tag == "Props") {
 				currentCo.GetComponent<Building> ().bump ();
 				currentCo.GetComponent<Building> ().changeWeight ();
 				currentCo.GetComponent<Rigidbody> ().AddExplosionForce (-350f * 400 * force, dice.transform.position, 15f);

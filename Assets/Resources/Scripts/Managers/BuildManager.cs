@@ -14,7 +14,7 @@ public class BuildManager : MonoBehaviour {
     }
     public List<GameObject> buildingInMovement;
     public bool buildingStatic = true;
-    public float timeEndTurn = 30f;
+    public float timeEndTurn = 15f;
 
     void Awake()
     {

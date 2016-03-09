@@ -18,7 +18,7 @@ public class FxManager : MonoBehaviour {
 
     public GameObject explosion;
     public GameObject bombeH;
-
+    public GameObject earthquake;
 
     public void LaunchFX(GameObject FX ,Vector3 position)
     {

@@ -30,6 +30,7 @@ public class CameraScript : MonoBehaviour
     private float height = 10;
     private Vector3 middle;
     Vector3 direction;
+    private bool canShoot = false;
     public AnimationCurve sinus;
 
     TestLineRenderer line;
@@ -130,7 +131,11 @@ public class CameraScript : MonoBehaviour
         {
             checkforce();
         }
-        else if (Input.GetButtonUp("ButtonA"))
+        else if (Input.GetButtonUp("ButtonA") && canShoot == false)
+        {
+            canShoot = true;
+        }
+        else if (Input.GetButtonUp("ButtonA") && canShoot == true)
         {
             Destroy(line);
             Destroy(transform.GetComponentInParent<LineRenderer>());
@@ -204,8 +209,8 @@ public class CameraScript : MonoBehaviour
             timer = 0;
         }
         force *= 80;
-        force += 10;
-        line.a = 0.1f - 0.002f * (force - 10);
+        force = Mathf.Max(10f, force + 10);
+        line.a = 0.1f - 0.0011f * (force);
         Debug.Log(force); 
         /*float hori = Input.GetAxis("LeftHorizontal");
         float verti = Input.GetAxis("LeftVertical");
