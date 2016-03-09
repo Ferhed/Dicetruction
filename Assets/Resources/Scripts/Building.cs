@@ -36,8 +36,8 @@ public class Building : MonoBehaviour
 		}
 
 
-		if (collision.relativeVelocity.magnitude > 2) {
-			//bruit de fracas
+		if (collision.relativeVelocity.magnitude > 5 && collision.gameObject.tag == "Player") {
+            SoundManager.Instance.PlayTabSound(gameObject, SoundManager.Instance.wallImpact, 0.6f);
 		}
 	}
 
@@ -88,7 +88,13 @@ public class Building : MonoBehaviour
         else
             TurnManager.instance.currentPlayer.addScore(false,score);
         Ui_Manager.Instance.MajScore();
+        SoundManager.Instance.PlayTabSound(gameObject, SoundManager.Instance.destruction, 0.4f);
+        if(Random.Range(0,100)<5) SoundManager.Instance.PlayTabSound(gameObject, SoundManager.Instance.chaosAmbiance, 0.7f);
+        Invoke("reallyDestructNow", Random.Range(2f, 4f));
+    }
+    void reallyDestructNow()
+    {
         BuildManager.Instance.delElement(gameObject);
-        Destroy(gameObject, Random.Range(2f, 4f));
+        Destroy(gameObject);
     }
 }
