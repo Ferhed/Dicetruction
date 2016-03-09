@@ -27,7 +27,6 @@ public class Excalibur : Destruction
                 currentCo.GetComponent<Rigidbody>().AddExplosionForce(350f * 500 * 1, dice.transform.position, 150f);
                 Debug.Log("AfterExplosion");
             }
-            dice.GetComponent<Rigidbody>().AddExplosionForce(450f, dice.transform.position, 15f);
         }
     }
      

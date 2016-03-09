@@ -17,30 +17,64 @@ public class SoundManager : MonoBehaviour
         instance = this;
     }
     AudioSource source;
-    public AudioClip[] boing;
-    public AudioClip[] destruction;
+
+
+    public AudioClip browserCards;
+    public AudioClip choseCard;
     public AudioClip diceShuffle;
-    public AudioClip explosion;
-    public AudioClip[] impact;
+    public AudioClip diceThrow;
+    public AudioClip activateCard;
+    public AudioClip[] wallImpact;
+    public AudioClip[] objectImpact;
+    public AudioClip[] destruction;
+    public AudioClip[] peopleEcrased;
+    public AudioClip s_conflagration;
+    public AudioClip s_chuteMenhir;
+    public AudioClip s_keepCalmBomb;
+    public AudioClip s_dirtyOldOil;
+    public AudioClip s_teaSpill;
+    public AudioClip s_shadowOfCaneHill;
+    public AudioClip s_vortex;
+    public AudioClip s_jelly;
+    public AudioClip s_eterminate;
+    public AudioClip s_springHeeledJack;
+    public AudioClip s_excalibur;
+    public AudioClip s_hoodWink;
+    public AudioClip s_royalAirForce;
+	public AudioClip s_tornado;
+	public AudioClip s_earthQuake;
+    public AudioClip[] chaosAmbiance;
 
 
-    public void PlaySound(GameObject target, AudioClip ac, float vol, bool changePitch)
+    public void PlayMonoSound( AudioClip ac, float vol)
     {
-        if (!target.GetComponent<AudioSource>())
-        {
-            source = target.AddComponent<AudioSource>();
-        }
-        else
-        {
-            source = target.GetComponent<AudioSource>();
-        }
-        if (changePitch)
-        {
-            source.pitch = Random.Range(0.7f, 1.3f);
-        }
-        source.clip = ac;
-        source.volume = vol;
-        source.loop = false;
-        source.Play();
+        GameObject go = new GameObject();
+        AudioSource AS = go.AddComponent<AudioSource>();
+
+        AS.clip = ac;
+        AS.pitch = Random.Range(0.7f, 1.3f);
+        AS.volume = vol;
+        AS.loop = false;
+        AS.Play();
+
+        Destroy(go, ac.length + 1f);
+    }
+
+
+	public void PlayTabSound(GameObject target, AudioClip[] ac, float vol)
+	{
+        AudioClip currentAC = ac[Random.Range(0, ac.Length)];
+
+        GameObject go = new GameObject();
+        go.transform.position = target.transform.position;
+        AudioSource AS = go.AddComponent<AudioSource>();
+
+        AS.clip = currentAC;
+        AS.pitch = Random.Range(0.7f, 1.3f);
+        AS.volume = vol;
+        AS.loop = false;
+        AS.Play();
+
+        Destroy(go, currentAC.length + 1f);
     }
 }

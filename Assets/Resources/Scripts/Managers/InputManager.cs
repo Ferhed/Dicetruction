@@ -8,8 +8,10 @@ public class InputManager : MonoBehaviour
 
 	public Card cardPreSelected;
 	public Dice dicePreSelected;
+    public Ui_Manager UIInstance;
+    public TurnManager TMInstance;
 
-	public bool handActive;
+    public bool handActive;
 	public bool inStartTurnPlayer;
 	public bool inShootView;
 	public bool diceSended;
@@ -51,13 +53,6 @@ public class InputManager : MonoBehaviour
 		if (handActive) {
 			return;
 		}
-
-		/*if (inStartTurnPlayer) {
-			inStartTurnPlayer = false;
-			inShootView = true;
-			Ui_Manager.Instance.GoToState (UiState.Throw);
-			return;
-		}*/
 		if (inSelectDice) {
 			inSelectDice = false;
 			inCastSpell = true;
@@ -73,7 +68,7 @@ public class InputManager : MonoBehaviour
 			}
             //Ui_Manager.Instance.GoToState (UiState.Positioning);
 			else if (inDraft)
-				Ui_Manager.Instance.GoToState (UiState.Draft);
+                UIInstance.GoToState (UiState.Draft);
 			return;
 		}
 		/*if (inShootView) {
@@ -85,7 +80,7 @@ public class InputManager : MonoBehaviour
 		if (inSelectDice) {
 			inSelectDice = false;
 			inSelectSpell = true;
-			Ui_Manager.Instance.GoToState (UiState.SpellSelect);
+            UIInstance.GoToState (UiState.SpellSelect);
 		}
 	}
 
@@ -101,18 +96,18 @@ public class InputManager : MonoBehaviour
 		if (handActive) {
 			handActive = false;
 			if (inStartTurnPlayer)
-				Ui_Manager.Instance.GoToState (UiState.Positioning);
+                UIInstance.GoToState (UiState.Positioning);
 			else if (inDraft)
-				Ui_Manager.Instance.GoToState (UiState.Draft);
+                UIInstance.GoToState (UiState.Draft);
 			return;
 		}
 		if (inStartTurnPlayer || inShootView || inDraft) {
-			if (TurnManager.GetInstance ().currentPlayer == TurnManager.GetInstance ().player1 && TurnManager.GetInstance ().player1.getHandSize () > 0) {
-				Ui_Manager.Instance.GoToState (UiState.HandJ1);
+			if (TMInstance.currentPlayer == TMInstance.player1 && TMInstance.player1.getHandSize () > 0) {
+                UIInstance.GoToState (UiState.HandJ1);
 				handActive = true;
 			}
-			if (TurnManager.GetInstance ().player2.getHandSize () > 0 && TurnManager.GetInstance ().currentPlayer == TurnManager.GetInstance ().player2) {
-				Ui_Manager.Instance.GoToState (UiState.HandJ2);
+			if (TMInstance.player2.getHandSize () > 0 && TMInstance.currentPlayer == TMInstance.player2) {
+                UIInstance.GoToState (UiState.HandJ2);
 				handActive = true;
 			}
 		}

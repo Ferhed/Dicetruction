@@ -36,8 +36,8 @@ public class BombeH : Destruction
             }
 		}
 		XInput.instance.useVibe (0, 0.5f, 1, 1);
-
-	}
+        SoundManager.Instance.PlayMonoSound(SoundManager.Instance.s_keepCalmBomb, 1f);
+    }
 
 	public override Card Copy ()
 	{

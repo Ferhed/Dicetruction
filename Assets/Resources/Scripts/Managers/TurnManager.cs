@@ -14,16 +14,20 @@ public class TurnManager : MonoBehaviour
 
 	private List<Card> cardsInDraft;
 	private List<int> dicesValor;
-	//
-	private bool turnPlayer1Ended;
+
+    internal TurnManager TMInstance;
+    internal Ui_Manager UIInstance;
+    internal InputManager IPInstance;
+
+    private bool turnPlayer1Ended;
 	private bool turnPlayer2Ended;
 	private bool globalTurnEnded;
 	[HideInInspector]
 	public bool cardSelected;
-	//
+	
 	[HideInInspector]
 	public Player currentPlayer;
-	//
+	
 	public Camera globalCamera;
 	[HideInInspector]
 	public GameObject playerGameObject;
@@ -32,7 +36,7 @@ public class TurnManager : MonoBehaviour
 	{
 		cardsInDraft = new List<Card> ();
 		dicesValor = new List<int> ();
-		//
+
 		instance = this;
 		turnPlayer1Ended = false;
 		turnPlayer2Ended = false;
@@ -41,15 +45,16 @@ public class TurnManager : MonoBehaviour
 
 		StartCoroutine (StartGame ());
 	}
-	//
+	
 	public static TurnManager GetInstance ()
 	{
-		if (instance == null) {
+		if (instance == null)
+        {
 			instance = new TurnManager ();
 		}
 		return instance;
 	}
-	//
+
 	public List<Card> getHandCurrentPlayer ()
 	{
 		return currentPlayer.GetHand ();
@@ -119,26 +124,26 @@ public class TurnManager : MonoBehaviour
 	IEnumerator Turn ()
 	{
 		addCameraForPlayer ();
-		Ui_Manager.Instance.GoToState (UiState.Positioning);
-		InputManager.GetInstance ().inStartTurnPlayer = true;
+		UIInstance.GoToState (UiState.Positioning);
+		IPInstance.inStartTurnPlayer = true;
 
 		while (dicesValor.Count != 3) {
 			yield return new WaitForEndOfFrame ();
 		}
 		valorOk ();
 
-		//**********SELECT SPELL
-		InputManager.GetInstance ().inShootView = false;
-		InputManager.GetInstance ().inSelectSpell = true;
-		InputManager.GetInstance ().inStartTurnPlayer = false;
+        //**********SELECT SPELL
+        IPInstance.inShootView = false;
+        IPInstance.inSelectSpell = true;
+        IPInstance.inStartTurnPlayer = false;
 		Debug.Log ("[State] : SelectSpell");
-		Ui_Manager.Instance.GoToState (UiState.SpellSelect);
+		UIInstance.GoToState (UiState.SpellSelect);
 
 		//Waiting until the player validate his choices
 		yield return new WaitUntil (() => {
 			return Input.GetButtonDown ("ButtonX");
 		});
-		List<Card> SelectedSpells = Ui_Manager.Instance.getSelectedSpell ();
+		List<Card> SelectedSpells = UIInstance.getSelectedSpell ();
 		Debug.Log (SelectedSpells.Count);
 
 		//Waiting until all the spells are assigned to a die
@@ -146,19 +151,27 @@ public class TurnManager : MonoBehaviour
 		yield return new WaitForSpellAssignation (SelectedSpells);
 		//Selection du Spell a lancer
 		cardSelected = false;
-		if (currentPlayer == player1)
-			turnPlayer1Ended = true;
-		else
-			turnPlayer2Ended = true;
+
+
+        while(!BuildManager.Instance.buildingStatic)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+        Debug.Log("allStatic "+currentPlayer.name);
+
+
 		currentPlayer.EndOfTurn ();
-
 		killCamera ();
-
-		EndOfTurn ();
+        if (currentPlayer == player1)
+            turnPlayer1Ended = true;
+        else
+            turnPlayer2Ended = true;
+        EndOfTurn ();
 	}
 
 	void killCamera ()
 	{
+        Debug.Log("kill camera " + currentPlayer.name);
 		foreach (GameObject dice in currentPlayer.GODices) {
 			Destroy (dice);
 		}
@@ -177,9 +190,9 @@ public class TurnManager : MonoBehaviour
 
 			if ((card as Vortex) != null) {
 				if (currentPlayer == player1) {
-					targets.Add (player1.dices [dieIndex].gameObject);
+					targets.Add (player1.GODices[dieIndex]);
 				} else {
-					targets.Add (player2.dices [dieIndex].gameObject);
+					targets.Add (player2.GODices[dieIndex]);
 				}
 			} else if ((card as Seisme) != null) {
 				StartCoroutine ((card as Seisme).yollohSeisme ());
@@ -222,20 +235,23 @@ public class TurnManager : MonoBehaviour
 
 	IEnumerator GlobalTurn ()
 	{
-		/** Pour debug */
-		//player1.AddCardInHand(new BombeH(0, 0, 0, CardManager.GetInstance().imageBombeH));
-		//player1.AddCardInHand (new BombeH (0, 0, 0, CardManager.GetInstance ().imageBombeH));
-		//player1.AddCardInHand (new BombeH (0, 0, 0, CardManager.GetInstance ().imageBombeH));
-		/*******************/
-
+        /** Pour debug */
+        //player1.AddCardInHand(new BombeH(0, 0, 0, CardManager.GetInstance().imageBombeH));
+        //player1.AddCardInHand (new BombeH (0, 0, 0, CardManager.GetInstance ().imageBombeH));
+        //player1.AddCardInHand (new BombeH (0, 0, 0, CardManager.GetInstance ().imageBombeH));
+        /*******************/
 
 
 		int nbCard = (5 - player1.getHandSize ()) + (5 - player2.getHandSize ());
 
 		//SpawnCard a choisir
-		if (player2.getScore () < player1.getScore ()) {
-			currentPlayer = player2;
+		if (player1.getScore () >= player2.getScore ()) {
+			currentPlayer = player1;
 		}
+        else
+        {
+            currentPlayer = player2;
+        }
 
 		cardsInDraft.Clear ();
 		for (int i = 0; i < nbCard; i++) {
@@ -243,22 +259,22 @@ public class TurnManager : MonoBehaviour
 			//cardsInDraft.Add (new BombeH (0, 0, 0, CardManager.GetInstance ().imageBombeH));
 		}
 
-		Ui_Manager.Instance.setDraftCard (cardsInDraft);
-		Ui_Manager.Instance.GoToState (UiState.Draft);
-		InputManager.GetInstance ().inDraft = true;
+        UIInstance.setDraftCard (cardsInDraft);
+        UIInstance.GoToState (UiState.Draft);
+		IPInstance.inDraft = true;
 
 		while (player1.getHandSize () < 5 || player2.getHandSize () < 5) {
 			//we wait for the card to be selected
 			yield return new WaitForCardSelected ();
 
-			currentPlayer.AddCardInHand (InputManager.GetInstance ().cardPreSelected);
+			currentPlayer.AddCardInHand (IPInstance.cardPreSelected);
 
 			if (currentPlayer == player1 && player2.getHandSize () < 5) {
 				currentPlayer = player2;
-				Ui_Manager.Instance.DraftTogglePlayer (2);
+                UIInstance.DraftTogglePlayer (2);
 			} else if (player1.getHandSize () < 5) {
 				currentPlayer = player1;
-				Ui_Manager.Instance.DraftTogglePlayer (1);
+                UIInstance.DraftTogglePlayer (1);
 			}
 
 			//Debug.Log ("SizeHandP1 : " + player1.getHandSize ());
@@ -268,7 +284,7 @@ public class TurnManager : MonoBehaviour
 
 
 		globalTurnEnded = true;
-		InputManager.GetInstance ().inDraft = false;
+		IPInstance.inDraft = false;
 		yield return null;
 	}
 
@@ -316,7 +332,7 @@ public class WaitForSpellAssignation : CustomYieldInstruction
 	private List<int> m_diceSelect;
 	private int m_index;
 
-	public override bool keepWaiting {
+    public override bool keepWaiting {
 		get {
 			return !allSpeelAssigned;
 		}

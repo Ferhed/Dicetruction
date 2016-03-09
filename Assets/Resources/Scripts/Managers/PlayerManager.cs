@@ -15,8 +15,10 @@ public class PlayerManager : MonoBehaviour
         instance = this;
         GOPlayer1 = Instantiate(Resources.Load("Player")) as GameObject;
         player1 = GOPlayer1.GetComponent<Player>();
+        player1.name = "Player1";
         GOPlayer2 = Instantiate(Resources.Load("Player")) as GameObject;
         player2 = GOPlayer2.GetComponent<Player>();
+        player2.name = "Player2";
 
         StartCoroutine("InitializeManager");
     }
@@ -36,5 +38,10 @@ public class PlayerManager : MonoBehaviour
 
         TurnManager.GetInstance().player1 = this.player1;
         TurnManager.GetInstance().player2 = this.player2;
+        TurnManager.GetInstance().UIInstance = Ui_Manager.Instance;
+        TurnManager.GetInstance().IPInstance = InputManager.GetInstance();
+
+        InputManager.GetInstance().UIInstance = Ui_Manager.Instance;
+        InputManager.GetInstance().TMInstance = TurnManager.GetInstance();
     }
 }
