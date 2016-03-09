@@ -93,10 +93,6 @@ Material:
         second: 0.5
       data:
         first:
-          name: _Metallic
-        second: 0
-      data:
-        first:
           name: _Parallax
         second: 0.02
       data:
@@ -129,8 +125,12 @@ Material:
         second: 0
       data:
         first:
+          name: _Metallic
+        second: 0
+      data:
+        first:
           name: _InvFade
-        second: 0.3
+        second: 0.43
     m_Colors:
       data:
         first:
