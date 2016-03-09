@@ -31,7 +31,7 @@ public class CameraScript : MonoBehaviour
     private Vector3 middle;
     Vector3 direction;
 
-
+    TestLineRenderer line;
 
     enum POSITION
     {
@@ -47,6 +47,7 @@ public class CameraScript : MonoBehaviour
     void Start()
     {
         dices = new GameObject[3];
+        line = transform.GetComponentInParent<TestLineRenderer>();
 
         transform.localPosition = new Vector3(0, 58.939f, -140.5f);
         transform.eulerAngles = new Vector3(28.233f, 0, 0);
@@ -134,7 +135,9 @@ public class CameraScript : MonoBehaviour
         }
 
         if (Input.GetAxis("Trigger") > 0.5f || Input.GetAxis("Trigger") < -0.5f)
-        {
+        {   
+            Destroy(line);
+            Destroy(transform.GetComponentInParent<LineRenderer>());
             startTime = Time.time;
             foreach (GameObject currentDice in dices)
             {
@@ -178,7 +181,6 @@ public class CameraScript : MonoBehaviour
         accuracy += multiplier*5;
         accuracy = Mathf.Min(accuracyMin, accuracy);
         accuracy = Mathf.Max(accuracyMax, accuracy);
-        Debug.Log(accuracy);
     }
 
     void checkforce()
@@ -186,7 +188,8 @@ public class CameraScript : MonoBehaviour
         float hori = Input.GetAxis("LeftHorizontal");
         float verti = Input.GetAxis("LeftVertical");
         float dist = Vector2.Distance(getForce, new Vector2(hori, verti));
-        force = Mathf.Min(force + dist*2, 100f);
+        force = Mathf.Min(force + dist*2, 90);
+        line.a = 0.1f - 0.001f * (force - 10);
         getForce = new Vector2(hori, verti);
         if (dist < 0.1f)
         {

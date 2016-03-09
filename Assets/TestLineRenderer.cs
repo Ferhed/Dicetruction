@@ -19,12 +19,12 @@ public class TestLineRenderer : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
 
         LineRenderer line = gameObject.GetComponent<LineRenderer>();
-        line.SetVertexCount(30  );
+        line.SetVertexCount(21);
         line.SetWidth(0.1f, 0.1f);
         int index = 0;
-        for (float i = 0; i < 90; i += 3)
+        for (float i = 0; i < 210; i += 10)
         {
-            line.SetPosition(index, new Vector3(3 , -(a * (i + b) * a * (i + b)) + c, i));
+            line.SetPosition(index, new Vector3(3 , -(a * (i + b) * a * (i + b)) + c, i+5));
 
             index++;
         }
