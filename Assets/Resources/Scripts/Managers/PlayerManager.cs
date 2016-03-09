@@ -38,5 +38,10 @@ public class PlayerManager : MonoBehaviour
 
         TurnManager.GetInstance().player1 = this.player1;
         TurnManager.GetInstance().player2 = this.player2;
+        TurnManager.GetInstance().UIInstance = Ui_Manager.Instance;
+        TurnManager.GetInstance().IPInstance = InputManager.GetInstance();
+
+        InputManager.GetInstance().UIInstance = Ui_Manager.Instance;
+        InputManager.GetInstance().TMInstance = TurnManager.GetInstance();
     }
 }

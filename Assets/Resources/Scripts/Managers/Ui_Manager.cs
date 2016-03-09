@@ -142,8 +142,8 @@ public class Ui_Manager : Singleton<Ui_Manager>
 	private void OnDraftJ1 ()
 	{
 		hideAll ();
-		if (TurnManager.GetInstance ().currentPlayer.getHandSize () > 0) {
-			int player = TurnManager.GetInstance ().getIndexPlayer ();
+		if (m_turnManager.currentPlayer.getHandSize () > 0) {
+			int player = m_turnManager.getIndexPlayer ();
 			m_yShowHandJ1.SetActive (player == 1);
 			m_yShowHandJ2.SetActive (player == 2);
 		}
@@ -180,7 +180,7 @@ public class Ui_Manager : Singleton<Ui_Manager>
 
 	private void OnHandJ1 ()
 	{
-		UpdateHand (m_handPlayer1, TurnManager.GetInstance ().player1, 0);
+		UpdateHand (m_handPlayer1, m_turnManager.player1, 0);
 		m_yShowHandJ1.SetActive (false);
 		m_pressBtnPanel.SetActive (false);
 		m_handPlayer1.SetActive (true);
@@ -190,7 +190,7 @@ public class Ui_Manager : Singleton<Ui_Manager>
 
 	private void OnHandJ2 ()
 	{
-		UpdateHand (m_handPlayer2, TurnManager.GetInstance ().player2, 1);
+		UpdateHand (m_handPlayer2, m_turnManager.player2, 1);
 		m_yShowHandJ1.SetActive (false);
 		m_pressBtnPanel.SetActive (false);
 		m_handPlayer2.SetActive (true);
@@ -200,7 +200,7 @@ public class Ui_Manager : Singleton<Ui_Manager>
 
 	private void OnPositioning ()
 	{
-		int player = TurnManager.GetInstance ().getIndexPlayer ();
+		int player = m_turnManager.getIndexPlayer ();
 		hideAll ();
 		m_yShowHandJ1.SetActive (player == 1);
 		m_yShowHandJ2.SetActive (player == 2);
@@ -251,7 +251,7 @@ public class Ui_Manager : Singleton<Ui_Manager>
 		m_yShowHandJ1.SetActive (false);
 		m_yShowHandJ2.SetActive (false);
 
-		List<Card> hand = TurnManager.GetInstance ().currentPlayer.GetHand ();
+		List<Card> hand = m_turnManager.currentPlayer.GetHand ();
 		for (int i = 0; i < hand.Count; i++) {
 			m_selectCardPanel.transform.GetChild (i).gameObject.SetActive (true);
 			m_selectCardPanel.transform.GetChild (i).GetComponent<DraftCardUI> ().ActiveCard = hand [i];
@@ -283,9 +283,9 @@ public class Ui_Manager : Singleton<Ui_Manager>
 	{
 		m_yShowHandJ1.SetActive (false);
 		m_yShowHandJ2.SetActive (false);
-		GameObject showHand = (TurnManager.GetInstance ().currentPlayer == TurnManager.GetInstance ().player1) ? m_yShowHandJ1 : m_yShowHandJ2;
+		GameObject showHand = (m_turnManager.currentPlayer == m_turnManager.player1) ? m_yShowHandJ1 : m_yShowHandJ2;
 
-		if (TurnManager.GetInstance ().currentPlayer.getHandSize () > 0) {
+		if (m_turnManager.currentPlayer.getHandSize () > 0) {
 			showHand.SetActive (true);
 		} else {
 			showHand.SetActive (false);
@@ -339,9 +339,9 @@ public class Ui_Manager : Singleton<Ui_Manager>
 
 	public void MajScore ()
 	{
-		 int score = TurnManager.instance.player1.getScore();
+		int score = m_turnManager.player1.getScore();
         m_ScoreP1.text = score.ToString();
-        score = TurnManager.instance.player2.getScore();
+        score = m_turnManager.player2.getScore();
         m_ScoreP2.text = score.ToString();
 	}
 
