@@ -74,6 +74,8 @@ public class Ui_Manager : Singleton<Ui_Manager>
 
 	#endregion
 
+	private Text m_ressources;
+
 	protected Ui_Manager ()
 	{
 		
@@ -86,6 +88,7 @@ public class Ui_Manager : Singleton<Ui_Manager>
 		m_system = GameObject.FindObjectOfType<EventSystem> ();
 		m_turnManager = TurnManager.GetInstance ();
 		m_inputManager = InputManager.GetInstance ();
+		m_ressources = m_ressourcesPanel.GetComponentInChildren<Text> ();
 	}
 	
 	// Update is called once per frame
@@ -324,25 +327,29 @@ public class Ui_Manager : Singleton<Ui_Manager>
 		return selectedSpells;
 	}
 
-	public bool SelectSpell ()
+	public bool SelectSpell (int cost)
 	{
-		if (m_selectedSpell >= 3)
+		int ressource = int.Parse (m_ressources.text);
+		ressource -= cost;
+		if (m_selectedSpell >= 3 || ressource < 0)
 			return false;
 		m_selectedSpell++;
+		m_ressources.text = ressource.ToString ();
 		return true;
 	}
 
-	public void DeselectSpell ()
+	public void DeselectSpell (int cost)
 	{
 		m_selectedSpell--;
+		m_ressources.text = (int.Parse (m_ressources.text) + cost).ToString ();
 	}
 
 	public void MajScore ()
 	{
-		int score = m_turnManager.player1.getScore();
-        m_ScoreP1.text = score.ToString();
-        score = m_turnManager.player2.getScore();
-        m_ScoreP2.text = score.ToString();
+		int score = m_turnManager.player1.getScore ();
+		m_ScoreP1.text = score.ToString ();
+		score = m_turnManager.player2.getScore ();
+		m_ScoreP2.text = score.ToString ();
 	}
 
 	public void ShowCardSelected (Card spell)
@@ -354,6 +361,12 @@ public class Ui_Manager : Singleton<Ui_Manager>
 	public void HidecardSelected ()
 	{
 		m_cardSelected.gameObject.SetActive (false);
+	}
+
+	public void ShowRessource (int ressource)
+	{
+		m_ressourcesPanel.SetActive (true);
+		m_ressourcesPanel.GetComponentInChildren<Text> ().text = ressource.ToString ();
 	}
 }
 

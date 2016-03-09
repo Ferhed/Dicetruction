@@ -69,8 +69,8 @@ public class DraftCardUI : MonoBehaviour
 	public void OnPressed ()
 	{
 		if (m_selected) {
-			Ui_Manager.Instance.DeselectSpell ();
-		} else if (!Ui_Manager.Instance.SelectSpell ()) {
+			Ui_Manager.Instance.DeselectSpell (m_activeCard.GetEnergy ());
+		} else if (!Ui_Manager.Instance.SelectSpell (m_activeCard.GetEnergy ())) {
 			return;
 		}
 		transform.DOMoveY ((m_selected) ? -50 : 50, 0.2f).SetRelative ().SetEase (Ease.InOutSine);
