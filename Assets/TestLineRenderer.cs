@@ -6,23 +6,37 @@ public class TestLineRenderer : MonoBehaviour
     public float a;
     public float b;
     public float c;
+    private bool finish;
 
 	void Start ()
     {
-        
+        finish = true;
 	}
 	
-	void Update ()
+	IEnumerator Line ()
     {
+        
+        yield return new WaitForSeconds(0.3f);
+
         LineRenderer line = gameObject.GetComponent<LineRenderer>();
-        line.SetVertexCount(30000);
+        line.SetVertexCount(30  );
         line.SetWidth(0.1f, 0.1f);
         int index = 0;
-        for (float i = 0; i < 3000; i += 0.1f)
+        for (float i = 0; i < 90; i += 3)
         {
             line.SetPosition(index, new Vector3(0, -(a * (i + b) * a * (i + b)) + c, i));
 
             index++;
+        }
+        finish = true;
+    }
+
+    void Update()
+    {
+        if(finish)
+        {
+            StartCoroutine(Line());
+            finish = false;
         }
     }
 }
