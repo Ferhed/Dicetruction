@@ -13,10 +13,10 @@ public class PlayerManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-        GOPlayer1 = Instantiate(Resources.Load("Player")) as GameObject;
+        GOPlayer1 = Instantiate(Resources.Load("GA/Prefabs/Player")) as GameObject;
         player1 = GOPlayer1.GetComponent<Player>();
         player1.name = "Player1";
-        GOPlayer2 = Instantiate(Resources.Load("Player")) as GameObject;
+        GOPlayer2 = Instantiate(Resources.Load("GA/Prefabs/Player")) as GameObject;
         player2 = GOPlayer2.GetComponent<Player>();
         player2.name = "Player2";
 

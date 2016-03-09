@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 01d40fa61750228489df80eea52544c2
-timeCreated: 1456917096
+guid: 7fd19de4eb4bd664f92543e8ad40bcb9
+timeCreated: 1457450860
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: SM_ParticleSmoke
+    4300000: Box001
   materials:
     importMaterials: 1
     materialName: 0
@@ -52,7 +52,7 @@ ModelImporter:
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
-    tangentImportMode: 4
+    tangentImportMode: 3
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
