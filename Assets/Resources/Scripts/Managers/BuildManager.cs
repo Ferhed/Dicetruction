@@ -23,19 +23,18 @@ public class BuildManager : MonoBehaviour {
 
     void Start()
     {
-        buildingInMovement = new List<GameObject>();
-    }
-
-    public void addElement(GameObject element)
-    {
         if (buildingInMovement.Count == 0)
         {
             buildingStatic = false;
             StartCoroutine(goToEnd());
         }
-        if (!buildingInMovement.Contains(element))
-            buildingInMovement.Add(element);
+        buildingInMovement = new List<GameObject>();
+    }
 
+    public void addElement(GameObject element)
+    {
+        if(!buildingInMovement.Contains(element))
+            buildingInMovement.Add(element);
     }
 
     public void delElement(GameObject element)

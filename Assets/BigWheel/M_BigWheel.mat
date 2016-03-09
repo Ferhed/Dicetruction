@@ -87,16 +87,16 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _AlphaMask
+          name: _DiffuseMap
         second:
-          m_Texture: {fileID: 2800000, guid: 684004192df582a449a004bb08818bd4, type: 3}
+          m_Texture: {fileID: 2800000, guid: 53a0fcad8b42c134d8e9c2e1189f881d, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _DiffuseMap
+          name: _AlphaMask
         second:
-          m_Texture: {fileID: 2800000, guid: 53a0fcad8b42c134d8e9c2e1189f881d, type: 3}
+          m_Texture: {fileID: 2800000, guid: 684004192df582a449a004bb08818bd4, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:

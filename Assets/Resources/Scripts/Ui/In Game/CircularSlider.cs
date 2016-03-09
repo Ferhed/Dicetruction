@@ -9,6 +9,7 @@ public class CircularSlider : MonoBehaviour
 			return m_fill;
 		}
 		set {
+			
 			m_fill = Mathf.Clamp01 (value);
 			updatePosition ();
 		}

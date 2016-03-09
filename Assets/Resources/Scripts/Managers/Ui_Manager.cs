@@ -71,12 +71,8 @@ public class Ui_Manager : Singleton<Ui_Manager>
 	private Text m_ScoreP2;
 	[SerializeField]
 	private Image m_cardSelected;
-	[SerializeField]
-	private GameObject m_xToValidate;
 
 	#endregion
-
-	private Text m_ressources;
 
 	protected Ui_Manager ()
 	{
@@ -90,7 +86,6 @@ public class Ui_Manager : Singleton<Ui_Manager>
 		m_system = GameObject.FindObjectOfType<EventSystem> ();
 		m_turnManager = TurnManager.GetInstance ();
 		m_inputManager = InputManager.GetInstance ();
-		m_ressources = m_ressourcesPanel.GetComponentInChildren<Text> ();
 	}
 	
 	// Update is called once per frame
@@ -134,6 +129,7 @@ public class Ui_Manager : Singleton<Ui_Manager>
 		m_draftCardPanel.SetActive (false);
 		m_handPlayer1.SetActive (false);
 		m_handPlayer2.SetActive (false);
+		//m_mainSlider.SetActive (false);
 		m_phaseTitle.SetActive (false);
 		m_pressBtnPanel.SetActive (false);
 		m_ressourcesPanel.SetActive (false);
@@ -141,7 +137,6 @@ public class Ui_Manager : Singleton<Ui_Manager>
 		m_yShowDice.SetActive (false);
 		m_yShowHandJ1.SetActive (false);
 		m_bToBack.SetActive (false);
-		m_xToValidate.SetActive (false);
 	}
 
 	private void OnDraftJ1 ()
@@ -153,7 +148,6 @@ public class Ui_Manager : Singleton<Ui_Manager>
 			m_yShowHandJ2.SetActive (player == 2);
 		}
 		m_pressBtnPanel.SetActive (true);
-		m_pressBtnPanel.GetComponent<PressUi> ().Text = "To choose a card";
 		m_draftCardPanel.SetActive (true);
 
 		m_mainSlider.transform.FindChild ("J1 Panel").FindChild ("Panel").GetComponent<LayoutElement> ().preferredWidth = 100;
@@ -218,7 +212,24 @@ public class Ui_Manager : Singleton<Ui_Manager>
 
 		m_phaseTitle.SetActive (true);
 		m_yShowHandJ1.SetActive (true);
-		//m_pressBtnPanel.SetActive (true);
+		m_pressBtnPanel.SetActive (true);
+
+		Color alpha = m_phaseTitle.GetComponent<Image> ().color;
+		alpha.a = 0;
+		m_phaseTitle.GetComponent<Image> ().color = alpha;
+
+		m_phaseTitle.GetComponent<Image> ().DOKill ();
+		m_phaseTitle.GetComponent<Image> ().DOFade (1, 2).SetEase (Ease.OutSine).SetLoops (2, LoopType.Yoyo).OnComplete (() => {
+			m_phaseTitle.SetActive (false);
+		});
+	}
+
+	private void OnTactical ()
+	{
+		hideAll ();
+		m_phaseTitle.SetActive (true);
+		m_yShowHandJ1.SetActive (true);
+		m_pressBtnPanel.SetActive (true);
 
 		Color alpha = m_phaseTitle.GetComponent<Image> ().color;
 		alpha.a = 0;
@@ -239,7 +250,6 @@ public class Ui_Manager : Singleton<Ui_Manager>
 		m_selectCardPanel.SetActive (true);
 		m_yShowHandJ1.SetActive (false);
 		m_yShowHandJ2.SetActive (false);
-		m_xToValidate.SetActive (true);
 
 		List<Card> hand = m_turnManager.currentPlayer.GetHand ();
 		for (int i = 0; i < hand.Count; i++) {
@@ -254,8 +264,6 @@ public class Ui_Manager : Singleton<Ui_Manager>
 	{
 		hideAll ();
 		m_pressBtnPanel.SetActive (true);
-		m_pressBtnPanel.GetComponent<PressUi> ().Text = "To choose a dice";
-
 	}
 
 	#endregion
@@ -316,29 +324,25 @@ public class Ui_Manager : Singleton<Ui_Manager>
 		return selectedSpells;
 	}
 
-	public bool SelectSpell (int cost)
+	public bool SelectSpell ()
 	{
-		int ressource = int.Parse (m_ressources.text);
-		ressource -= cost;
-		if (m_selectedSpell >= 3 || ressource < 0)
+		if (m_selectedSpell >= 3)
 			return false;
 		m_selectedSpell++;
-		m_ressources.text = ressource.ToString ();
 		return true;
 	}
 
-	public void DeselectSpell (int cost)
+	public void DeselectSpell ()
 	{
 		m_selectedSpell--;
-		m_ressources.text = (int.Parse (m_ressources.text) + cost).ToString ();
 	}
 
 	public void MajScore ()
 	{
-		int score = m_turnManager.player1.getScore ();
-		m_ScoreP1.text = score.ToString ();
-		score = m_turnManager.player2.getScore ();
-		m_ScoreP2.text = score.ToString ();
+		int score = m_turnManager.player1.getScore();
+        m_ScoreP1.text = score.ToString();
+        score = m_turnManager.player2.getScore();
+        m_ScoreP2.text = score.ToString();
 	}
 
 	public void ShowCardSelected (Card spell)
@@ -350,12 +354,6 @@ public class Ui_Manager : Singleton<Ui_Manager>
 	public void HidecardSelected ()
 	{
 		m_cardSelected.gameObject.SetActive (false);
-	}
-
-	public void ShowRessource (int ressource)
-	{
-		m_ressourcesPanel.SetActive (true);
-		m_ressourcesPanel.GetComponentInChildren<Text> ().text = ressource.ToString ();
 	}
 }
 

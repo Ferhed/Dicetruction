@@ -4,7 +4,7 @@ using System.Collections;
 public class Building : MonoBehaviour
 {
 
-	//Vector3 position;
+	Vector3 position;
 	Rigidbody rb;
 	Vector3 initialPosition;
     int score;

@@ -99,6 +99,27 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _node_3946
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _node_3649
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _oppacity
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -152,6 +173,34 @@ Material:
         first:
           name: _Metallic
         second: 0
+      data:
+        first:
+          name: _colorstrenght
+        second: 0
+      data:
+        first:
+          name: _node_6726
+        second: 1
+      data:
+        first:
+          name: _node_7006
+        second: 0
+      data:
+        first:
+          name: _node_7804
+        second: 0
+      data:
+        first:
+          name: _color
+        second: 1
+      data:
+        first:
+          name: _explode
+        second: 0
+      data:
+        first:
+          name: _black
+        second: 1.5
     m_Colors:
       data:
         first:
@@ -165,3 +214,11 @@ Material:
         first:
           name: _node_1917
         second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _heightcolor
+        second: {r: 0.2099899, g: 0, b: 0.7426471, a: 1}
+      data:
+        first:
+          name: _coloremissive
+        second: {r: 0.83823526, g: 0.6105685, b: 0.2033953, a: 1}

@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingInMovement: []
   buildingStatic: 1
+  timeEndTurn: 30
 --- !u!114 &11421618
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -219,6 +220,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dicePreSelected: {fileID: 0}
+  UIInstance: {fileID: 0}
+  TMInstance: {fileID: 0}
   handActive: 0
   inStartTurnPlayer: 0
   inShootView: 0

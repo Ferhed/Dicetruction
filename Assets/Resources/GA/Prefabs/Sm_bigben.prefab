@@ -15,7 +15,7 @@ GameObject:
   - 65: {fileID: 6516528}
   m_Layer: 0
   m_Name: Sm_bigben_base_4
-  m_TagString: Untagged
+  m_TagString: needPhysics
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35,7 +35,7 @@ GameObject:
   - 65: {fileID: 6571940}
   m_Layer: 0
   m_Name: Sm_bigben_base_3
-  m_TagString: Untagged
+  m_TagString: needPhysics
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55,7 +55,7 @@ GameObject:
   - 114: {fileID: 11411388}
   m_Layer: 0
   m_Name: Sm_Bigben
-  m_TagString: Untagged
+  m_TagString: needPhysics
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +75,7 @@ GameObject:
   - 54: {fileID: 5431288}
   m_Layer: 0
   m_Name: RDC
-  m_TagString: Untagged
+  m_TagString: needPhysics
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,7 +111,7 @@ GameObject:
   - 65: {fileID: 6569260}
   m_Layer: 0
   m_Name: Sm_bigben_base_2
-  m_TagString: Untagged
+  m_TagString: needPhysics
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -135,8 +135,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 188482}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 32.735367, y: -0.4463992, z: 33.37475}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -41, y: -0.4463992, z: 17.1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children:
   - {fileID: 455148}
   - {fileID: 464720}
@@ -153,7 +153,7 @@ Transform:
   m_GameObject: {fileID: 179888}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 16.000011, z: -0}
-  m_LocalScale: {x: 1.17415, y: 1.17415, z: 1.17415}
+  m_LocalScale: {x: 1.17415, y: 1.1976467, z: 1.17415}
   m_Children: []
   m_Father: {fileID: 411828}
   m_RootOrder: 4
