@@ -15,11 +15,11 @@ public class TurnManager : MonoBehaviour
 	private List<Card> cardsInDraft;
 	private List<int> dicesValor;
 
-    internal TurnManager TMInstance;
-    internal Ui_Manager UIInstance;
-    internal InputManager IPInstance;
+	internal TurnManager TMInstance;
+	internal Ui_Manager UIInstance;
+	internal InputManager IPInstance;
 
-    private bool turnPlayer1Ended;
+	private bool turnPlayer1Ended;
 	private bool turnPlayer2Ended;
 	private bool globalTurnEnded;
 	[HideInInspector]
@@ -45,11 +45,10 @@ public class TurnManager : MonoBehaviour
 
 		StartCoroutine (StartGame ());
 	}
-	
+
 	public static TurnManager GetInstance ()
 	{
-		if (instance == null)
-        {
+		if (instance == null) {
 			instance = new TurnManager ();
 		}
 		return instance;
@@ -132,12 +131,14 @@ public class TurnManager : MonoBehaviour
 		}
 		valorOk ();
 
-        //**********SELECT SPELL
-        IPInstance.inShootView = false;
-        IPInstance.inSelectSpell = true;
-        IPInstance.inStartTurnPlayer = false;
+
+		//**********SELECT SPELL
+		IPInstance.inShootView = false;
+		IPInstance.inSelectSpell = true;
+		IPInstance.inStartTurnPlayer = false;
 		Debug.Log ("[State] : SelectSpell");
 		UIInstance.GoToState (UiState.SpellSelect);
+		UIInstance.ShowRessource (currentPlayer.getMana ());
 
 		//Waiting until the player validate his choices
 		yield return new WaitUntil (() => {
@@ -153,25 +154,24 @@ public class TurnManager : MonoBehaviour
 		cardSelected = false;
 
 
-        while(!BuildManager.Instance.buildingStatic)
-        {
-            yield return new WaitForSeconds(0.1f);
-        }
-        Debug.Log("allStatic "+currentPlayer.name);
+		while (!BuildManager.Instance.buildingStatic) {
+			yield return new WaitForSeconds (0.1f);
+		}
+		Debug.Log ("allStatic " + currentPlayer.name);
 
 
 		currentPlayer.EndOfTurn ();
 		killCamera ();
-        if (currentPlayer == player1)
-            turnPlayer1Ended = true;
-        else
-            turnPlayer2Ended = true;
-        EndOfTurn ();
+		if (currentPlayer == player1)
+			turnPlayer1Ended = true;
+		else
+			turnPlayer2Ended = true;
+		EndOfTurn ();
 	}
 
 	void killCamera ()
 	{
-        Debug.Log("kill camera " + currentPlayer.name);
+		Debug.Log ("kill camera " + currentPlayer.name);
 		foreach (GameObject dice in currentPlayer.GODices) {
 			Destroy (dice);
 		}
@@ -190,9 +190,9 @@ public class TurnManager : MonoBehaviour
 
 			if ((card as Vortex) != null) {
 				if (currentPlayer == player1) {
-					targets.Add (player1.GODices[dieIndex]);
+					targets.Add (player1.GODices [dieIndex]);
 				} else {
-					targets.Add (player2.GODices[dieIndex]);
+					targets.Add (player2.GODices [dieIndex]);
 				}
 			} else if ((card as Seisme) != null) {
 				StartCoroutine ((card as Seisme).yollohSeisme ());
@@ -245,11 +245,11 @@ public class TurnManager : MonoBehaviour
 
 	IEnumerator GlobalTurn ()
 	{
-        /** Pour debug */
-        //player1.AddCardInHand(new BombeH(0, 0, 0, CardManager.GetInstance().imageBombeH));
-        //player1.AddCardInHand (new BombeH (0, 0, 0, CardManager.GetInstance ().imageBombeH));
-        //player1.AddCardInHand (new BombeH (0, 0, 0, CardManager.GetInstance ().imageBombeH));
-        /*******************/
+		/** Pour debug */
+		//player1.AddCardInHand(new BombeH(0, 0, 0, CardManager.GetInstance().imageBombeH));
+		//player1.AddCardInHand (new BombeH (0, 0, 0, CardManager.GetInstance ().imageBombeH));
+		//player1.AddCardInHand (new BombeH (0, 0, 0, CardManager.GetInstance ().imageBombeH));
+		/*******************/
 
 
 		int nbCard = (5 - player1.getHandSize ()) + (5 - player2.getHandSize ());
@@ -257,11 +257,9 @@ public class TurnManager : MonoBehaviour
 		//SpawnCard a choisir
 		if (player1.getScore () >= player2.getScore ()) {
 			currentPlayer = player1;
+		} else {
+			currentPlayer = player2;
 		}
-        else
-        {
-            currentPlayer = player2;
-        }
 
 		cardsInDraft.Clear ();
 		for (int i = 0; i < nbCard; i++) {
@@ -269,8 +267,8 @@ public class TurnManager : MonoBehaviour
 			//cardsInDraft.Add (new BombeH (0, 0, 0, CardManager.GetInstance ().imageBombeH));
 		}
 
-        UIInstance.setDraftCard (cardsInDraft);
-        UIInstance.GoToState (UiState.Draft);
+		UIInstance.setDraftCard (cardsInDraft);
+		UIInstance.GoToState (UiState.Draft);
 		IPInstance.inDraft = true;
 
 		while (player1.getHandSize () < 5 || player2.getHandSize () < 5) {
@@ -281,10 +279,10 @@ public class TurnManager : MonoBehaviour
 
 			if (currentPlayer == player1 && player2.getHandSize () < 5) {
 				currentPlayer = player2;
-                UIInstance.DraftTogglePlayer (2);
+				UIInstance.DraftTogglePlayer (2);
 			} else if (player1.getHandSize () < 5) {
 				currentPlayer = player1;
-                UIInstance.DraftTogglePlayer (1);
+				UIInstance.DraftTogglePlayer (1);
 			}
 
 			//Debug.Log ("SizeHandP1 : " + player1.getHandSize ());
@@ -342,7 +340,7 @@ public class WaitForSpellAssignation : CustomYieldInstruction
 	private List<int> m_diceSelect;
 	private int m_index;
 
-    public override bool keepWaiting {
+	public override bool keepWaiting {
 		get {
 			return !allSpeelAssigned;
 		}
