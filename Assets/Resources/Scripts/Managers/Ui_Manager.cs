@@ -252,7 +252,7 @@ public class Ui_Manager : Singleton<Ui_Manager>
 		m_yShowHandJ2.SetActive (false);
 
 		List<Card> hand = TurnManager.GetInstance ().currentPlayer.GetHand ();
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < hand.Count; i++) {
 			m_selectCardPanel.transform.GetChild (i).gameObject.SetActive (true);
 			m_selectCardPanel.transform.GetChild (i).GetComponent<DraftCardUI> ().ActiveCard = hand [i];
 			continue;
@@ -339,10 +339,10 @@ public class Ui_Manager : Singleton<Ui_Manager>
 
 	public void MajScore ()
 	{
-		/* int score = TurnManager.instance.player1.getScore();
+		 int score = TurnManager.instance.player1.getScore();
         m_ScoreP1.text = score.ToString();
         score = TurnManager.instance.player2.getScore();
-        m_ScoreP2.text = score.ToString();*/
+        m_ScoreP2.text = score.ToString();
 	}
 
 	public void ShowCardSelected (Card spell)

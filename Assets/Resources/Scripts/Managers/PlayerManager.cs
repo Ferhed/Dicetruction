@@ -15,8 +15,10 @@ public class PlayerManager : MonoBehaviour
         instance = this;
         GOPlayer1 = Instantiate(Resources.Load("Player")) as GameObject;
         player1 = GOPlayer1.GetComponent<Player>();
+        player1.name = "Player1";
         GOPlayer2 = Instantiate(Resources.Load("Player")) as GameObject;
         player2 = GOPlayer2.GetComponent<Player>();
+        player2.name = "Player2";
 
         StartCoroutine("InitializeManager");
     }

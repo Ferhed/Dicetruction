@@ -29,7 +29,7 @@ public class Building : MonoBehaviour
                 {
                     if (Vector3.Distance(transform.position, initialPosition) > 1)
                     {
-                       // destruct();
+                        destruct();
                     }
                 }
 			}

@@ -146,12 +146,19 @@ public class TurnManager : MonoBehaviour
 		yield return new WaitForSpellAssignation (SelectedSpells);
 		//Selection du Spell a lancer
 		cardSelected = false;
+
+
+        while(!BuildManager.Instance.buildingStatic)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+        Debug.Log("allStatic "+currentPlayer.name);
 		if (currentPlayer == player1)
 			turnPlayer1Ended = true;
 		else
 			turnPlayer2Ended = true;
-		currentPlayer.EndOfTurn ();
 
+		currentPlayer.EndOfTurn ();
 		killCamera ();
 
 		EndOfTurn ();
@@ -159,6 +166,7 @@ public class TurnManager : MonoBehaviour
 
 	void killCamera ()
 	{
+        Debug.Log("kill camera " + currentPlayer.name);
 		foreach (GameObject dice in currentPlayer.GODices) {
 			Destroy (dice);
 		}
@@ -177,9 +185,9 @@ public class TurnManager : MonoBehaviour
 
 			if ((card as Vortex) != null) {
 				if (currentPlayer == player1) {
-					targets.Add (player1.dices [dieIndex].gameObject);
+					targets.Add (player1.GODices[dieIndex]);
 				} else {
-					targets.Add (player2.dices [dieIndex].gameObject);
+					targets.Add (player2.GODices[dieIndex]);
 				}
 			} else if ((card as Seisme) != null) {
 				StartCoroutine ((card as Seisme).yollohSeisme ());
