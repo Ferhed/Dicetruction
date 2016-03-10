@@ -23,6 +23,7 @@ public class Tilt : Support
         dice.GetComponent<Rigidbody>().AddForce((displacment + Vector3.up) * 200 * force);
         Debug.Log(displacment);
         XInput.instance.useVibe(0, 0.5f, 1, 1);
+        SoundManager.Instance.PlayMonoSound(SoundManager.Instance.s_hoodWink, 1f);
     }
 
     public override Card Copy()
