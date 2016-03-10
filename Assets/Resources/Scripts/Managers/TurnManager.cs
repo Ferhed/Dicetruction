@@ -139,9 +139,10 @@ public class TurnManager : MonoBehaviour
         IPInstance.inStartTurnPlayer = false;
 		Debug.Log ("[State] : SelectSpell");
 		UIInstance.GoToState (UiState.SpellSelect);
+        UIInstance.ShowRessource(currentPlayer.getMana());
 
-		//Waiting until the player validate his choices
-		yield return new WaitUntil (() => {
+        //Waiting until the player validate his choices
+        yield return new WaitUntil (() => {
 			return Input.GetButtonDown ("ButtonX");
 		});
 		List<Card> SelectedSpells = UIInstance.getSelectedSpell ();
