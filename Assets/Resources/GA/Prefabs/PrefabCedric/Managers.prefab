@@ -17,8 +17,8 @@ GameObject:
   - 114: {fileID: 11437516}
   - 114: {fileID: 11467194}
   - 114: {fileID: 11406582}
-  - 82: {fileID: 8248968}
-  - 114: {fileID: 11415226}
+  - 82: {fileID: 8248052}
+  - 114: {fileID: 11448794}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -38,7 +38,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!82 &8248968
+--- !u!82 &8248052
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -126,21 +126,6 @@ MonoBehaviour:
   buildingInMovement: []
   buildingStatic: 1
   timeEndTurn: 15
---- !u!114 &11415226
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 124488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef39ee926ddf00241b9daa87ccdcd103, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosion: {fileID: 124986, guid: a5be50296020ea647b4dd54b958c76e1, type: 2}
-  bombeH: {fileID: 130750, guid: 16c5b9a2885da594aa574673a1bb5439, type: 2}
-  earthquake: {fileID: 146142, guid: ab897405986653340b721493567a839e, type: 2}
-  lightning: {fileID: 145390, guid: 057f50265af289149a00df208cb62e16, type: 2}
 --- !u!114 &11421618
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -193,9 +178,9 @@ MonoBehaviour:
   BombeHRadius: 1
   BombeHEnergyCoast: 1
   BombeHForceExplosion: 1
-  TiltEnergyCoast: 1
+  TiltEnergyCoast: 0
   TiltForce: 1
-  JamesBondEnergyCoast: 1
+  JamesBondEnergyCoast: 0
   VortexRadius: 1
   VortexEnergyCoast: 1
   VortexForceExplosion: 1
@@ -212,8 +197,22 @@ MonoBehaviour:
   imageTilt: {fileID: 21300000, guid: cae30d574972b6047ba1ee90b3a5a7e5, type: 3}
   imageJamesBond: {fileID: 21300000, guid: 91d093e296c6ef047b94d818896978f1, type: 3}
   imageSeime: {fileID: 21300000, guid: 164aad8ca6c08134ba8193003d8b3f48, type: 3}
-  imageExcalibur: {fileID: 21300000, guid: 1ce8976716dc8b244ac1b4fad59e2c49, type: 3}
+  imageExcalibur: {fileID: 21300000, guid: bc4c442aa439c6e48b65c3c5076083e5, type: 3}
   imageExterminate: {fileID: 21300000, guid: ac6c24fb4c4fc244899dad05359aa474, type: 3}
+--- !u!114 &11448794
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 124488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef39ee926ddf00241b9daa87ccdcd103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosion: {fileID: 124986, guid: a5be50296020ea647b4dd54b958c76e1, type: 2}
+  bombeH: {fileID: 130750, guid: 16c5b9a2885da594aa574673a1bb5439, type: 2}
+  earthquake: {fileID: 146142, guid: ab897405986653340b721493567a839e, type: 2}
 --- !u!114 &11449444
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -230,6 +229,9 @@ MonoBehaviour:
   diceShuffle: {fileID: 8300000, guid: 070ea3ce2fbfc0d4aa4905e76a7b5620, type: 3}
   diceThrow: {fileID: 8300000, guid: 3cd830a62212570438702b024a7a7e08, type: 3}
   activateCard: {fileID: 8300000, guid: ee2f51efa1285e44da11b5683416a4a7, type: 3}
+  pioche: {fileID: 8300000, guid: 2e4d8fe68f95c4e40babf593f84775aa, type: 3}
+  playerTurn: {fileID: 8300000, guid: ea58e6855b741284d81cd80ea7e6859a, type: 3}
+  totalMana: {fileID: 8300000, guid: 776d8ca54e0999243b75676838589931, type: 3}
   wallImpact:
   - {fileID: 8300000, guid: aeb74a1e2b11a8e45b663d9896d08bee, type: 3}
   - {fileID: 8300000, guid: 4eba524c70d7a67449158c5a9494fa0f, type: 3}

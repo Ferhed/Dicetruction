@@ -261,7 +261,8 @@ public class Ui_Manager : Singleton<Ui_Manager>
 
 	public void DraftCardSelect (DraftCardUI cardToAdd)
 	{
-		m_inputManager.cardPreSelected = cardToAdd.ActiveCard;
+        SoundManager.Instance.PlayMonoSound(SoundManager.Instance.choseCard, 1f);
+        m_inputManager.cardPreSelected = cardToAdd.ActiveCard;
 		cardToAdd.OnDeselect ();
 		WaitForCardSelected.cardSelected = true;
 

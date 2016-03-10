@@ -24,6 +24,9 @@ public class SoundManager : MonoBehaviour
     public AudioClip diceShuffle;
     public AudioClip diceThrow;
     public AudioClip activateCard;
+    public AudioClip pioche;
+    public AudioClip playerTurn;
+    public AudioClip totalMana;
     public AudioClip[] wallImpact;
     public AudioClip[] objectImpact;
     public AudioClip[] destruction;
@@ -77,4 +80,11 @@ public class SoundManager : MonoBehaviour
 
         Destroy(go, currentAC.length + 1f);
     }
+
+    public void browseCards()
+    {
+
+        PlayMonoSound(browserCards, 1f);
+    }
+
 }

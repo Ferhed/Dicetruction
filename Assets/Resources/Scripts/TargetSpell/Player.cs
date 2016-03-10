@@ -56,6 +56,7 @@ public class Player : MonoBehaviour
 
 	public void EndOfTurn ()
 	{
+        SoundManager.Instance.PlayMonoSound(SoundManager.Instance.playerTurn, 1f);
 		multiplier = 1;
 		mana = 0;
 	}

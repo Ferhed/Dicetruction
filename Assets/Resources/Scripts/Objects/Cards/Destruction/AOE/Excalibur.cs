@@ -27,6 +27,7 @@ public class Excalibur : Destruction
                 Debug.Log("AfterExplosion");
             }
         }
+        SoundManager.Instance.PlayMonoSound(SoundManager.Instance.s_excalibur, 1f);
     }
      
     public override Card Copy()

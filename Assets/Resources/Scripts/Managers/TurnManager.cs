@@ -119,6 +119,7 @@ public class TurnManager : MonoBehaviour
 		Debug.Log (valor);
 		GameObject camera = playerGameObject.transform.GetChild (0).gameObject;
 		camera.GetComponent<CameraScript> ().enabled = false;
+        SoundManager.Instance.PlayMonoSound(SoundManager.Instance.totalMana, 1f);
 	}
 
 	IEnumerator Turn ()
@@ -244,14 +245,14 @@ public class TurnManager : MonoBehaviour
 
 	IEnumerator GlobalTurn ()
 	{
-		/** Pour debug */
-		//player1.AddCardInHand(new BombeH(0, 0, 0, CardManager.GetInstance().imageBombeH));
-		//player1.AddCardInHand (new BombeH (0, 0, 0, CardManager.GetInstance ().imageBombeH));
-		//player1.AddCardInHand (new BombeH (0, 0, 0, CardManager.GetInstance ().imageBombeH));
-		/*******************/
+        /** Pour debug */
+        //player1.AddCardInHand(new BombeH(0, 0, 0, CardManager.GetInstance().imageBombeH));
+        //player1.AddCardInHand (new BombeH (0, 0, 0, CardManager.GetInstance ().imageBombeH));
+        //player1.AddCardInHand (new BombeH (0, 0, 0, CardManager.GetInstance ().imageBombeH));
+        /*******************/
 
 
-		int nbCard = (5 - player1.getHandSize ()) + (5 - player2.getHandSize ());
+        int nbCard = (5 - player1.getHandSize ()) + (5 - player2.getHandSize ());
 
 		//SpawnCard a choisir
 		if (player1.getScore () >= player2.getScore ()) {
@@ -266,6 +267,7 @@ public class TurnManager : MonoBehaviour
 			//cardsInDraft.Add (new BombeH (0, 0, 0, CardManager.GetInstance ().imageBombeH));
 		}
 
+        SoundManager.Instance.PlayMonoSound(SoundManager.Instance.pioche, 1f);
 		UIInstance.setDraftCard (cardsInDraft);
 		UIInstance.GoToState (UiState.Draft);
 		IPInstance.inDraft = true;
