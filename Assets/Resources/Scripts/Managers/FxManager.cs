@@ -21,6 +21,7 @@ public class FxManager : MonoBehaviour {
     public GameObject earthquake;
     public GameObject lightning;
     public GameObject vortex;
+    public GameObject excalibur;
 
     public void LaunchFX(GameObject FX, Vector3 position, Vector3 rotate)
     {
