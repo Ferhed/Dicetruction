@@ -28,7 +28,6 @@ public class CircularSlider : MonoBehaviour
 	// Update is called once per frame
 	private void updatePosition ()
 	{
-		Debug.Log (m_fill);
 		m_degRot = Mathf.Lerp (0, 360f, m_fill);
 		m_centerOfRotation.rotation = Quaternion.Euler (0, 0, m_degRot);
 	}
