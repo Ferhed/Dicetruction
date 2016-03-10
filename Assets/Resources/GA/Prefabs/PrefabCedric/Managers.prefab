@@ -215,6 +215,7 @@ MonoBehaviour:
   earthquake: {fileID: 122278, guid: ab897405986653340b721493567a839e, type: 2}
   lightning: {fileID: 145390, guid: 057f50265af289149a00df208cb62e16, type: 2}
   vortex: {fileID: 131022, guid: ba66acb05c75d5845b44b5a244844493, type: 2}
+  excalibur: {fileID: 113176, guid: 2029b8b4f1cedc04aa0ca79599c58988, type: 2}
 --- !u!114 &11449444
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -305,6 +306,7 @@ MonoBehaviour:
   globalCamera: {fileID: 0}
   playerGameObject: {fileID: 0}
   CS: {fileID: 0}
+  lastPlayer: {fileID: 0}
 --- !u!114 &11498012
 MonoBehaviour:
   m_ObjectHideFlags: 1

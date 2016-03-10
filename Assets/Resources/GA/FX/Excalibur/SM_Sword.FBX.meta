@@ -1,27 +1,17 @@
 fileFormatVersion: 2
-guid: 4c50d358e3d6f3a44b5a3883aa3cd7b8
-timeCreated: 1457358621
+guid: 766cd4bb2c131054a967b54fa4404265
+timeCreated: 1457534569
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Object004
-    100002: Object005
-    100004: SM_Stage004
-    100006: //RootNode
-    400000: Object004
-    400002: Object005
-    400004: SM_Stage004
-    400006: //RootNode
-    2300000: Object004
-    2300002: Object005
-    2300004: SM_Stage004
-    3300000: Object004
-    3300002: Object005
-    3300004: SM_Stage004
-    4300000: Object004
-    4300002: Object005
-    4300004: SM_Stage004
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Sword
+    7400000: Take 001
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -80,7 +70,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

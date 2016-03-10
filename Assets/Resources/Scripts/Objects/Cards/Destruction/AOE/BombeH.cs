@@ -36,7 +36,8 @@ public class BombeH : Destruction
 		}
 		XInput.instance.useVibe (0, 0.5f, 1, 1);
         SoundManager.Instance.PlayMonoSound(SoundManager.Instance.s_keepCalmBomb, 1f);
-        FxManager.Instance.LaunchFX(FxManager.Instance.bombeH, targets[0].transform.position, Quaternion.identity );
+        FxManager.Instance.LaunchFX(FxManager.Instance.bombeH, targets[0].transform.position, Quaternion.identity);
+        FxManager.Instance.LaunchFX(FxManager.Instance.explosion, targets[0].transform.position, Quaternion.identity);
     }
 
 	public override Card Copy ()

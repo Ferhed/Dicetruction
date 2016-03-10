@@ -34,6 +34,13 @@ public class Building : MonoBehaviour
                     }
                 }
 			}
+            else
+            {
+                if (collision.gameObject.tag == "Player" && (this.gameObject.name == "Bus" || this.gameObject.name == "Truck"))
+                {
+                    FxManager.Instance.LaunchFX(FxManager.Instance.explosion, transform.position, Quaternion.identity);
+                }
+            }
 		}
 
 

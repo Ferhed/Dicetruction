@@ -28,6 +28,7 @@ public class Excalibur : Destruction
             }
         }
         SoundManager.Instance.PlayMonoSound(SoundManager.Instance.s_excalibur, 1f);
+        FxManager.Instance.LaunchFX(FxManager.Instance.excalibur, dice.transform.position, Quaternion.identity);
     }
      
     public override Card Copy()
