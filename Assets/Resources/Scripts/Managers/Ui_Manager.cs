@@ -245,7 +245,6 @@ public class Ui_Manager : Singleton<Ui_Manager>
 		for (int i = 0; i < hand.Count; i++) {
 			m_selectCardPanel.transform.GetChild (i).gameObject.SetActive (true);
 			m_selectCardPanel.transform.GetChild (i).GetComponent<DraftCardUI> ().ActiveCard = hand [i];
-			continue;
 		}
 		m_system.SetSelectedGameObject (m_selectCardPanel.transform.GetChild (0).gameObject);
 	}
@@ -316,10 +315,17 @@ public class Ui_Manager : Singleton<Ui_Manager>
 		return selectedSpells;
 	}
 
-	public bool SelectSpell (int cost)
+	public bool SelectSpell (DraftCardUI card)
 	{
 		int ressource = int.Parse (m_ressources.text);
-		ressource -= cost;
+		if (card.ActiveCard.GetEnergy () == 0) {
+			m_turnManager.SelectCard (card.ActiveCard, 0);
+			card.gameObject.SetActive (false);
+			card.gameObject.transform.SetAsLastSibling ();
+			m_system.SetSelectedGameObject (card.gameObject.transform.parent.GetChild (0).gameObject);
+			return false;
+		}
+		ressource -= card.ActiveCard.GetEnergy ();
 		if (m_selectedSpell >= 3 || ressource < 0)
 			return false;
 		m_selectedSpell++;

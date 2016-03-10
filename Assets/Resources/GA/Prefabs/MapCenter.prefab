@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &128120
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,7 +244,8 @@ MonoBehaviour:
   accuracyMin: 40
   accuracyMax: 15
   multiplierForce: 5
-  speed: 0.01
+  verticalTimeMove: 2
+  horizontalTimeMove: 1
 --- !u!114 &11452400
 MonoBehaviour:
   m_ObjectHideFlags: 1

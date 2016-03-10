@@ -139,6 +139,7 @@ public class TurnManager : MonoBehaviour
 		UIInstance.GoToState (UiState.SpellSelect);
 		UIInstance.ShowRessource (currentPlayer.getMana ());
 
+		playerGameObject.transform.GetChild (0).GetChild (0).gameObject.SetActive (true);
 		//Waiting until the player validate his choices
 		yield return new WaitUntil (() => {
 			return Input.GetButtonDown ("ButtonX");
@@ -149,6 +150,7 @@ public class TurnManager : MonoBehaviour
 		//Waiting until all the spells are assigned to a die
 
 		yield return new WaitForSpellAssignation (SelectedSpells);
+		playerGameObject.transform.GetChild (0).GetChild (0).gameObject.SetActive (false);
 		//Selection du Spell a lancer
 		cardSelected = false;
 
