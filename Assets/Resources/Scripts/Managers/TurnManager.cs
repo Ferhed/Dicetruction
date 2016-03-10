@@ -24,8 +24,7 @@ public class TurnManager : MonoBehaviour
 	private bool globalTurnEnded;
 	[HideInInspector]
 	public bool cardSelected;
-	
-	[HideInInspector]
+
 	public Player currentPlayer;
 	
 	public Camera globalCamera;
@@ -226,19 +225,15 @@ public class TurnManager : MonoBehaviour
 				} else {
 					targets.Add (player2.GODices [dieIndex]);
 				}
-			} else if ((card as Exterminate) != null)
-            {
-                if (currentPlayer == player1)
-                {
-                    targets.Add(player1.GODices[dieIndex]);
-                }
-                else
-                {
-                    targets.Add(player2.GODices[dieIndex]);
-                }
-            }
+			} else if ((card as Exterminate) != null) {
+				if (currentPlayer == player1) {
+					targets.Add (player1.GODices [dieIndex]);
+				} else {
+					targets.Add (player2.GODices [dieIndex]);
+				}
+			}
 
-            currentPlayer.Cast (card, targets);
+			currentPlayer.Cast (card, targets);
 			currentPlayer.RemoveCardInHand (card);
 		}
 	}
