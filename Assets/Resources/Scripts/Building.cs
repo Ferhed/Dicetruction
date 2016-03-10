@@ -7,7 +7,7 @@ public class Building : MonoBehaviour
 	Vector3 position;
 	Rigidbody rb;
 	Vector3 initialPosition;
-    Player hittingPlayer;
+    Player hittingPlayer = null;
     int score;
 	// Use this for initialization
 	void Awake ()
@@ -100,6 +100,8 @@ public class Building : MonoBehaviour
                 TurnManager.instance.player2.addScore(false, score);
 
         }
+        if (hittingPlayer == null)
+            hittingPlayer = TurnManager.instance.lastPlayer;
         Ui_Manager.Instance.MajScore();
         if (tag == "Props") { }
         else

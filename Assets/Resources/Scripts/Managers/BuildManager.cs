@@ -23,17 +23,17 @@ public class BuildManager : MonoBehaviour {
 
     void Start()
     {
-        if (buildingInMovement.Count == 0)
-        {
-            buildingStatic = false;
-            StartCoroutine(goToEnd());
-        }
         buildingInMovement = new List<GameObject>();
     }
 
     public void addElement(GameObject element)
     {
-        if(!buildingInMovement.Contains(element))
+        if (buildingInMovement.Count == 0)
+        {
+            buildingStatic = false;
+            StartCoroutine(goToEnd());
+        }
+        if (!buildingInMovement.Contains(element))
             buildingInMovement.Add(element);
     }
 

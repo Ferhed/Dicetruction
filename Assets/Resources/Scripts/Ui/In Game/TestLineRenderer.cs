@@ -30,7 +30,6 @@ public class TestLineRenderer : MonoBehaviour
             index++;
         }
         finish = true;
-        Debug.Log("a : " + a + "; b : " + b + "; C : " + c);
     }
 
     void Update()

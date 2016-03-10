@@ -176,11 +176,11 @@ Material:
       data:
         first:
           name: _colorstrenght
-        second: 0
+        second: 20
       data:
         first:
           name: _black
-        second: 1
+        second: 0.3
     m_Colors:
       data:
         first:

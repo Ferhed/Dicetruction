@@ -31,6 +31,7 @@ public class TurnManager : MonoBehaviour
 	[HideInInspector]
 	public GameObject playerGameObject;
     public CircularSlider CS;
+    public Player lastPlayer;
 
 
 	void Awake ()
@@ -88,16 +89,19 @@ public class TurnManager : MonoBehaviour
 		currentPlayer = player1;
 		StartCoroutine (Turn ());
 
-		while (!turnPlayer1Ended)
+
+        while (!turnPlayer1Ended)
 			yield return new WaitForEndOfFrame ();
 
-		//Tour du joueur 2
-		Debug.Log ("TurnP2");
+
+        //Tour du joueur 2
+        Debug.Log ("TurnP2");
 		StartCoroutine (Turn ());
 
 		while (!turnPlayer2Ended)
 			yield return new WaitForEndOfFrame ();
-	}
+        
+    }
 
 	void addCameraForPlayer ()
 	{
@@ -124,6 +128,7 @@ public class TurnManager : MonoBehaviour
 
 	IEnumerator Turn ()
 	{
+
 		addCameraForPlayer ();
 		UIInstance.GoToState (UiState.Positioning);
 		IPInstance.inStartTurnPlayer = true;
@@ -164,14 +169,12 @@ public class TurnManager : MonoBehaviour
 		Debug.Log ("allStatic " + currentPlayer.name);
 
 
+
 		currentPlayer.EndOfTurn ();
 		killCamera ();
-		if (currentPlayer == player1)
-			turnPlayer1Ended = true;
-		else
-			turnPlayer2Ended = true;
-		EndOfTurn ();
-	}
+
+        EndOfTurn();
+    }
 
 	void killCamera ()
 	{
@@ -238,7 +241,8 @@ public class TurnManager : MonoBehaviour
 				}
 			}
 
-			currentPlayer.Cast (card, targets);
+            lastPlayer = currentPlayer;
+            currentPlayer.Cast (card, targets);
 			currentPlayer.RemoveCardInHand (card);
 		}
 	}

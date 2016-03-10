@@ -33,7 +33,7 @@ Material:
         first:
           name: _NormalMap
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: 2401428f0cc90574a9c85b79d7ebec43, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -47,14 +47,14 @@ Material:
         first:
           name: _Emissive
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: a45a73599d70b7b4780c7c1511577895, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _BaseTexture
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: bff79e59df1224a4a84e3fe1fd559f8b, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -135,6 +135,10 @@ Material:
         second: 0.5
       data:
         first:
+          name: _InvFade
+        second: 0.54
+      data:
+        first:
           name: _Emission
         second: 0
       data:
@@ -201,8 +205,12 @@ Material:
       data:
         first:
           name: _heightcolor
-        second: {r: 0.2827587, g: 0, b: 1, a: 1}
+        second: {r: 0.5514706, g: 0.44967777, b: 0.024329575, a: 1}
       data:
         first:
           name: _coloremissive
         second: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+      data:
+        first:
+          name: _TintColor
+        second: {r: 1, g: 0, b: 0, a: 0.5}

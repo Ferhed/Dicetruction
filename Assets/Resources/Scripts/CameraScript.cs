@@ -213,7 +213,6 @@ public class CameraScript : MonoBehaviour
         {
             timer = 0;
         }
-        Debug.Log(timer); 
         force *= 80;
         force = Mathf.Max(10f, force + 10);
         line.a = 0.1f - 0.0011f * (force);
