@@ -127,6 +127,10 @@ public class CameraScript : MonoBehaviour
         {
             currentPosition = POSITION.ROTATEARROUND;
         }*/
+        if(Input.GetButtonDown("ButtonA"))
+        {
+            SoundManager.Instance.PlayMonoSound(SoundManager.Instance.diceShuffle, 1f);
+        }
         if(Input.GetButton("ButtonA"))
         {
             checkforce();
@@ -140,6 +144,7 @@ public class CameraScript : MonoBehaviour
             Destroy(line);
             Destroy(transform.GetComponentInParent<LineRenderer>());
             startTime = Time.time;
+            SoundManager.Instance.PlayMonoSound(SoundManager.Instance.diceThrow, 1f);
             foreach (GameObject currentDice in dices)
             {
                 currentDice.transform.parent = null;

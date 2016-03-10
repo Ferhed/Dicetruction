@@ -24,7 +24,8 @@ public class Seisme : Destruction
 	{
 
 		GameObject ground = GameObject.FindGameObjectWithTag ("Ground");
-		ground.transform.position -= Vector3.up / 10;
+        SoundManager.Instance.PlayMonoSound(SoundManager.Instance.s_earthQuake, 1f);
+        ground.transform.position -= Vector3.up / 10;
 		int up = 1;
 		while (up != 10) {
 			ground.transform.position += Vector3.up / 100;

@@ -26,6 +26,8 @@ public class Exterminate : Destruction
                 currentCo.collider.GetComponent<Rigidbody>().AddExplosionForce(350f * 1000 * 1, currentCo.transform.position + Vector3.right, 10 );
             }
         }
+
+        SoundManager.Instance.PlayMonoSound(SoundManager.Instance.s_eterminate, 1f);
     }
 
     GameObject SelectDices(GameObject[] dices, GameObject selectedDice)
