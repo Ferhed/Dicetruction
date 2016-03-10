@@ -33,6 +33,7 @@ public class FxManager : MonoBehaviour {
         {
             go.transform.eulerAngles = rotate;
         }
+        Destroy(go, 3f);
     }
     public void LaunchFX(GameObject FX, Vector3 position, Quaternion rotate)
     {
@@ -45,5 +46,6 @@ public class FxManager : MonoBehaviour {
         {
             go.transform.rotation = rotate;
         }
+        Destroy(go, 3f);
     }
 }
