@@ -70,7 +70,7 @@ public class DraftCardUI : MonoBehaviour
 	{
 		if (m_selected) {
 			Ui_Manager.Instance.DeselectSpell (m_activeCard.GetEnergy ());
-		} else if (!Ui_Manager.Instance.SelectSpell (m_activeCard.GetEnergy ())) {
+		} else if (!Ui_Manager.Instance.SelectSpell (this)) {
 			return;
 		}
 		transform.DOMoveY ((m_selected) ? -50 : 50, 0.2f).SetRelative ().SetEase (Ease.InOutSine);

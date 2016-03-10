@@ -208,10 +208,10 @@ public class CameraScript : MonoBehaviour
         {
             timer = 0;
         }
+        Debug.Log(timer); 
         force *= 80;
         force = Mathf.Max(10f, force + 10);
         line.a = 0.1f - 0.0011f * (force);
-        Debug.Log(force); 
         /*float hori = Input.GetAxis("LeftHorizontal");
         float verti = Input.GetAxis("LeftVertical");
         float dist = Vector2.Distance(getForce, new Vector2(hori, verti));
