@@ -25,7 +25,7 @@ public class Dice : MonoBehaviour {
 	void Update ()
     {
         /** Pour tester les spells */
-        if (Input.GetKeyDown(KeyCode.A))
+       /* if (Input.GetKeyDown(KeyCode.A))
         {
             Badaboum(gameObject);
         }
@@ -44,7 +44,7 @@ public class Dice : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.T))
         {
             Laser();
-        }
+        }*/
         /****************************/
     }
 
@@ -63,17 +63,17 @@ public class Dice : MonoBehaviour {
 	void GetDiceCount()
 	{
 		if (Vector3.Dot (transform.forward, Vector3.up)>0.5f)
-            result = 4;
-		else if (Vector3.Dot (-transform.forward, Vector3.up)>0.5f)
-            result = 3;
-		else if (Vector3.Dot (transform.up, Vector3.up)>0.5f)
-            result = 1;
-		else if (Vector3.Dot (-transform.up, Vector3.up)>0.5f)
-            result = 6;
-		else if (Vector3.Dot (transform.right, Vector3.up)>0.5f)
             result = 2;
-		else if (Vector3.Dot (-transform.right, Vector3.up)>0.5f)
+		else if (Vector3.Dot (-transform.forward, Vector3.up)>0.5f)
             result = 5;
+		else if (Vector3.Dot (transform.up, Vector3.up)>0.5f)
+            result = 6;
+		else if (Vector3.Dot (-transform.up, Vector3.up)>0.5f)
+            result = 1;
+		else if (Vector3.Dot (transform.right, Vector3.up)>0.5f)
+            result = 3;
+		else if (Vector3.Dot (-transform.right, Vector3.up)>0.5f)
+            result = 4;
 		else result = 0;
         TurnManager.instance.addValor(result);
 	}

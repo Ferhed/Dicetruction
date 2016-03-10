@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 
 public class Seisme : Destruction
 {
@@ -25,16 +26,19 @@ public class Seisme : Destruction
 
 		GameObject ground = GameObject.FindGameObjectWithTag ("Ground");
         SoundManager.Instance.PlayMonoSound(SoundManager.Instance.s_earthQuake, 1f);
-        ground.transform.position -= Vector3.up / 10;
-		int up = 1;
-		while (up != 10) {
-			ground.transform.position += Vector3.up / 100;
-			up++;
-			yield return new WaitForSeconds (0.05f);
-		}
+        ground.transform.DOShakePosition(5f, force);
 
+        Collider[] co = Physics.OverlapSphere(Vector3.zero, 120f);
+        Debug.Log("Length = " + co.Length);
+        foreach (Collider currentCo in co)
+        {
+            if (currentCo.tag == "needPhysics" || currentCo.tag == "Props")
+            {
+                currentCo.GetComponent<Building>().bump();
+            }
+        }
 
-		XInput.instance.useVibe (0, 0.5f, 1, 1);
+        XInput.instance.useVibe (0, 0.5f, 1, 1);
 		yield return null;
 	}
 }

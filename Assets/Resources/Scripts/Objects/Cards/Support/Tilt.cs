@@ -20,7 +20,7 @@ public class Tilt : Support
         float Z = Random.Range(-1f, 1f);
         Vector3 displacment = new Vector3(X, 0, Z);
         displacment.Normalize();
-        dice.GetComponent<Rigidbody>().AddForce((displacment + Vector3.up) * 200 * force);
+        dice.GetComponent<Rigidbody>().AddForce((displacment + Vector3.up) * 800 * force);
         Debug.Log(displacment);
         XInput.instance.useVibe(0, 0.5f, 1, 1);
         SoundManager.Instance.PlayMonoSound(SoundManager.Instance.s_hoodWink, 1f);

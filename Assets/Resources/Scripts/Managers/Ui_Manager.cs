@@ -73,6 +73,10 @@ public class Ui_Manager : Singleton<Ui_Manager>
 	private Image m_cardSelected;
 	[SerializeField]
 	private GameObject m_xToValidate;
+    [SerializeField]
+    private GameObject m_circularSlider;
+    [SerializeField]
+    private int m_maxScore = 100000;
 
 	#endregion
 
@@ -142,7 +146,8 @@ public class Ui_Manager : Singleton<Ui_Manager>
 		m_yShowHandJ1.SetActive (false);
 		m_bToBack.SetActive (false);
 		m_xToValidate.SetActive (false);
-	}
+        m_circularSlider.SetActive(false);
+   }
 
 	private void OnDraftJ1 ()
 	{
@@ -210,6 +215,7 @@ public class Ui_Manager : Singleton<Ui_Manager>
 		hideAll ();
 		m_yShowHandJ1.SetActive (player == 1);
 		m_yShowHandJ2.SetActive (player == 2);
+        m_circularSlider.SetActive(true);
 
 		m_mainSlider.transform.FindChild ("J1 Panel").FindChild ("Panel").GetComponent<LayoutElement> ().preferredWidth = (player == 2) ? 70 : 100;
 		m_mainSlider.transform.FindChild ("J1 Panel").FindChild ("Panel").GetComponent<LayoutElement> ().preferredHeight = (player == 2) ? 70 : 100;
@@ -218,16 +224,6 @@ public class Ui_Manager : Singleton<Ui_Manager>
 
 		m_phaseTitle.SetActive (true);
 		m_yShowHandJ1.SetActive (true);
-		//m_pressBtnPanel.SetActive (true);
-
-		Color alpha = m_phaseTitle.GetComponent<Image> ().color;
-		alpha.a = 0;
-		m_phaseTitle.GetComponent<Image> ().color = alpha;
-
-		m_phaseTitle.GetComponent<Image> ().DOKill ();
-		m_phaseTitle.GetComponent<Image> ().DOFade (1, 2).SetEase (Ease.OutSine).SetLoops (2, LoopType.Yoyo).OnComplete (() => {
-			m_phaseTitle.SetActive (false);
-		});
 	}
 
 	private void OnSpellSelect ()
@@ -343,9 +339,13 @@ public class Ui_Manager : Singleton<Ui_Manager>
 	public void MajScore ()
 	{
 		int score = m_turnManager.player1.getScore ();
-		m_ScoreP1.text = score.ToString ();
+        float scorep1 = (float)(m_turnManager.player1.getScore()) / (float)(m_maxScore);
+        Debug.Log(scorep1);
+        m_mainSlider.transform.GetChild(2).GetChild(0).GetComponent<Slider>().DOValue(scorep1, 0.3f).SetEase(Ease.InOutSine);
+        m_ScoreP1.text = score.ToString ();
 		score = m_turnManager.player2.getScore ();
-		m_ScoreP2.text = score.ToString ();
+        m_mainSlider.transform.GetChild(2).GetChild(1).GetComponent<Slider>().DOValue((float)(m_turnManager.player2.getScore()) / (float)(m_maxScore), 0.3f).SetEase(Ease.InOutSine);
+        m_ScoreP2.text = score.ToString ();
 	}
 
 	public void ShowCardSelected (Card spell)

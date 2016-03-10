@@ -44,10 +44,8 @@ public class Building : MonoBehaviour
 
 	public void bump ()
 	{
-		rb.isKinematic = false;
-        BuildManager.Instance.addElement(gameObject);
+        BuildManager.Instance.addElement(rb);
         hittingPlayer = TurnManager.instance.currentPlayer;
-		StartCoroutine ("checkStill");
 	}
 
 	public void changeWeight ()
@@ -60,14 +58,14 @@ public class Building : MonoBehaviour
 		rb.mass -= 50f;
 	}
 
-	public IEnumerator checkStill ()
+	/*public IEnumerator checkStill ()
 	{
 		yield return new WaitForSeconds (0.5f);
 		/* while (position != transform.position)
         {
             position = transform.position;
             yield return new WaitForSeconds(10f);
-        }*/
+        }
 		while (rb.velocity != Vector3.zero) {
 			yield return new WaitForSeconds (1f);
 		}
@@ -79,7 +77,7 @@ public class Building : MonoBehaviour
         //rb.isKinematic = true;
         // yield return null;
         BuildManager.Instance.delElement(gameObject);
-    }
+    }*/
 
 
     void destruct ()
@@ -113,7 +111,6 @@ public class Building : MonoBehaviour
     }
     void reallyDestructNow()
     {
-        BuildManager.Instance.delElement(gameObject);
         Destroy(gameObject);
     }
 }

@@ -12,7 +12,7 @@ public class BuildManager : MonoBehaviour {
             return instance;
         }
     }
-    public List<GameObject> buildingInMovement;
+    public List<Rigidbody> buildingInMovement;
     public bool buildingStatic = true;
     public float timeEndTurn = 15f;
 
@@ -23,29 +23,19 @@ public class BuildManager : MonoBehaviour {
 
     void Start()
     {
-        buildingInMovement = new List<GameObject>();
+        buildingInMovement = new List<Rigidbody>();
     }
 
-    public void addElement(GameObject element)
+    public void addElement(Rigidbody element)
     {
         if (buildingInMovement.Count == 0)
         {
-            buildingStatic = false;
-            StartCoroutine(goToEnd());
+            buildingInMovement.Add(element);
+            StartCoroutine(CheckBuilding());
         }
         if (!buildingInMovement.Contains(element))
             buildingInMovement.Add(element);
     }
-
-    public void delElement(GameObject element)
-    {
-        buildingInMovement.Remove(element);
-        if(buildingInMovement.Count == 0)
-        {
-            buildingStatic = true;
-        }
-    }
-
 
     IEnumerator goToEnd()
     {
@@ -57,6 +47,26 @@ public class BuildManager : MonoBehaviour {
         yield return null;
     }
 
+    IEnumerator CheckBuilding()
+    {
+        buildingStatic = false;
+        while (buildingInMovement.Count > 0) {
+            for (int i = 0; i < buildingInMovement.Count; i++)
+            {
+                if (i % 10 == 0)
+                    yield return null;
 
+                if (buildingInMovement[i] == null || buildingInMovement[i].velocity.sqrMagnitude <= 0.01f)
+                {
+                    buildingInMovement.RemoveAt(i);
+                    i--;
+                }
+
+                yield return null;
+            }
+        }
+        Debug.LogWarning("Hey nCadcacacac");
+        buildingStatic = true;
+    }
 
 }

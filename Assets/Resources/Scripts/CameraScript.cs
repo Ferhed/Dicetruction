@@ -30,7 +30,7 @@ public class CameraScript : MonoBehaviour
     private float height = 10;
     private Vector3 middle;
     Vector3 direction;
-    private bool canShoot = false;
+    private bool m_isShooting = false;
     public AnimationCurve sinus;
 
     TestLineRenderer line;
@@ -60,10 +60,11 @@ public class CameraScript : MonoBehaviour
         for(int i = 0; i<3;i++)
         {
             dices[i].transform.parent = transform;
-            dices[i].transform.localPosition = new Vector3(-2f + (2f * i), -3 + (((i + 1) % 2) * ((i + 1) % 2)), 12);
+            dices[i].transform.localPosition = new Vector3(-4f + (4f * i), -5 + (((i + 1) % 2) * ((i + 1) % 2)), 15);
             dices[i].transform.rotation = UnityEngine.Random.rotation;
             TurnManager.instance.currentPlayer.GODices[i] = dices[i];
         }
+        TurnManager.instance.rotateArrow(0.1f);
     }
 
     // Update is called once per frame
@@ -123,47 +124,13 @@ public class CameraScript : MonoBehaviour
 
     void scope()
     {
-       /* if (Input.GetButtonDown("ButtonB"))
-        {
-            currentPosition = POSITION.ROTATEARROUND;
-        }*/
-        if(Input.GetButtonDown("ButtonA"))
+        
+        if (Input.GetButtonDown("ButtonA"))
         {
             SoundManager.Instance.PlayMonoSound(SoundManager.Instance.diceShuffle, 1f);
+            StartCoroutine(ChargeTir());
         }
-        if(Input.GetButton("ButtonA"))
-        {
-            checkforce();
-        }
-        else if (Input.GetButtonUp("ButtonA") && canShoot == false)
-        {
-            canShoot = true;
-        }
-        else if (Input.GetButtonUp("ButtonA") && canShoot == true)
-        {
-            Destroy(line);
-            Destroy(transform.GetComponentInParent<LineRenderer>());
-            startTime = Time.time;
-            SoundManager.Instance.PlayMonoSound(SoundManager.Instance.diceThrow, 1f);
-            foreach (GameObject currentDice in dices)
-            {
-                currentDice.transform.parent = null;
-                force = Mathf.Max(force, 10f);
-                Vector3 AF = transform.forward * force * 30 * multiplierForce;
-                float magn = AF.magnitude;
-                //magn *= Mathf.Tan(Random.Range(accuracy / 2, -accuracy / 2));
-                magn *= Mathf.Tan(UnityEngine.Random.Range(accuracy / 2, -accuracy / 2));
-                currentDice.GetComponent<Rigidbody>().AddForce(AF + Vector3.right * magn / 8);
-                currentDice.GetComponent<Rigidbody>().useGravity = true;
-                currentPosition = POSITION.FOLLOW;
-                Dice DR = currentDice.GetComponent<Dice>();
-                StartCoroutine(DR.checkStill());
-                direction = transform.position - transform.parent.position;
-                direction.Normalize();
-            }
-
-        }
-        else
+        if(!m_isShooting)
         {
             verticalMovment = Input.GetAxis("Vertical");
             transform.Rotate(new Vector3(-verticalMovment * speedRotationVerticalScope, 0, 0) * Time.deltaTime);
@@ -174,16 +141,38 @@ public class CameraScript : MonoBehaviour
                 mapCenter.transform.Rotate(mapCenter.transform.up, -horizontalMovment * Time.deltaTime * speedRotationArround);
             }
         }
-
-
-
-        if (Input.GetButtonDown ("ButtonY")) {
-			force = 0;
-		}
-		//checkforce ();
-
-		//charger le tir
 	}
+
+    IEnumerator ChargeTir()
+    {
+        m_isShooting = true;
+        while (!Input.GetButtonUp("ButtonA"))
+        {
+            checkforce();
+            yield return null;
+        }
+        Destroy(line);
+        Destroy(transform.GetComponentInParent<LineRenderer>());
+        startTime = Time.time;
+        SoundManager.Instance.PlayMonoSound(SoundManager.Instance.diceThrow, 1f);
+        foreach (GameObject currentDice in dices)
+        {
+            currentDice.transform.parent = null;
+            force = Mathf.Max(force, 10f);
+            Vector3 AF = transform.forward * force * 30 * multiplierForce;
+            float magn = AF.magnitude;
+            //magn *= Mathf.Tan(Random.Range(accuracy / 2, -accuracy / 2));
+            magn *= Mathf.Tan(UnityEngine.Random.Range(accuracy / 2, -accuracy / 2));
+            currentDice.GetComponent<Rigidbody>().AddForce(AF + Vector3.right * magn / 8);
+            currentDice.GetComponent<Rigidbody>().useGravity = true;
+            currentPosition = POSITION.FOLLOW;
+            Dice DR = currentDice.GetComponent<Dice>();
+            StartCoroutine(DR.checkStill());
+            direction = transform.position - transform.parent.position;
+            direction.Normalize();
+        }
+        m_isShooting = false;
+    }
 
 	void GetPosition(GameObject[] farDices)
     { 
@@ -208,7 +197,7 @@ public class CameraScript : MonoBehaviour
     {
 
         force = sinus.Evaluate(timer);
-        timer += Time.deltaTime/5;
+        timer += Time.deltaTime/2;
         if(timer > 1)
         {
             timer = 0;

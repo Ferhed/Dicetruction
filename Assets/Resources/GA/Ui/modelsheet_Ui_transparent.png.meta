@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: e1fc4728c497e5a40a52f62f51901591
-timeCreated: 1457603095
-licenseType: Free
+timeCreated: 1457625028
+licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
     21300000: modelsheet_Ui_transparent_0
@@ -34,7 +34,7 @@ TextureImporter:
     21300054: modelsheet_Ui_transparent_32
     21300056: modelsheet_Ui_transparent_33
     21300058: modelsheet_Ui_transparent_34
-    21300060: modelsheet_Ui_transparent_35
+    21300060: Fond_Main_Bar
     21300062: modelsheet_Ui_transparent_36
     21300064: modelsheet_Ui_transparent_37
     21300066: modelsheet_Ui_transparent_38
@@ -51,8 +51,8 @@ TextureImporter:
     21300088: modelsheet_Ui_transparent_48
     21300090: modelsheet_Ui_transparent_49
     21300092: modelsheet_Ui_transparent_50
-    21300094: modelsheet_Ui_transparent_6
-    21300096: modelsheet_Ui_transparent_12
+    21300094: score_fond_1
+    21300096: Score_fond
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -663,7 +663,7 @@ TextureImporter:
         - {x: -85.11487, y: -26.837402}
         - {x: 92.88513, y: -26.837402}
         - {x: 92.88513, y: 27.162598}
-    - name: modelsheet_Ui_transparent_35
+    - name: Fond_Main_Bar
       rect:
         serializedVersion: 2
         x: 1099
@@ -1151,7 +1151,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: modelsheet_Ui_transparent_6
+    - name: score_fond_1
       rect:
         serializedVersion: 2
         x: 1639
@@ -1166,7 +1166,7 @@ TextureImporter:
         - {x: -143.02179, y: -22.443237}
         - {x: 143.97821, y: -22.443237}
         - {x: 143.97821, y: 22.556763}
-    - name: modelsheet_Ui_transparent_12
+    - name: Score_fond
       rect:
         serializedVersion: 2
         x: 2297

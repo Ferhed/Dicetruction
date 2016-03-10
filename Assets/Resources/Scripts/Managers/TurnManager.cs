@@ -89,7 +89,6 @@ public class TurnManager : MonoBehaviour
 		currentPlayer = player1;
 		StartCoroutine (Turn ());
 
-
         while (!turnPlayer1Ended)
 			yield return new WaitForEndOfFrame ();
 
@@ -120,7 +119,6 @@ public class TurnManager : MonoBehaviour
 		int valor = dicesValor [0] + dicesValor [1] + dicesValor [2];
 		dicesValor.Clear ();
 		currentPlayer.AddMana (valor);
-		Debug.Log (valor);
 		GameObject camera = playerGameObject.transform.GetChild (0).gameObject;
 		camera.GetComponent<CameraScript> ().enabled = false;
         SoundManager.Instance.PlayMonoSound(SoundManager.Instance.totalMana, 1f);
@@ -167,12 +165,15 @@ public class TurnManager : MonoBehaviour
 			yield return new WaitForSeconds (0.1f);
 		}
 		Debug.Log ("allStatic " + currentPlayer.name);
-
-
-
+        
 		currentPlayer.EndOfTurn ();
 		killCamera ();
 
+        if (currentPlayer == player1)
+            turnPlayer1Ended = true;
+        else
+            turnPlayer2Ended = true;
+        rotateArrow(0);
         EndOfTurn();
     }
 
@@ -309,6 +310,7 @@ public class TurnManager : MonoBehaviour
 			turnPlayer2Ended = false;
 			StartCoroutine (Game ());
 		}
+        
 	}
 
 

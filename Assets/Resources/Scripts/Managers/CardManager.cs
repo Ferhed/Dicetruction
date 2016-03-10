@@ -14,7 +14,6 @@ public class CardManager : MonoBehaviour
 	public float BombeHForceExplosion;
 	public int TiltEnergyCoast;
 	public int TiltForce;
-	public int JamesBondEnergyCoast;
 	public float VortexRadius;
 	public int VortexEnergyCoast;
 	public float VortexForceExplosion;
@@ -32,7 +31,6 @@ public class CardManager : MonoBehaviour
     public Sprite imageBombeH;
     public Sprite imageVortex;
     public Sprite imageTilt;
-    public Sprite imageJamesBond;
     public Sprite imageSeime;
     public Sprite imageExcalibur;
     public Sprite imageExterminate;
@@ -55,7 +53,6 @@ public class CardManager : MonoBehaviour
 	{
 		allCards.Add (new BombeH (BombeHRadius, BombeHEnergyCoast, BombeHForceExplosion, imageBombeH));
 		allCards.Add (new Tilt (TiltEnergyCoast, TiltForce, imageTilt));
-		allCards.Add (new JamesBond (JamesBondEnergyCoast, imageJamesBond));
 		allCards.Add (new Vortex (VortexRadius, VortexEnergyCoast, VortexForceExplosion, imageVortex));
 		allCards.Add (new Seisme (SeismeEnergyCoast, SeismeForceExplosion, imageSeime));
 		allCards.Add (new Excalibur (ExcaliburRadius, ExcaliburEnergyCoast, ExcaliburForceExplosion, imageExcalibur));
