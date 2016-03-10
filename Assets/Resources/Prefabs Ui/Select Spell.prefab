@@ -542,6 +542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdc675ab6f5177943822a34182fadecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_costText: {fileID: 11407696}
 --- !u!114 &11423322
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -640,6 +641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdc675ab6f5177943822a34182fadecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_costText: {fileID: 11480648}
 --- !u!114 &11428132
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -750,8 +752,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 0}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -769,6 +771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdc675ab6f5177943822a34182fadecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_costText: {fileID: 11423322}
 --- !u!114 &11451552
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -780,6 +783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdc675ab6f5177943822a34182fadecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_costText: {fileID: 11408160}
 --- !u!114 &11466204
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -832,6 +836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdc675ab6f5177943822a34182fadecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_costText: {fileID: 11495536}
 --- !u!114 &11471170
 MonoBehaviour:
   m_ObjectHideFlags: 1
