@@ -17,6 +17,8 @@ GameObject:
   - 114: {fileID: 11437516}
   - 114: {fileID: 11467194}
   - 114: {fileID: 11406582}
+  - 82: {fileID: 8248968}
+  - 114: {fileID: 11415226}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -31,11 +33,85 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 124488}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 38.43084, y: 62.087776, z: -179.52357}
+  m_LocalPosition: {x: -36.338005, y: -0.4463992, z: 125.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!82 &8248968
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 124488}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: bf566e97ef931f0428e09a4e893f4196, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &11406582
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -49,7 +125,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingInMovement: []
   buildingStatic: 1
-  timeEndTurn: 30
+  timeEndTurn: 15
+--- !u!114 &11415226
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 124488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef39ee926ddf00241b9daa87ccdcd103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosion: {fileID: 124986, guid: a5be50296020ea647b4dd54b958c76e1, type: 2}
+  bombeH: {fileID: 130750, guid: 16c5b9a2885da594aa574673a1bb5439, type: 2}
+  earthquake: {fileID: 146142, guid: ab897405986653340b721493567a839e, type: 2}
+  lightning: {fileID: 145390, guid: 057f50265af289149a00df208cb62e16, type: 2}
 --- !u!114 &11421618
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -76,6 +167,7 @@ MonoBehaviour:
   m_ScoreP1: {fileID: 0}
   m_ScoreP2: {fileID: 0}
   m_cardSelected: {fileID: 0}
+  m_xToValidate: {fileID: 0}
 --- !u!114 &11421772
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -208,6 +300,7 @@ MonoBehaviour:
   currentPlayer: {fileID: 0}
   globalCamera: {fileID: 0}
   playerGameObject: {fileID: 0}
+  CS: {fileID: 0}
 --- !u!114 &11498012
 MonoBehaviour:
   m_ObjectHideFlags: 1

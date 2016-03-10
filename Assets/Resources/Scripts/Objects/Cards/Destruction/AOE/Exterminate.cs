@@ -16,7 +16,11 @@ public class Exterminate : Destruction
         GameObject selectedDice = targets[0];
         GameObject farDice = SelectDices(TurnManager.instance.currentPlayer.GODices, selectedDice);
 
-        RaycastHit[] co = Physics.BoxCastAll(selectedDice.transform.position, selectedDice.transform.localScale,farDice.transform.position-selectedDice.transform.position,selectedDice.transform.rotation,Vector3.Distance(selectedDice.transform.position,farDice.transform.position));
+        RaycastHit[] co = Physics.BoxCastAll(selectedDice.transform.position,
+            selectedDice.transform.localScale,
+            farDice.transform.position-selectedDice.transform.position,
+            selectedDice.transform.rotation,
+            Vector3.Distance(selectedDice.transform.position,farDice.transform.position));
         foreach (RaycastHit currentCo in co)
         {
             if (currentCo.collider.tag == "needPhysics" ||currentCo.collider.tag == "Props")
@@ -26,6 +30,12 @@ public class Exterminate : Destruction
                 currentCo.collider.GetComponent<Rigidbody>().AddExplosionForce(350f * 1000 * 1, currentCo.transform.position + Vector3.right, 10 );
             }
         }
+
+        Vector3 dir = farDice.transform.position - selectedDice.transform.position;
+        float Phi = Mathf.Acos(dir.y / dir.magnitude) * 180 / Mathf.PI;
+        float Teta = Mathf.Atan2(selectedDice.transform.position.z, selectedDice.transform.position.x) * 180 / Mathf.PI;
+
+        FxManager.Instance.LaunchFX(FxManager.Instance.lightning, targets[0].transform.position, new Vector3(Phi - 90,   Teta, 0));
     }
 
     GameObject SelectDices(GameObject[] dices, GameObject selectedDice)

@@ -26,7 +26,7 @@ public class TestLineRenderer : MonoBehaviour
         int index = 0;
         for (float i = 0; i < 210; i += 2)
         {
-            line.SetPosition(index, transform.position + new Vector3(3 , -(a * (i + b) * (i + b)) + c, i+5));
+            line.SetPosition(index, new Vector3(3 , -(a * (i + b) * (i + b)) + c, i ));
             index++;
         }
         finish = true;
