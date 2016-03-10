@@ -11,7 +11,7 @@ public class Dice : MonoBehaviour {
     public int nbRebond = 5;
     int result;
     bool canDraw = true;
-    public float multiplierSpell = 1f;
+    public float multiplierSpell = 1f; 
     XInput XIInstance;
 
 	// Use this for initialization

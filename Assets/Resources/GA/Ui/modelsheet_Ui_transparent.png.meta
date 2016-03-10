@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: e1fc4728c497e5a40a52f62f51901591
-timeCreated: 1457451620
+timeCreated: 1457603095
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -51,6 +51,8 @@ TextureImporter:
     21300088: modelsheet_Ui_transparent_48
     21300090: modelsheet_Ui_transparent_49
     21300092: modelsheet_Ui_transparent_50
+    21300094: modelsheet_Ui_transparent_6
+    21300096: modelsheet_Ui_transparent_12
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -805,44 +807,6 @@ TextureImporter:
         - {x: 10.629425, y: -180.92358}
         - {x: 36.629425, y: -180.92358}
         - {x: 36.629425, y: 181.07642}
-    - name: modelsheet_Ui_transparent_40
-      rect:
-        serializedVersion: 2
-        x: 1580
-        y: 1994
-        width: 1499
-        height: 287
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 336.2868, y: -41.92096}
-        - {x: 340.2868, y: -28.92096}
-        - {x: 340.2868, y: 28.07904}
-        - {x: 337.2868, y: 42.07904}
-        - {x: 332.2868, y: 49.07904}
-        - {x: 324.2868, y: 56.07904}
-        - {x: 319.2868, y: 59.07904}
-        - {x: 314.2868, y: 61.07904}
-        - {x: 304.2868, y: 64.07904}
-        - {x: 297.2868, y: 65.07904}
-        - {x: -293.7132, y: 65.07904}
-        - {x: -301.7132, y: 64.07904}
-        - {x: -317.7132, y: 60.07904}
-        - {x: -331.7132, y: 46.07904}
-        - {x: -335.7132, y: 38.07904}
-        - {x: -338.7132, y: 23.07904}
-        - {x: -338.7132, y: -24.92096}
-        - {x: -334.7132, y: -41.92096}
-        - {x: -329.7132, y: -48.92096}
-        - {x: -321.7132, y: -55.92096}
-        - {x: -316.7132, y: -58.92096}
-        - {x: -305.7132, y: -63.92096}
-        - {x: -294.7132, y: -64.92096}
-        - {x: 300.2868, y: -64.92096}
-        - {x: 306.2868, y: -63.92096}
-        - {x: 321.2868, y: -59.92096}
-        - {x: 331.2868, y: -50.92096}
     - name: modelsheet_Ui_transparent_41
       rect:
         serializedVersion: 2
@@ -1187,6 +1151,36 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+    - name: modelsheet_Ui_transparent_6
+      rect:
+        serializedVersion: 2
+        x: 1639
+        y: 2089
+        width: 633
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -143.02179, y: 22.556763}
+        - {x: -143.02179, y: -22.443237}
+        - {x: 143.97821, y: -22.443237}
+        - {x: 143.97821, y: 22.556763}
+    - name: modelsheet_Ui_transparent_12
+      rect:
+        serializedVersion: 2
+        x: 2297
+        y: 2091
+        width: 715
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -161.84473, y: 23.961548}
+        - {x: -161.84473, y: -22.038452}
+        - {x: 162.15527, y: -22.038452}
+        - {x: 162.15527, y: 23.961548}
     outline: []
   spritePackingTag: 
   userData: 

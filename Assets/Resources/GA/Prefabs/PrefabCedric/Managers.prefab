@@ -212,7 +212,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 124986, guid: a5be50296020ea647b4dd54b958c76e1, type: 2}
   bombeH: {fileID: 130750, guid: 16c5b9a2885da594aa574673a1bb5439, type: 2}
-  earthquake: {fileID: 146142, guid: ab897405986653340b721493567a839e, type: 2}
+  earthquake: {fileID: 122278, guid: ab897405986653340b721493567a839e, type: 2}
+  lightning: {fileID: 145390, guid: 057f50265af289149a00df208cb62e16, type: 2}
+  vortex: {fileID: 131022, guid: ba66acb05c75d5845b44b5a244844493, type: 2}
 --- !u!114 &11449444
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -12,7 +12,7 @@ public class CameraFollow : MonoBehaviour {
 	private Vector3 middle;
 	Vector3 direction;
 
-	void Start() {
+	void Start() { 
 		startTime = Time.time;
 		SelectDices();
 		getMiddleOfThree();
