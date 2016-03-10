@@ -20,6 +20,7 @@ public class FxManager : MonoBehaviour {
     public GameObject bombeH;
     public GameObject earthquake;
     public GameObject lightning;
+    public GameObject vortex;
 
     public void LaunchFX(GameObject FX, Vector3 position, Vector3 rotate)
     {

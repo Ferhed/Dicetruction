@@ -26,6 +26,7 @@ public class Vortex : Destruction
 		}
 		XInput.instance.useVibe (0, 0.5f, 1, 1);
 		dice.GetComponent<Rigidbody> ().AddExplosionForce (450f, dice.transform.position, 15f);
+        FxManager.Instance.LaunchFX(FxManager.Instance.vortex, dice.transform.position, Vector3.zero);
         SoundManager.Instance.PlayMonoSound(SoundManager.Instance.s_vortex, 1f);
 
 	}
