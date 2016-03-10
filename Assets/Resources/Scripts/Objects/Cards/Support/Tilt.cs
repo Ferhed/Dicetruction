@@ -14,14 +14,14 @@ public class Tilt : Support
 
     public override void Cast(List<GameObject> targets)
     {
-        GameObject dice = targets[0];
-
-        float X = Random.Range(-1f, 1f);
-        float Z = Random.Range(-1f, 1f);
-        Vector3 displacment = new Vector3(X, 0, Z);
-        displacment.Normalize();
-        dice.GetComponent<Rigidbody>().AddForce((displacment + Vector3.up) * 800 * force);
-        Debug.Log(displacment);
+        for (int i = 0; i < 3; i++)
+        {
+            float X = Random.Range(-1f, 1f);
+            float Z = Random.Range(-1f, 1f);
+            Vector3 displacment = new Vector3(X, 0, Z);
+            displacment.Normalize();
+            targets[i].GetComponent<Rigidbody>().AddForce((displacment + Vector3.up * 2) * 800 * force);
+        }
         XInput.instance.useVibe(0, 0.5f, 1, 1);
         SoundManager.Instance.PlayMonoSound(SoundManager.Instance.s_hoodWink, 1f);
     }

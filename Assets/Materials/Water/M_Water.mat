@@ -169,11 +169,11 @@ Material:
       data:
         first:
           name: _TessellationAmount
-        second: 6.3
+        second: 1
       data:
         first:
           name: _NormalAmount
-        second: 0
+        second: 0.03
       data:
         first:
           name: _node_4397
@@ -202,4 +202,4 @@ Material:
       data:
         first:
           name: _WaterColor
-        second: {r: 0.109483145, g: 0.30339834, b: 0.33088237, a: 1}
+        second: {r: 0, g: 0.85294116, b: 0.6764706, a: 1}

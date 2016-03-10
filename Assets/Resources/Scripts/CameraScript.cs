@@ -36,8 +36,6 @@ public class CameraScript : MonoBehaviour
     private bool m_isShooting = false;
     public AnimationCurve sinus;
 
-    TestLineRenderer line;
-
     enum POSITION
     {
         ROTATEARROUND,
@@ -52,7 +50,6 @@ public class CameraScript : MonoBehaviour
     void Start()
     {
         dices = new GameObject[3];
-        line = transform.GetComponentInParent<TestLineRenderer>();
         heightMin = 65;
 
         transform.localPosition = new Vector3(0, 58.939f, -140.5f);
@@ -155,8 +152,6 @@ public class CameraScript : MonoBehaviour
             checkforce();
             yield return null;
         }
-        Destroy(line);
-        Destroy(transform.GetComponentInParent<LineRenderer>());
         startTime = Time.time;
         SoundManager.Instance.PlayMonoSound(SoundManager.Instance.diceThrow, 1f);
         foreach (GameObject currentDice in dices)
@@ -208,7 +203,6 @@ public class CameraScript : MonoBehaviour
         }
         force *= 80;
         force = Mathf.Max(10f, force + 10);
-        line.a = 0.01f - 0.000125f * (force-10);
         /*float hori = Input.GetAxis("LeftHorizontal");
         float verti = Input.GetAxis("LeftVertical");
         float dist = Vector2.Distance(getForce, new Vector2(hori, verti));

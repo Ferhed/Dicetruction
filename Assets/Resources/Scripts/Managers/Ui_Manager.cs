@@ -242,6 +242,7 @@ public class Ui_Manager : Singleton<Ui_Manager>
 			m_selectCardPanel.transform.GetChild (i).gameObject.SetActive (true);
 			m_selectCardPanel.transform.GetChild (i).GetComponent<DraftCardUI> ().ActiveCard = hand [i];
 		}
+        Debug.LogWarning(m_selectCardPanel.transform.GetChild(0).gameObject);
 		m_system.SetSelectedGameObject (m_selectCardPanel.transform.GetChild (0).gameObject);
 	}
 
@@ -340,11 +341,11 @@ public class Ui_Manager : Singleton<Ui_Manager>
 	{
 		int score = m_turnManager.player1.getScore ();
         float scorep1 = (float)(m_turnManager.player1.getScore()) / (float)(m_maxScore);
-        Debug.Log(scorep1);
-        m_mainSlider.transform.GetChild(2).GetChild(0).GetComponent<Slider>().DOValue(scorep1, 0.3f).SetEase(Ease.InOutSine);
+        Debug.LogWarning(m_mainSlider.transform.GetChild(3).GetChild(0).GetComponent<Slider>());
+        m_mainSlider.transform.GetChild(3).GetChild(0).GetComponent<Slider>().DOValue(scorep1, 0.3f).SetEase(Ease.InOutSine);
         m_ScoreP1.text = score.ToString ();
 		score = m_turnManager.player2.getScore ();
-        m_mainSlider.transform.GetChild(2).GetChild(1).GetComponent<Slider>().DOValue((float)(m_turnManager.player2.getScore()) / (float)(m_maxScore), 0.3f).SetEase(Ease.InOutSine);
+        m_mainSlider.transform.GetChild(3).GetChild(1).GetComponent<Slider>().DOValue((float)(m_turnManager.player2.getScore()) / (float)(m_maxScore), 0.3f).SetEase(Ease.InOutSine);
         m_ScoreP2.text = score.ToString ();
 	}
 

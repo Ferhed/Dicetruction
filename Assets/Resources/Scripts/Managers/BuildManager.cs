@@ -55,9 +55,18 @@ public class BuildManager : MonoBehaviour {
             {
                 if (i % 10 == 0)
                     yield return null;
-
-                if (buildingInMovement[i] == null || buildingInMovement[i].velocity.sqrMagnitude <= 0.01f)
+                if (buildingInMovement[i] == null)
                 {
+                    buildingInMovement.RemoveAt(i);
+                    i--;
+                    continue;
+                }
+                if( buildingInMovement[i].velocity.sqrMagnitude <= 0.5f)
+                {
+                    if(buildingInMovement[i].name == "RDC")
+                    {
+                        buildingInMovement[i].GetComponent<Building>().checkPosition();
+                    }
                     buildingInMovement.RemoveAt(i);
                     i--;
                 }
@@ -65,7 +74,6 @@ public class BuildManager : MonoBehaviour {
                 yield return null;
             }
         }
-        Debug.LogWarning("Hey nCadcacacac");
         buildingStatic = true;
     }
 

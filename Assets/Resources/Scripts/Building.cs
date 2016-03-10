@@ -39,6 +39,7 @@ public class Building : MonoBehaviour
                 if (collision.gameObject.tag == "Player" && (this.gameObject.name == "Bus" || this.gameObject.name == "Truck"))
                 {
                     FxManager.Instance.LaunchFX(FxManager.Instance.explosion, transform.position, Quaternion.identity);
+                    Destroy(gameObject, 1f);
                 }
             }
 		}
@@ -57,6 +58,7 @@ public class Building : MonoBehaviour
 
 	public void changeWeight ()
 	{
+        if(tag != "Props")
 		Invoke ("reallyChangeWeight", 1f);
 	}
 
@@ -116,6 +118,16 @@ public class Building : MonoBehaviour
         }
         Invoke("reallyDestructNow", Random.Range(2f, 4f));
     }
+
+    public void checkPosition()
+    {
+        if (Vector3.Distance(transform.position, initialPosition) > 1)
+        {
+            destruct();
+        }
+    }
+
+
     void reallyDestructNow()
     {
         Destroy(gameObject);

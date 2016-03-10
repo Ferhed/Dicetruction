@@ -1,13 +1,10 @@
 fileFormatVersion: 2
 guid: 010da3740a07f3b4ea8bd75c0393a2d4
-timeCreated: 1457605353
+timeCreated: 1457636154
 licenseType: Pro
 ShaderImporter:
   defaultTextures:
   - _NormalWaves: {fileID: 2800000, guid: e958c6041cfe445e987c73751e8d4082, type: 3}
-  - _NormalTexture: {fileID: 2800000, guid: eafb8ae15e208b94e8dadaf3fe812d1c, type: 3}
-  - _NormalTexture_Large: {fileID: 2800000, guid: eafb8ae15e208b94e8dadaf3fe812d1c,
-      type: 3}
   - _NormalNoise: {fileID: 2800000, guid: e958c6041cfe445e987c73751e8d4082, type: 3}
   userData: 
   assetBundleName: 
