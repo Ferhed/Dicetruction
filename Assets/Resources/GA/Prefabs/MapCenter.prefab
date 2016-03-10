@@ -76,7 +76,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 128120}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -110.52347, y: 30.89819, z: -11.047411}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 445600}
@@ -246,8 +246,8 @@ MonoBehaviour:
   accuracyMin: 40
   accuracyMax: 15
   multiplierForce: 5
-  verticalTimeMove: 2
-  horizontalTimeMove: 1
+  verticalTimeMove: 5
+  horizontalTimeMove: 4
   sinus:
     serializedVersion: 2
     m_Curve:

@@ -16,15 +16,18 @@ public class CameraScript : MonoBehaviour
 	public float forceThrow = 200f;
 	public float accuracyMin = Mathf.PI / 4;
 	public float accuracyMax = Mathf.PI / 12;
-	float accuracy = Mathf.PI / 12;
+    public float heightMin;
+    float accuracy = Mathf.PI / 12;
 	float force;
 	Vector2 getForce;
 	public float multiplierForce = 1f;
 
 
     private Vector3 endMarker;
-    public float verticalTimeMove = 2;
-    public float horizontalTimeMove = 1;
+    [HideInInspector]
+    public float verticalTimeMove = 5;
+    [HideInInspector]
+    public float horizontalTimeMove = 4;
     private float startTime;
     private float journeyLength;
     private float height = 10;
@@ -50,6 +53,7 @@ public class CameraScript : MonoBehaviour
     {
         dices = new GameObject[3];
         line = transform.GetComponentInParent<TestLineRenderer>();
+        heightMin = 65;
 
         transform.localPosition = new Vector3(0, 58.939f, -140.5f);
         transform.eulerAngles = new Vector3(28.233f, 0, 0);
@@ -268,6 +272,8 @@ public class CameraScript : MonoBehaviour
     {
         middle = (dices[0].transform.position + dices[1].transform.position + dices[2].transform.position) / 3;
         endMarker = middle + Vector3.up * 1.3f * height;
+        endMarker.y = Mathf.Max(heightMin, endMarker.y);
+        Debug.Log(endMarker.y);
     }
 
     void SelectDices()

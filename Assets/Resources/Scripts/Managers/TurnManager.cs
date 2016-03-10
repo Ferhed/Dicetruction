@@ -161,6 +161,7 @@ public class TurnManager : MonoBehaviour
 		playerGameObject.transform.GetChild (0).GetChild (0).gameObject.SetActive (false);
 		//Selection du Spell a lancer
 		cardSelected = false;
+        playerGameObject.transform.GetChild(0).GetComponent<CameraScript>().heightMin += 30;
 
 
 		while (!BuildManager.Instance.buildingStatic) {
