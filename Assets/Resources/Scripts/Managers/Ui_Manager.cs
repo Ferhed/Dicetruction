@@ -195,19 +195,19 @@ public class Ui_Manager : Singleton<Ui_Manager>
 		m_yShowHandJ1.SetActive (false);
 		m_pressBtnPanel.SetActive (false);
 		m_handPlayer1.SetActive (true);
-		m_cardSelectedId = m_system.currentSelectedGameObject.transform.GetSiblingIndex ();
 		m_system.SetSelectedGameObject (null);
+        m_circularSlider.SetActive(false);
 	}
 
 	private void OnHandJ2 ()
 	{
 		UpdateHand (m_handPlayer2, m_turnManager.player2, 1);
-		m_yShowHandJ1.SetActive (false);
+		m_yShowHandJ2.SetActive (false);
 		m_pressBtnPanel.SetActive (false);
 		m_handPlayer2.SetActive (true);
-		m_cardSelectedId = m_system.currentSelectedGameObject.transform.GetSiblingIndex ();
 		m_system.SetSelectedGameObject (null);
-	}
+        m_circularSlider.SetActive(false);
+    }
 
 	private void OnPositioning ()
 	{
@@ -223,7 +223,6 @@ public class Ui_Manager : Singleton<Ui_Manager>
 		m_mainSlider.transform.FindChild ("J2 Panel").FindChild ("Panel").GetComponent<LayoutElement> ().preferredHeight = (player == 1) ? 70 : 100;
 
 		m_phaseTitle.SetActive (true);
-		m_yShowHandJ1.SetActive (true);
 	}
 
 	private void OnSpellSelect ()
@@ -242,7 +241,6 @@ public class Ui_Manager : Singleton<Ui_Manager>
 			m_selectCardPanel.transform.GetChild (i).gameObject.SetActive (true);
 			m_selectCardPanel.transform.GetChild (i).GetComponent<DraftCardUI> ().ActiveCard = hand [i];
 		}
-        Debug.LogWarning(m_selectCardPanel.transform.GetChild(0).gameObject);
 		m_system.SetSelectedGameObject (m_selectCardPanel.transform.GetChild (0).gameObject);
 	}
 
@@ -341,12 +339,20 @@ public class Ui_Manager : Singleton<Ui_Manager>
 	{
 		int score = m_turnManager.player1.getScore ();
         float scorep1 = (float)(m_turnManager.player1.getScore()) / (float)(m_maxScore);
-        Debug.LogWarning(m_mainSlider.transform.GetChild(3).GetChild(0).GetComponent<Slider>());
         m_mainSlider.transform.GetChild(3).GetChild(0).GetComponent<Slider>().DOValue(scorep1, 0.3f).SetEase(Ease.InOutSine);
         m_ScoreP1.text = score.ToString ();
+        if(scorep1 > 1.0f)
+        {
+            Debug.Log(scorep1);
+            WinManager.Instance.Win(1);
+        }
 		score = m_turnManager.player2.getScore ();
         m_mainSlider.transform.GetChild(3).GetChild(1).GetComponent<Slider>().DOValue((float)(m_turnManager.player2.getScore()) / (float)(m_maxScore), 0.3f).SetEase(Ease.InOutSine);
         m_ScoreP2.text = score.ToString ();
+        if(score > m_maxScore)
+        {
+            WinManager.Instance.Win(2);
+        }
 	}
 
 	public void ShowCardSelected (Card spell)

@@ -129,7 +129,7 @@ Material:
       data:
         first:
           name: _Emission
-        second: 28
+        second: 118
       data:
         first:
           name: _Parallax
@@ -169,7 +169,11 @@ Material:
       data:
         first:
           name: _colorstrenght
-        second: 20
+        second: 10
+      data:
+        first:
+          name: _black
+        second: 1.1
       data:
         first:
           name: _node_6726
@@ -192,10 +196,6 @@ Material:
         second: 0
       data:
         first:
-          name: _black
-        second: 0.8
-      data:
-        first:
           name: _node_5307
         second: 0
     m_Colors:
@@ -214,8 +214,8 @@ Material:
       data:
         first:
           name: _heightcolor
-        second: {r: 0.25, g: 0.16250001, b: 0.03125, a: 1}
+        second: {r: 0.1836207, g: 0.03125, b: 0.25, a: 1}
       data:
         first:
           name: _coloremissive
-        second: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+        second: {r: 0.7794118, g: 0.5183958, b: 0.051578723, a: 1}

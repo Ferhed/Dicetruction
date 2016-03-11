@@ -50,6 +50,11 @@ public class XInput : MonoBehaviour
         StartCoroutine(vibration((PlayerIndex)id, time,  force1,  force2));
     }
 
+    public void StopVibration()
+    {
+        GamePad.SetVibration(0, 0, 0);
+    }
+
     IEnumerator vibration(PlayerIndex id, float time, float force1, float force2)
     {
         GamePad.SetVibration(playerIndex, force1, force2);

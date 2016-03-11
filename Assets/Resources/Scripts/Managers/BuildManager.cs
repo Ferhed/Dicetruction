@@ -61,7 +61,7 @@ public class BuildManager : MonoBehaviour {
                     i--;
                     continue;
                 }
-                if( buildingInMovement[i].velocity.sqrMagnitude <= 0.5f)
+                if( buildingInMovement[i].velocity.sqrMagnitude <= 0.5f || buildingInMovement[i].transform.position.magnitude >= 1000 )
                 {
                     if(buildingInMovement[i].name == "RDC")
                     {

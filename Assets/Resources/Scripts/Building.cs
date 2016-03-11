@@ -12,6 +12,7 @@ public class Building : MonoBehaviour
 	// Use this for initialization
 	void Awake ()
 	{
+        check();
         initialPosition = transform.position;
 		rb = GetComponent<Rigidbody> ();
         if (rb.mass == 1) score = 75;
@@ -21,6 +22,14 @@ public class Building : MonoBehaviour
         rb.mass *= 100;
 		//rb.Sleep();
 	}
+
+    void check()
+    {
+        if (!GetComponent<Collider>())
+        {
+            GameObject child = transform.GetChild(0).gameObject;
+        }
+    }
 
 	void OnCollisionEnter (Collision collision)
 	{
@@ -38,6 +47,7 @@ public class Building : MonoBehaviour
             {
                 if (collision.gameObject.tag == "Player" && (this.gameObject.name == "Bus" || this.gameObject.name == "Truck"))
                 {
+                    SoundManager.Instance.PlayMonoSound(SoundManager.Instance.s_conflagration, 1f);
                     FxManager.Instance.LaunchFX(FxManager.Instance.explosion, transform.position, Quaternion.identity);
                     Destroy(gameObject, 1f);
                 }
@@ -54,6 +64,7 @@ public class Building : MonoBehaviour
 	{
         BuildManager.Instance.addElement(rb);
         hittingPlayer = TurnManager.instance.currentPlayer;
+        initialPosition = transform.position;
 	}
 
 	public void changeWeight ()
@@ -92,7 +103,9 @@ public class Building : MonoBehaviour
     void destruct ()
 	{
         TurnManager.instance.currentPlayer.objectsDestroy++;
-        if(tag == "Props")
+        if (hittingPlayer == null)
+            hittingPlayer = TurnManager.instance.lastPlayer;
+        if (tag == "Props")
         {
             if(hittingPlayer == TurnManager.instance.player1)
                 TurnManager.instance.player1.addScore(true, score);
@@ -107,8 +120,6 @@ public class Building : MonoBehaviour
                 TurnManager.instance.player2.addScore(false, score);
 
         }
-        if (hittingPlayer == null)
-            hittingPlayer = TurnManager.instance.lastPlayer;
         Ui_Manager.Instance.MajScore();
         if (tag == "Props") { }
         else

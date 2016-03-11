@@ -21,7 +21,7 @@ public class CircularSlider : MonoBehaviour
 
 	void Awake ()
 	{
-		m_centerOfRotation = transform.GetChild (0);
+		m_centerOfRotation = transform.GetChild (1);
 		m_degRot = 0f;
 	}
 			

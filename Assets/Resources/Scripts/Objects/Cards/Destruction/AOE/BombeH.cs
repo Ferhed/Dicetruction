@@ -30,7 +30,7 @@ public class BombeH : Destruction
                 {
                     currentCo.GetComponent<Building>().bump();
                     currentCo.GetComponent<Building>().changeWeight();
-                    currentCo.GetComponent<Rigidbody>().AddExplosionForce(350f * 100 * 1, dice.transform.position, 15f);
+                    currentCo.GetComponent<Rigidbody>().AddExplosionForce(350f * 100 * 200, dice.transform.position, 15f);
                 }
             }
 		}

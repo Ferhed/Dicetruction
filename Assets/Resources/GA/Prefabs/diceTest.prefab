@@ -42,7 +42,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_Materials:
-  - {fileID: 2100000, guid: d7fdc40c442877d4698811b1ea611f79, type: 2}
+  - {fileID: 2100000, guid: 93347196396c6224eb429a02d19275db, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 300
-  nbRebond: 5
+  nbRebond: 0
   multiplierSpell: 1
 --- !u!1001 &100100000
 Prefab:

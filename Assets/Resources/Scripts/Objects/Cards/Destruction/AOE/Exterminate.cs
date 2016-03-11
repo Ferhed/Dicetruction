@@ -27,7 +27,7 @@ public class Exterminate : Destruction
             {
                 currentCo.collider.GetComponent<Building>().bump();
                 currentCo.collider.GetComponent<Building>().changeWeight();
-                currentCo.collider.GetComponent<Rigidbody>().AddExplosionForce(350f * 1000 * 1, currentCo.transform.position + Vector3.right, 10 );
+                currentCo.collider.GetComponent<Rigidbody>().AddExplosionForce(350f * 1000 * 30, currentCo.transform.position + Vector3.right, 10 );
             }
         }
 

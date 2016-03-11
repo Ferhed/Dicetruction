@@ -34,6 +34,7 @@ public class TurnManager : MonoBehaviour
     public Player lastPlayer;
 
 
+
 	void Awake ()
 	{
 		cardsInDraft = new List<Card> ();
@@ -106,6 +107,8 @@ public class TurnManager : MonoBehaviour
 	{
 		playerGameObject = Instantiate (Resources.Load ("GA/Prefabs/MapCenter", typeof(GameObject))) as GameObject;
 		playerGameObject.transform.position = Vector3.zero;
+        playerGameObject.transform.rotation = globalCamera.transform.parent.rotation;
+        glo
 		globalCamera.enabled = false;
 	}
 
@@ -120,7 +123,7 @@ public class TurnManager : MonoBehaviour
 		dicesValor.Clear ();
 		currentPlayer.AddMana (valor);
 		GameObject camera = playerGameObject.transform.GetChild (0).gameObject;
-		camera.GetComponent<CameraScript> ().enabled = false;
+		//camera.GetComponent<CameraScript> ().enabled = false;
         SoundManager.Instance.PlayMonoSound(SoundManager.Instance.totalMana, 1f);
 	}
 
@@ -152,14 +155,16 @@ public class TurnManager : MonoBehaviour
 		});
 		List<Card> SelectedSpells = UIInstance.getSelectedSpell ();
 		Debug.Log (SelectedSpells.Count);
-
-		//Waiting until all the spells are assigned to a die
-
-		yield return new WaitForSpellAssignation (SelectedSpells);
-		playerGameObject.transform.GetChild (0).GetChild (0).gameObject.SetActive (false);
-		//Selection du Spell a lancer
-		cardSelected = false;
         playerGameObject.transform.GetChild(0).GetComponent<CameraScript>().heightMin += 30;
+
+        //Waiting until all the spells are assigned to a die
+
+        yield return new WaitForSpellAssignation (SelectedSpells);
+		playerGameObject.transform.GetChild (0).GetChild (0).gameObject.SetActive (false);
+        playerGameObject.transform.GetChild(0).GetComponent<CameraScript>().cinematic();
+        //Selection du Spell a lancer
+        cardSelected = false;
+        
 
 
 		while (!BuildManager.Instance.buildingStatic) {
@@ -241,7 +246,29 @@ public class TurnManager : MonoBehaviour
 				} else {
 					targets.Add (player2.GODices [dieIndex]);
 				}
-			}
+            }
+            else if ((card as Conflagration) != null)
+            {
+                if (currentPlayer == player1)
+                {
+                    targets.Add(player1.GODices[dieIndex]);
+                }
+                else
+                {
+                    targets.Add(player2.GODices[dieIndex]);
+                }
+            }
+            else if ((card as TeaSpill) != null)
+            {
+                if (currentPlayer == player1)
+                {
+                    targets.Add(player1.GODices[dieIndex]);
+                }
+                else
+                {
+                    targets.Add(player2.GODices[dieIndex]);
+                }
+            }
 
             lastPlayer = currentPlayer;
             currentPlayer.Cast (card, targets);

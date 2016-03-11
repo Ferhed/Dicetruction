@@ -118,6 +118,18 @@ Material:
         second: 0
       data:
         first:
+          name: _Metallic
+        second: 0
+      data:
+        first:
+          name: _colorstrenght
+        second: 7
+      data:
+        first:
+          name: _black
+        second: 1
+      data:
+        first:
           name: _Parallax
         second: 0.02
       data:
@@ -148,18 +160,6 @@ Material:
         first:
           name: _Mode
         second: 0
-      data:
-        first:
-          name: _Metallic
-        second: 0
-      data:
-        first:
-          name: _colorstrenght
-        second: 7
-      data:
-        first:
-          name: _black
-        second: 0.3
     m_Colors:
       data:
         first:

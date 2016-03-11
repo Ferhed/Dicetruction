@@ -173,7 +173,7 @@ Material:
       data:
         first:
           name: _NormalAmount
-        second: 0.03
+        second: 0.02
       data:
         first:
           name: _node_4397

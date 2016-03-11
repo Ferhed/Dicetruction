@@ -35,6 +35,7 @@ public class CameraScript : MonoBehaviour
     Vector3 direction;
     private bool m_isShooting = false;
     public AnimationCurve sinus;
+    private Tween tn;
 
     enum POSITION
     {
@@ -45,7 +46,7 @@ public class CameraScript : MonoBehaviour
         STATIC,
     }
 
-    POSITION currentPosition = POSITION.SCOPE;
+   POSITION currentPosition = POSITION.SCOPE;
     // Use this for initialization
     void Start()
     {
@@ -53,7 +54,7 @@ public class CameraScript : MonoBehaviour
         heightMin = 65;
 
         transform.localPosition = new Vector3(0, 58.939f, -140.5f);
-        transform.eulerAngles = new Vector3(28.233f, 0, 0);
+        transform.localEulerAngles = new Vector3(28.233f, 0, 0);
 
         dices[0] = Instantiate(Resources.Load("GA/Prefabs/diceTest", typeof(GameObject))) as GameObject;
         dices[1] = Instantiate(Resources.Load("GA/Prefabs/diceTest", typeof(GameObject))) as GameObject;
@@ -61,7 +62,7 @@ public class CameraScript : MonoBehaviour
         for(int i = 0; i<3;i++)
         {
             dices[i].transform.parent = transform;
-            dices[i].transform.localPosition = new Vector3(-4f + (4f * i), -5 + (((i + 1) % 2) * ((i + 1) % 2)), 15);
+            dices[i].transform.localPosition = new Vector3(-6f + (6f * i), -5 + (((i + 1) % 2) * ((i + 1) % 2)), 20);
             dices[i].transform.rotation = UnityEngine.Random.rotation;
             TurnManager.instance.currentPlayer.GODices[i] = dices[i];
         }
@@ -71,6 +72,7 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.LogWarning(currentPosition);
         switch (currentPosition)
         {
             case POSITION.ROTATEARROUND:
@@ -134,6 +136,10 @@ public class CameraScript : MonoBehaviour
         if(!m_isShooting)
         {
             verticalMovment = Input.GetAxis("Vertical");
+            if (verticalMovment > 0 && transform.eulerAngles.x < 6 || verticalMovment < 0 && transform.eulerAngles.x > 35)
+            {
+
+            }else
             transform.Rotate(new Vector3(-verticalMovment * speedRotationVerticalScope, 0, 0) * Time.deltaTime);
 
             horizontalMovment = Input.GetAxis("Horizontal");
@@ -143,6 +149,11 @@ public class CameraScript : MonoBehaviour
             }
         }
 	}
+
+    internal void cinematic()
+    {
+        currentPosition = POSITION.STATIC;
+    }
 
     IEnumerator ChargeTir()
     {
@@ -218,10 +229,6 @@ public class CameraScript : MonoBehaviour
 
     void follow()
     {
-        if (Input.GetButtonDown("ButtonX"))
-        {
-            currentPosition = POSITION.STATIC;
-        }
         SelectDices();
         getMiddleOfThree();
         journeyLength = Vector3.Distance(transform.position, endMarker);
@@ -240,10 +247,16 @@ public class CameraScript : MonoBehaviour
 
     void staticCamera()
     {
-        if (Input.GetButtonDown("ButtonX"))
-        {
-            currentPosition = POSITION.FOLLOW;
-        }
+        if (tn != null || (tn != null && tn.IsPlaying()))
+            return;
+        Quaternion rotation = Quaternion.LookRotation(new Vector3(0, 58, -140) - transform.parent.position);
+        transform.DORotate(new Vector3(28.233f,0,0) , 2f).SetEase(Ease.InOutSine);
+        tn = transform.DOMove(new Vector3(0, 58, -140), 2f).SetEase(Ease.InOutSine).OnComplete(() =>
+          {
+              Debug.LogWarning("Finnish " + transform.position);
+              transform.DOLocalMove(transform.localPosition, 0f).SetLoops(-1);
+              transform.parent.DORotate(new Vector3(0, 180f, 0), 10f).SetRelative().SetLoops(-1, LoopType.Incremental).SetEase(Ease.Linear);
+          });
 
         //reculer suivant distance entre les 2 dès les plus éloignés
 
@@ -256,7 +269,6 @@ public class CameraScript : MonoBehaviour
         middle = (dices[0].transform.position + dices[1].transform.position + dices[2].transform.position) / 3;
         endMarker = middle + Vector3.up * 1.3f * height;
         endMarker.y = Mathf.Max(heightMin, endMarker.y);
-        Debug.Log(endMarker.y);
     }
 
     void SelectDices()

@@ -3,6 +3,7 @@ using System.Collections;
 using DG.Tweening;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class PlayMenuHandler : MenuHandler
 {
@@ -18,4 +19,9 @@ public class PlayMenuHandler : MenuHandler
 	{
 		base.Update ();
 	}
+
+    public void PlayGame()
+    {
+        SceneManager.LoadScene(1, LoadSceneMode.Single);
+    }
 }

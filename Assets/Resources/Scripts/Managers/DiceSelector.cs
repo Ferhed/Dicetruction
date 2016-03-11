@@ -32,7 +32,7 @@ public class DiceSelector : Singleton<DiceSelector>
 	// Update is called once per frame
 	void Update ()
 	{
-	
+        
 	}
 
 	public void Reset ()
@@ -52,8 +52,9 @@ public class DiceSelector : Singleton<DiceSelector>
 		m_dice = Dice;
 		m_selectedIndex = 0;
 		m_callback = callback;
-		m_dice [m_indexList [0]].GetComponent<MeshRenderer> ().material = SelectedMaterial;
-		StartCoroutine (SelectDice ());
+        m_dice[m_indexList[0]].GetComponent<MeshRenderer>().material.SetFloat("_OutlineWidth", 0.005f);
+        m_dice[m_indexList[0]].GetComponent<MeshRenderer>().material.SetColor("_OutlineColor", Color.green);
+        StartCoroutine (SelectDice ());
 		/*if (spell.type == CardType.SingleDie)
 			StartCoroutine (SelectDice ());
 		else
@@ -70,9 +71,10 @@ public class DiceSelector : Singleton<DiceSelector>
 
 
 			if (oldIndex != m_selectedIndex) {
-				m_dice [m_indexList [m_selectedIndex]].GetComponent<MeshRenderer> ().material = SelectedMaterial;
-				m_dice [m_indexList [oldIndex]].GetComponent<MeshRenderer> ().material = BaseMaterial;
-			}
+				m_dice [m_indexList [m_selectedIndex]].GetComponent<MeshRenderer> ().material.SetFloat("_OutlineWidth", 0.005f);
+                m_dice[m_indexList[m_selectedIndex]].GetComponent<MeshRenderer>().material.SetColor("_OutlineColor", Color.green);
+                m_dice [m_indexList [oldIndex]].GetComponent<MeshRenderer> ().material.SetFloat("_OutlineWidth", 0f);
+            }
 
 			if (axis != 0)
 				yield return new WaitForSeconds (0.2f);
@@ -83,7 +85,7 @@ public class DiceSelector : Singleton<DiceSelector>
 		yield return null;
 		Debug.Log (m_indexList [m_selectedIndex]);
 		int index = m_indexList [m_selectedIndex];
-		m_dice [index].GetComponent<MeshRenderer> ().material.SetColor ("_OutlineColor", Color.red);
+		m_dice [index].GetComponent<MeshRenderer> ().material.SetColor ("_OutlineColor", Color.blue);
 		m_indexList.RemoveAt (m_selectedIndex);
 		m_callback.NextSpell (index);
 		

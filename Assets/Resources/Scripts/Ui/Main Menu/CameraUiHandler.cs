@@ -59,7 +59,7 @@ public class CameraUiHandler : MonoBehaviour
 		activeFocusPoint = focusPoints.FindChild ("Options");
 		activePoint = Points.FindChild ("Options");
 		Vector3 direction = activeFocusPoint.position - activePoint.position;
-		Vector3 targetRotation = Quaternion.LookRotation (direction, bus.forward).eulerAngles;
+		Vector3 targetRotation = Quaternion.LookRotation (direction, bus.up).eulerAngles;
 		transform.DOMove (activePoint.position, 1.5f).SetEase (Ease.InOutSine);
 		transform.DORotate (targetRotation, 1.5f).SetEase (Ease.InOutSine);
 	}

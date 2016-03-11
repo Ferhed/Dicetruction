@@ -49,13 +49,12 @@ public class Dice : MonoBehaviour {
     }
 
     public IEnumerator checkStill()
-	{		
-		yield return new WaitForSeconds (0.1f);
-		while(position != transform.position)
-		{
-			position = transform.position;
-			yield return new WaitForSeconds (0.1f);
-		}
+	{      
+		yield return new WaitForSeconds (0.5f);
+        yield return new WaitUntil(() =>
+        {
+            return rb.velocity.magnitude <= 0.05f;
+        });
 		GetDiceCount();
 		yield return null;
 	}
